@@ -2176,6 +2176,19 @@ if ('serviceWorker' in navigator) {
             console.error('ServiceWorker registration failed: ', err);
         });
     });
+    window.addEventListener('beforeinstallprompt', function (e) {
+        console.log('anp beforeinstallprompt', e);
+    });
+    window.addEventListener('appinstalled', function (e) {
+        console.log('anp appinstalled', e);
+    });
+    if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('anp app launched');
+    }
+    if (window.navigator && 'standalone' in navigator) {
+        //if(window.navigator.standalone === true)
+        console.log('anp appi launched safari');
+    }
 }
 
 
