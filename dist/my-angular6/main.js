@@ -2168,6 +2168,15 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].produc
 }
 Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
     .catch(function (err) { return console.log(err); });
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(function (registration) {
+            console.log('anp service worker registered.', registration);
+        }, function (err) {
+            console.error('ServiceWorker registration failed: ', err);
+        });
+    });
+}
 
 
 /***/ }),

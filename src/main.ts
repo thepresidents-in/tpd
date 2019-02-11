@@ -11,3 +11,13 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
 
+  if ('serviceWorker' in navigator) {
+
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js', {scope:'/'}).then(function(registration) {
+        console.log('anp service worker registered.', registration)
+      }, function(err) {
+         console.error('ServiceWorker registration failed: ', err);
+      });
+    });
+  }

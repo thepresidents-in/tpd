@@ -22,7 +22,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/firebase.json",
-              "src/manifest.json"
+              "src/manifest.json",
+              "src/sw.js"
             ],
             "styles": [
               {
@@ -84,7 +85,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/firebase.json",
-              "src/manifest.json"
+              "src/manifest.json",
+              "src/sw.js"
             ]
           }
         },
