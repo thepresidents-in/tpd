@@ -20,7 +20,9 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/firebase.json",
+              "src/manifest.json"
             ],
             "styles": [
               {
@@ -80,7 +82,9 @@
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/firebase.json",
+              "src/manifest.json"
             ]
           }
         },
