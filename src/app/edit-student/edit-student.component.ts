@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-student.component.css']
 })
 export class EditStudentComponent implements OnInit {
-    studentData: any = {};
+    studentData: any = [];
     editStudentId;
 	private sub: any;
     editStudentData;
