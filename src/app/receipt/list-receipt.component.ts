@@ -15,7 +15,7 @@ export interface DialogData {
 export class ListReceiptComponent implements OnInit {
 	dataSource ;
 displayedColumns = ['session','class','student_name','father_name','mother_name','total_amount','amt_deposite','pre_bal','bal_amount','annual_func_fee','dearness_fee','dev_fee','elec_fee','exam_fee','form_chrgs','lab_fee','lib_fee','monthName','music_fee','received_by','remark','sclass','searchDate','uId'];
-constructor(public rest:RestService, public dialog: MatDialog){
+constructor(public rest:RestService, public dialog: MatDialog,private router: Router){
 
 }
 
@@ -31,6 +31,10 @@ openDialog(receiptData) {
       console.log(`Dialog result: ${result}`);
       console.log("Dialog result: ",result);
     });
+  }
+
+  editReceipt(editReceiptId) {
+    this.router.navigate(['/editReceipt', editReceiptId]);
   }
 
   @ViewChild(MatSort) sort: MatSort;
