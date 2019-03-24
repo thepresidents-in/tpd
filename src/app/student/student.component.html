@@ -1,6 +1,6 @@
 <app-home></app-home>
  <mat-sidenav-container>
- <form [formGroup]="form" name="studentData" (submit)="submitStudent()"  class="student-form">
+ <form [formGroup]="form" name="studentData" (submit)="submitStudent()"  class="student-form" >
 <div class="container"
      fxLayout
      fxLayout.xs="column"
@@ -10,7 +10,7 @@
   	 <mat-form-field class="navigation-items">
   	 <mat-label>Student Name</mat-label>       
   	<mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput value="" name="first_name" formControlName="first_name">
+    <input matInput value="" name="first_name" formControlName="first_name" [ngClass]="{ 'is-invalid': submitted && form.first_name.errors }" >
      <mat-error *ngIf="form.get('first_name').invalid">Please enter first name.</mat-error> 
   </mat-form-field>
   </div>
@@ -234,13 +234,13 @@
      <mat-error *ngIf="form.get('class').invalid">Please select class.</mat-error> 
   </mat-form-field>
   </div>
-<div class="item item-1" fxFlex="15%">
+<!-- <div class="item item-1" fxFlex="15%">
     <button mat-stroked-button  type="button" color="primary" (click)="filePicker.click()">Pick Image</button>
     <input type="file"  style="display: none;" #filePicker (change)="onImagePicked($event)">
   </div>
   <div class="image-preview" *ngIf="imagePreview !='' && imagePreview">
     <img [src]="imagePreview" [alt]="form.value.first_name">
-  </div>
+  </div> -->
 </div>
 
 <div class="container"
@@ -251,7 +251,7 @@
      fxLayoutGap.xs="0">
   <div class="button-row">
   	 <button type="submit" mat-stroked-button color="primary">Save</button>
-  	  <button (click)="form.reset();" mat-raised-button color="primary">Reset</button>
+  	  <button type="button" (click)="form.reset();" mat-raised-button color="primary">Reset</button>
 
   </div>
   

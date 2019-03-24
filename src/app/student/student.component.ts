@@ -60,9 +60,9 @@ export class StudentComponent implements OnInit {
            'class' : new FormControl('',{
         validators:[Validators.required]
       }),
-           'image' : new FormControl('',{
+           /*'image' : new FormControl('',{
              validators:[Validators.required]
-           }),
+           }),*/
             'adhaar_no' : new FormControl('',{ 
         validators:[Validators.required, Validators.minLength(10)] 
       }),
@@ -116,14 +116,19 @@ export class StudentComponent implements OnInit {
 
   submitStudent() {
      if(this.form.invalid){
-    return;
-    }
-    this.form.value.dob= this.datePipe.transform(this.form.value.dob, 'yyyy-MM-dd');
-	  this.rest.postStudent(this.form.value).then((response) => {
+       alert("if");
+      this.ngOnInit();
+    }else{
+      alert("else");
+      this.form.value.dob= this.datePipe.transform(this.form.value.dob, 'yyyy-MM-dd');
+    console.log("student add... ",this.form.value);
+    this.rest.postStudent(this.form.value).then((response) => {
        this.openDialog();
        console.log("Student added. !!");
        this.form.reset();
     });
+    }
+    
 }
 
 openDialog() {
