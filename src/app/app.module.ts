@@ -36,6 +36,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentDetailComponent } from './student/studentDetail.component';
 import { ListReceiptComponent } from './receipt/list-receipt.component';
 import { EditReceiptComponent } from './receipt/edit-receipt.commponent';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -173,7 +174,8 @@ const appRoutes: Routes =[
     MatExpansionModule,
     ReactiveFormsModule,
     MatSortModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    Ng4LoadingSpinnerModule
    
 
   ],

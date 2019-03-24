@@ -2,6 +2,7 @@ import { Component, OnInit,Inject,ViewChild } from '@angular/core';
 import { RestService } from '../rest.service';
 import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort} from '@angular/material';
 import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 export interface DialogData {
   studentId;
@@ -18,7 +19,7 @@ dataSource ;
 displayedColumns = ['roll_number','first_name','father_name','mother_name','class','dob','uId'];
 
 
-  constructor( public rest: RestService, public dialog: MatDialog) {}
+  constructor( public rest: RestService, public dialog: MatDialog ,private spinnerService: Ng4LoadingSpinnerService) {}
  openDialog(studentData) {
     console.log("studentData console: ",studentData);
     const dialogRef = this.dialog.open(DialogContent, {
@@ -35,11 +36,14 @@ displayedColumns = ['roll_number','first_name','father_name','mother_name','clas
 
 @ViewChild(MatSort) sort: MatSort;
   ngOnInit() {
+    this.spinnerService.show();
     this.rest.getStudents().then((response) => {
     console.log("res KV: ",response);
+    
     this.dataSource = new MatTableDataSource(response);
     console.log("dataSource mat:",this.dataSource);
     this.dataSource.sort = this.sort;
+    this.spinnerService.hide();
   });
     
   }

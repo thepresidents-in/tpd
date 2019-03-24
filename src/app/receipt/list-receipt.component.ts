@@ -2,6 +2,7 @@ import { Component, OnInit,Inject,ViewChild } from '@angular/core';
 import { RestService } from '../rest.service';
 import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort } from '@angular/material';
 import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 export interface DialogData {
   receiptId;
@@ -15,7 +16,7 @@ export interface DialogData {
 export class ListReceiptComponent implements OnInit {
 	dataSource ;
 displayedColumns = ['session','class','student_name','father_name','mother_name','total_amount','amt_deposite','pre_bal','bal_amount','annual_func_fee','dearness_fee','dev_fee','elec_fee','exam_fee','form_chrgs','lab_fee','lib_fee','monthName','music_fee','received_by','remark','sclass','searchDate','uId'];
-constructor(public rest:RestService, public dialog: MatDialog,private router: Router){
+constructor(public rest:RestService, public dialog: MatDialog,private router: Router, private spinnerService: Ng4LoadingSpinnerService){
 
 }
 
@@ -39,12 +40,14 @@ openDialog(receiptData) {
 
   @ViewChild(MatSort) sort: MatSort;
 ngOnInit() {
+  this.spinnerService.show();
   this.rest.getReceipt().then((response) => {
     console.log("res KV: ",response);
     this.dataSource = response ;
     console.log("dataSource receipt :",this.dataSource);
     this.dataSource = new MatTableDataSource(response);
     this.dataSource.sort = this.sort;
+    this.spinnerService.hide();
 });
   }
 
