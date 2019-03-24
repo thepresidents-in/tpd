@@ -115,6 +115,9 @@ export class StudentComponent implements OnInit {
  }
 
   submitStudent() {
+     if(this.form.invalid){
+    return;
+    }
     this.form.value.dob= this.datePipe.transform(this.form.value.dob, 'yyyy-MM-dd');
 	  this.rest.postStudent(this.form.value).then((response) => {
        this.openDialog();
