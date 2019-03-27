@@ -37,6 +37,7 @@ import { StudentDetailComponent } from './student/studentDetail.component';
 import { ListReceiptComponent } from './receipt/list-receipt.component';
 import { EditReceiptComponent } from './receipt/edit-receipt.commponent';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { AuthGuard } from './auth/auth.guard';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -49,7 +50,8 @@ const appRoutes: Routes =[
 },
 {
 	path: 'student',
-    component: StudentComponent
+    component: StudentComponent,
+    canActivate: [AuthGuard]
 },
 {
   path: 'login',
@@ -61,18 +63,21 @@ const appRoutes: Routes =[
 },
 
 { path: 'student/:id', 
-  component: EditStudentComponent 
+  component: EditStudentComponent,
+  canActivate: [AuthGuard] 
 },
 {
   path : 'receipt',
-  component: ReceiptComponent
+  component: ReceiptComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'receiptList',
   component: ListReceiptComponent
 },
 { path: 'editReceipt/:id', 
-  component: EditReceiptComponent 
+  component: EditReceiptComponent,
+  canActivate: [AuthGuard] 
 },
 {
   path : 'bookAdd',
@@ -84,7 +89,8 @@ const appRoutes: Routes =[
 },
 {
   path : 'home',
-  component: HomeComponent
+  component: HomeComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'attendance',
@@ -179,7 +185,8 @@ const appRoutes: Routes =[
    
 
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+  AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [DialogContent,SaveDialogContent]
 })
