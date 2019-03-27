@@ -59,7 +59,8 @@ const appRoutes: Routes =[
 },
 {
   path : 'liststudent',
-  component: ListStudentComponent
+  component: ListStudentComponent,
+  canActivate: [AuthGuard]
 },
 
 { path: 'student/:id', 
@@ -73,7 +74,8 @@ const appRoutes: Routes =[
 },
 {
   path : 'receiptList',
-  component: ListReceiptComponent
+  component: ListReceiptComponent,
+  canActivate: [AuthGuard]
 },
 { path: 'editReceipt/:id', 
   component: EditReceiptComponent,
@@ -94,11 +96,13 @@ const appRoutes: Routes =[
 },
 {
   path : 'attendance',
-  component: AttendanceComponent
+  component: AttendanceComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'attendanceView',
-  component: AttendanceViewComponent
+  component: AttendanceViewComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'issueBook',
