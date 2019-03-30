@@ -43,7 +43,15 @@ export class FirebaseWrapper {
       return this.fireStore.collection('students').doc(uId).set(student)
     })
   }
-
+getReceiptSno(receipt){
+  return this.fireStore.collection('receipt').get().then((receipt)=>{
+    return receipt.size || receipt.length;
+  })
+  .then((data)=>{
+    data ? (data = data +1) : ( data = 1);
+    return data;
+  })
+}
   addReceipt(receipt){
     let uId = this.uuidv4();
       receipt.uId = uId;

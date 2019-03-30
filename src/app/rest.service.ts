@@ -104,4 +104,7 @@ constructor(private  httpClient:  HttpClient)
   logout() {
     return firewrap.logout();
   }
+  getReceiptSno(){
+    return firewrap.getReceiptSno('receipt');
+  }
 };

@@ -16,6 +16,7 @@ export class ReceiptComponent implements OnInit {
 	classData = CLASSES ;
   sum;
   studentList;
+  sn_number;
 
 	todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   form: FormGroup;
@@ -24,6 +25,7 @@ export class ReceiptComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.getSno();
   }
 
   saveStudentFee(form: NgForm){
@@ -113,4 +115,10 @@ getStudentInfo(std){
   console.log("student:",std);
 }
 
+getSno(){
+  this.rest.getReceiptSno().then((response)=> {
+    console.log("sno: ",response);
+    this.sn_number = response;
+  })
+}
 }

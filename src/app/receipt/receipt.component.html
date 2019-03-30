@@ -11,7 +11,12 @@
     <mat-form-field >
     <mat-label>Session</mat-label>       
     <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput value="" name="session" ngModel #session="ngModel" required>
+    <!-- <input matInput value="" name="session" ngModel #session="ngModel" required> -->
+     <mat-select placeholder="session"  name="session"  ngModel #session="ngModel"  required>
+      <mat-option  value="2019-20">2019-20</mat-option>
+      <mat-option  value="2020-21">2020-21</mat-option>
+      <mat-option  value="2021-22">2021-22</mat-option>
+    </mat-select>
     <mat-error *ngIf="session.invalid">Please enter session.</mat-error>
   </mat-form-field>
   </div>
@@ -69,7 +74,7 @@
     <mat-form-field >
     <mat-label>SNo.</mat-label>       
     <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput name="sno" ngModel #sno="ngModel" >
+    <input type="number" matInput name="sno" [(ngModel)]="sn_number" #sno="ngModel" readonly>
   </mat-form-field>
   </div>
 </div>
@@ -85,7 +90,7 @@
 
   <div class="item item-2" fxFlex="15%">
     <mat-form-field >
-    <mat-icon matPrefix class="icon">date_range</mat-icon>
+    <!-- <mat-icon matPrefix class="icon">date_range</mat-icon> -->
     <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="searchDate" [(ngModel)]="todayDate" #searchDate="ngModel" >
     <mat-datepicker-toggle matPrefix [for]="picker">
     </mat-datepicker-toggle>
