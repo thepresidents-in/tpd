@@ -116,19 +116,16 @@ export class StudentComponent implements OnInit {
 
   submitStudent() {
      if(this.form.invalid){
-       alert("if");
       this.ngOnInit();
     }else{
-      alert("else");
-      this.form.value.dob= this.datePipe.transform(this.form.value.dob, 'yyyy-MM-dd');
-    console.log("student add... ",this.form.value);
-    this.rest.postStudent(this.form.value).then((response) => {
-       this.openDialog();
-       console.log("Student added. !!");
-       this.form.reset();
+        this.form.value.dob= this.datePipe.transform(this.form.value.dob, 'yyyy-MM-dd');
+        console.log("student add... ",this.form.value);
+        this.rest.postStudent(this.form.value).then((response) => {
+        this.openDialog();
+        console.log("Student added. !!");
+        this.form.reset();
     });
-    }
-    
+  }
 }
 
 openDialog() {
