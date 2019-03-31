@@ -148,7 +148,18 @@ getReceiptSno(receipt){
       attendance.uId = uId;
       console.log("firebase: ",attendance);
       return this.fireStore.collection('attendance').doc(uId).set(attendance)
+  }
 
+  addFee(fee){
+   /* return this.fireStore.collection('fee').where('class', '==', student.class).get().then((students)=>{
+       return students.size || students.length;
+    })
+    .then((data)=>{
+      data ? (student.roll_number = data +1) : (student.roll_number = 1);*/
+      let uId = this.uuidv4();
+      fee.uId = uId;
+      return this.fireStore.collection('fee').doc(uId).set(fee)
+    //})
   }
 
 }

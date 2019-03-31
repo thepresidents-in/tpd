@@ -1,0 +1,85 @@
+<app-home></app-home>
+ <mat-sidenav-container>
+ <form [formGroup]="form" name="" (submit)="submitFee()"  class="student-form" >
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+
+	<div class="item item-3" fxFlex="15%">
+	<mat-form-field >
+	<mat-icon matPrefix class="icon">book</mat-icon>
+	<mat-select placeholder="Class"  name="class" formControlName="class">
+	<mat-option *ngFor="let class of classData;" value="{{class.id}}">{{class.name}}</mat-option>
+	</mat-select>
+	<mat-error *ngIf="form.get('class').invalid">Please select class.</mat-error> 
+	</mat-form-field>
+	</div>
+
+	<div class="item item-1" fxFlex="15%">
+	<mat-form-field>
+	<mat-icon matPrefix class="icon">perm_identity</mat-icon>
+	<input matInput name="student" [(ngModel)]="new_student"  formControlName="student" readonly>
+	<!--  <mat-select placeholder="student"  name="student" formControlName="student">
+	<mat-option value="New">New</mat-option>
+	<mat-option value="Old">Old</mat-option>
+	</mat-select> -->
+	</mat-form-field>
+	</div>
+
+</div>
+
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+ <div class="item item-2" fxFlex="15%">
+  	<mat-form-field >
+    <mat-icon matPrefix class="icon">money</mat-icon>
+    <input matInput  type="number" placeholder="Quterly Fee" name="quaterly_fee" formControlName="quaterly_fee">
+     <mat-error *ngIf="form.get('quaterly_fee').invalid">Please enter quaterly fee.</mat-error> 
+  </mat-form-field>
+  </div>
+
+	<div class="item item-2" fxFlex="15%">
+	<mat-form-field >
+	<mat-icon matPrefix class="icon">money</mat-icon>
+	<input matInput type="number" placeholder="Bi-annual Fee" name="bi_annual_fee" formControlName="bi_annual_fee">
+	<mat-error *ngIf="form.get('bi_annual_fee').invalid">Please enter bi annual fee.</mat-error> 
+	</mat-form-field>
+	</div>
+
+	<div class="item item-2" fxFlex="15%">
+	<mat-form-field >
+	<mat-icon matPrefix class="icon">money</mat-icon>
+	<input matInput type="number" placeholder="Annual Fee" name="annual_fee" formControlName="annual_fee">
+	<mat-error *ngIf="form.get('annual_fee').invalid">Please enter annual fee.</mat-error> 
+	</mat-form-field>
+	</div>
+
+	<div class="item item-2" fxFlex="15%">
+	<mat-form-field>
+	<mat-icon matPrefix class="icon">money</mat-icon>
+	<input matInput type="number" placeholder="Admission Fee" name="admission_fee" formControlName="admission_fee">
+	<mat-error *ngIf="form.get('admission_fee').invalid">Please enter annual fee.</mat-error> 
+	</mat-form-field>
+	</div>
+
+</div>
+
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="left"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+	<div class="button-row">
+		<button type="submit" mat-stroked-button color="primary">Save</button>
+		<button type="button" (click)="form.reset();" mat-raised-button color="primary">Reset</button>
+	</div>
+</div>
+
+</form>
+</mat-sidenav-container>

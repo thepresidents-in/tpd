@@ -47,6 +47,17 @@
      </mat-menu>
    </li>
 
+<li [matMenuTriggerFor]="fee_structure" #matMenuTrigger4="matMenuTrigger">
+     <a mat-list-item (mouseenter)="matMenuTrigger4.openMenu()">
+       <mat-icon class="icon">money</mat-icon>&nbsp;
+       <span class="label">Fee Structure</span>
+     </a>
+     <mat-menu #fee_structure="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
+       <button mat-menu-item [routerLink]="['/fee_structure']">Add Fee</button>
+       <button mat-menu-item [routerLink]="['/feeList']">View Fee Structure</button>
+     </mat-menu>
+   </li>
+
  <li [matMenuTriggerFor]="dashboard" #matMenuTrigger3="matMenuTrigger">
      <a mat-list-item (mouseenter)="matMenuTrigger3.openMenu()">
        <mat-icon class="icon">dashboard</mat-icon>&nbsp;

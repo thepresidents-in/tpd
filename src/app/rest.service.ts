@@ -107,4 +107,8 @@ constructor(private  httpClient:  HttpClient)
   getReceiptSno(){
     return firewrap.getReceiptSno('receipt');
   }
+   postFee(fee) {
+    return firewrap.addFee(fee);
+    //return this.httpClient.post(`${this.API_URL}`,studentData, httpOptions)
+  }
 };
