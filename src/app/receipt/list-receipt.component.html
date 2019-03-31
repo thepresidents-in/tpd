@@ -22,7 +22,7 @@
   <!-- Name Column -->
    <ng-container matColumnDef="student_name">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Student Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.student_name | titlecase }} </mat-cell>
+    <mat-cell *matCellDef="let element"><a href="" [routerLink]="['/receiptDetail',element.uId]"> {{element.student_name | titlecase }} </a></mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="father_name">
