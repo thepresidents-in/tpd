@@ -38,6 +38,7 @@ import { ListReceiptComponent } from './receipt/list-receipt.component';
 import { EditReceiptComponent } from './receipt/edit-receipt.commponent';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { AuthGuard } from './auth/auth.guard';
+import { ReceiptDetailComponent } from './receipt/receipt-detail.component';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -120,6 +121,11 @@ const appRoutes: Routes =[
   path : 'studentDetail/:id',
   component: StudentDetailComponent
 },
+{
+  path : 'receiptDetail/:id',
+  component: ReceiptDetailComponent,
+  canActivate: [AuthGuard]
+}
 
 ];
 
@@ -147,7 +153,8 @@ const appRoutes: Routes =[
     DashboardComponent,
     StudentDetailComponent,
     ListReceiptComponent,
-    EditReceiptComponent
+    EditReceiptComponent,
+    ReceiptDetailComponent
 
   ],
   imports: [
