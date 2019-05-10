@@ -1,0 +1,51 @@
+<app-home></app-home>
+
+<ng4-loading-spinner> </ng4-loading-spinner>
+<mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+<mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="class">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Class</mat-header-cell>
+            <mat-cell *matCellDef="let element ">{{element.class }} 
+            </mat-cell>
+        </ng-container>
+
+  <ng-container matColumnDef="quaterly_fee">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Quaterly Fee</mat-header-cell>
+            <mat-cell  *matCellDef="let element ">{{element.quaterly_fee }} 
+            </mat-cell>
+        </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="bi_annual_fee">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Bi-Annual Fee </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.bi_annual_fee }} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="annual_fee">
+    <mat-header-cell  *matHeaderCellDef mat-sort-header> Annual Fee </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.annual_fee  }} </mat-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="admission_fee">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Admission Fee </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.admission_fee}} </mat-cell>
+  </ng-container>
+
+
+
+        <ng-container matColumnDef="uId">
+            <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+            <mat-cell *matCellDef="let element"> <mat-icon (click)="openDialog(element)" matTooltip="Delete Fee" matPrefix class="icon">delete</mat-icon>
+            </mat-cell>
+        </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<router-outlet></router-outlet>

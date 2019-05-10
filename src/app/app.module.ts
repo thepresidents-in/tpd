@@ -40,6 +40,7 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { AuthGuard } from './auth/auth.guard';
 import { ReceiptDetailComponent } from './receipt/receipt-detail.component';
 import { FeeStructureComponent } from './fee-structure/fee-structure.component';
+import { FeeListComponent } from './fee-structure/fee-list.component';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -131,6 +132,11 @@ const appRoutes: Routes =[
   path : 'fee_structure',
   component: FeeStructureComponent,
   canActivate: [AuthGuard]
+},
+{
+  path : 'feeList',
+  component: FeeListComponent,
+  canActivate: [AuthGuard]
 }
 
 ];
@@ -161,7 +167,8 @@ const appRoutes: Routes =[
     ListReceiptComponent,
     EditReceiptComponent,
     ReceiptDetailComponent,
-    FeeStructureComponent
+    FeeStructureComponent,
+    FeeListComponent
 
   ],
   imports: [

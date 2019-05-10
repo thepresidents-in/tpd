@@ -111,4 +111,9 @@ constructor(private  httpClient:  HttpClient)
     return firewrap.addFee(fee);
     //return this.httpClient.post(`${this.API_URL}`,studentData, httpOptions)
   }
+  getFee(){
+     //const body = JSON.stringify({"fn": 'selectAll', "params": ["students"]});
+     return firewrap.selectAll('fee');
+      //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
+  }
 };
