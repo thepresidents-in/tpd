@@ -128,7 +128,6 @@ getReceiptSno(receipt){
 
   deleteAttendanceData(tableName, rollNumber,date,className){
     let p = new Promise( (resolve, reject)=>{
-     
       //resolve(this.fireStore.collection(tableName).where("date", "==", date).where("roll_number", "==", rollNumber).where("class", "==", className).delete());
       this.fireStore.collection(tableName).where("date", "==", date).where("roll_number", "==", rollNumber).where("class", "==", className).get()
       .then((snapshots) => {
