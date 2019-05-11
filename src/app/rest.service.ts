@@ -116,4 +116,8 @@ constructor(private  httpClient:  HttpClient)
      return firewrap.selectAll('fee');
       //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
   }
+
+  getDuplicate(tableName,val){
+    return firewrap.check(tableName,val);
+  }
 };

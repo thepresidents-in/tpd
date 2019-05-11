@@ -1,6 +1,3 @@
-
-
-<div style="height: 40vh;">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
@@ -9,88 +6,54 @@
       <span [routerLink]="['/home']">The Presidents</span>
       <span class="menu-spacer"></span>
       <div fxShow="true" fxHide.lt-md>
-       <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-        <li [matMenuTriggerFor]="student"  #matMenuTrigger1="matMenuTrigger">
-        <a  mat-list-item (mouseenter)="matMenuTrigger1.openMenu()">
-           <mat-icon class="icon">people</mat-icon>&nbsp;
-           <span class="label">Student</span>
-        </a>
-        <mat-menu #student="matMenu" (mouseleave)="matMenuTrigger1.closeMenu()" [overlapTrigger]="false">
-       <button mat-menu-item [routerLink]="['/student']">Add Student</button>
-       <button mat-menu-item [routerLink]="['/liststudent']">View Student</button>
-       <button mat-menu-item [routerLink]="['/attendance']">Attendance</button>
-       <button mat-menu-item [routerLink]="['/attendanceView']">View Attendance</button>
-     </mat-menu>
-   </li>
-
-  <!--  <li [matMenuTriggerFor]="books"  #matMenuTrigger3="matMenuTrigger">
-     <a mat-list-item (mouseenter)="matMenuTrigger3.openMenu()">
-       <mat-icon class="icon">book</mat-icon>&nbsp;
-       <span class="label">Books</span>
-     </a>
-     <mat-menu #books="matMenu" (mouseleave)="matMenuTrigger1.closeMenu()" [overlapTrigger]="false">
-       <button mat-menu-item [routerLink]="['/bookAdd']">Add Books</button>
-       <button mat-menu-item [routerLink]="['/bookView']">View Books</button>
-       <button mat-menu-item [routerLink]="['/issueBook']">Add Library</button>
-       <button mat-menu-item [routerLink]="['/issuedBooksView']">View Library</button>
-     </mat-menu>
-   </li> -->
+      <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+    <li [matMenuTriggerFor]="student"  #matMenuTrigger1="matMenuTrigger">
+      <a  mat-list-item (mouseenter)="matMenuTrigger1.openMenu()">
+      <mat-icon class="icon">people</mat-icon>&nbsp;
+      <span class="label">Student</span>
+      </a>
+      <mat-menu #student="matMenu" (mouseleave)="matMenuTrigger1.closeMenu()" [overlapTrigger]="false">
+      <button mat-menu-item [routerLink]="['/student']">Add Student</button>
+      <button mat-menu-item [routerLink]="['/liststudent']">View Student</button>
+      <button mat-menu-item [routerLink]="['/attendance']">Attendance</button>
+      <button mat-menu-item [routerLink]="['/attendanceView']">View Attendance</button>
+      </mat-menu>
+    </li>
 
     <li [matMenuTriggerFor]="receipt" #matMenuTrigger2="matMenuTrigger">
-     <a mat-list-item (mouseenter)="matMenuTrigger2.openMenu()">
-       <mat-icon class="icon">receipt</mat-icon>&nbsp;
-       <span class="label">Receipt</span>
-     </a>
-     <mat-menu #receipt="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
-       <button mat-menu-item [routerLink]="['/receipt']">Add Receipt</button>
-       <button mat-menu-item [routerLink]="['/receiptList']">View Receipt</button>
-     </mat-menu>
+      <a mat-list-item (mouseenter)="matMenuTrigger2.openMenu()">
+      <mat-icon class="icon">receipt</mat-icon>&nbsp;
+      <span class="label">Receipt</span>
+      </a>
+      <mat-menu #receipt="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
+      <button mat-menu-item [routerLink]="['/receipt']">Add Receipt</button>
+      <button mat-menu-item [routerLink]="['/receiptList']">View Receipt</button>
+      </mat-menu>
    </li>
 
-<li [matMenuTriggerFor]="fee_structure" #matMenuTrigger4="matMenuTrigger">
-     <a mat-list-item (mouseenter)="matMenuTrigger4.openMenu()">
-       <mat-icon class="icon">money</mat-icon>&nbsp;
-       <span class="label">Fee Structure</span>
-     </a>
-     <mat-menu #fee_structure="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
-       <button mat-menu-item [routerLink]="['/fee_structure']">Add Fee</button>
-       <button mat-menu-item [routerLink]="['/feeList']">View Fee Structure</button>
-     </mat-menu>
+    <li [matMenuTriggerFor]="fee_structure" #matMenuTrigger4="matMenuTrigger">
+      <a mat-list-item (mouseenter)="matMenuTrigger4.openMenu()">
+      <mat-icon class="icon">money</mat-icon>&nbsp;
+      <span class="label">Fee Structure</span>
+      </a>
+      <mat-menu #fee_structure="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
+      <button mat-menu-item [routerLink]="['/fee_structure']">Add Fee</button>
+      <button mat-menu-item [routerLink]="['/feeList']">View Fee Structure</button>
+      </mat-menu>
    </li>
 
- <li [matMenuTriggerFor]="dashboard" #matMenuTrigger3="matMenuTrigger">
-     <a mat-list-item (mouseenter)="matMenuTrigger3.openMenu()">
-       <mat-icon class="icon">dashboard</mat-icon>&nbsp;
-       <span class="label">Dashboard</span>
-     </a>
-   <!-- <a mat-list-item
-   [routerLink]="['/dashboard']">
-   <mat-icon class="icon">dashboard</mat-icon>&nbsp;
-   <span class="label">Dashboard</span>
- </a> -->
-
-  <mat-menu #dashboard="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
-       <button mat-menu-item [routerLink]="['/dashboard']">Dashboard</button>
-       <button mat-menu-item (click)="logout()">Logout</button>
-     </mat-menu>
-</li>
-
- </ul>
-
-       
-      </div>
-    </mat-toolbar-row>
+    <li [matMenuTriggerFor]="dashboard" #matMenuTrigger3="matMenuTrigger">
+      <a mat-list-item (mouseenter)="matMenuTrigger3.openMenu()">
+      <mat-icon class="icon">dashboard</mat-icon>&nbsp;
+      <span class="label">Dashboard</span>
+      </a>
+      <mat-menu #dashboard="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
+      <button mat-menu-item [routerLink]="['/dashboard']">Dashboard</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </li>
+   </ul>
+  </div>
+  </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-sidenav-container fxFlexFill>
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-        <a [routerLink]="['/student']" mat-list-item>Add Student</a>
-       <a [routerLink]="['/liststudent']" mat-list-item>View Student</a>
-       <a [routerLink]="['/receipt']" mat-list-item>Add Receipt</a>
-       <a [routerLink]="['/receiptList']" mat-list-item>View Receipt</a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <!-- <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content> -->
-  </mat-sidenav-container>
-</div>

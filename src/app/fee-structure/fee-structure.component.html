@@ -10,7 +10,7 @@
 	<div class="item item-3" fxFlex="15%">
 	<mat-form-field >
 	<mat-icon matPrefix class="icon">book</mat-icon>
-	<mat-select placeholder="Class"  name="class" formControlName="class">
+	<mat-select  placeholder="Class"  name="class" (ngModelChange)="getClassName($event)" [(ngModel)]="className" #class="ngModel" [ngModelOptions]="{standalone: true}">>
 	<mat-option *ngFor="let class of classData;" value="{{class.id}}">{{class.name}}</mat-option>
 	</mat-select>
 	<mat-error *ngIf="form.get('class').invalid">Please select class.</mat-error> 
