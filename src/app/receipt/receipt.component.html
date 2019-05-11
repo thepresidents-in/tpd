@@ -1,6 +1,61 @@
 <app-home></app-home>
+
+<h3>Add Receipt</h3>
 <mat-sidenav-container>
  <form  name="receiptData" (submit)="saveStudentFee(postForm.form)" #postForm="ngForm">
+    <div class="container"
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="0">
+
+  <div class="item item-3" fxFlex="15%">
+    <mat-form-field >
+    <mat-label>SNo.</mat-label>       
+    <mat-icon matPrefix class="icon">face</mat-icon>
+    <input type="number" matInput name="sno" [(ngModel)]="sn_number" #sno="ngModel" readonly>
+    </mat-form-field>
+  </div>
+
+  <div class="item item-2" fxFlex="15%">
+    <mat-form-field >
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="searchDate" [(ngModel)]="todayDate" #searchDate="ngModel" >
+    <mat-datepicker-toggle matPrefix [for]="picker">
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+    <div class="item item-3" fxFlex="15%">
+    <mat-form-field >
+    <mat-label>Session</mat-label>       
+    <mat-icon matPrefix class="icon">face</mat-icon>
+    <!-- <input matInput value="" name="session" ngModel #session="ngModel" required> -->
+    <mat-select placeholder="session"  name="session"  ngModel #session="ngModel"  required>
+    <mat-option  value="2019-20">2019-20</mat-option>
+    <!-- <mat-option  value="2020-21">2020-21</mat-option>
+    <mat-option  value="2021-22">2021-22</mat-option> -->
+    </mat-select>
+    <mat-error *ngIf="session.invalid">Please enter session.</mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="item item-3" fxFlex="15%">
+    <mat-form-field >
+    <mat-icon matPrefix class="icon">book</mat-icon>
+    <mat-select placeholder="Class"  name="class"  ngModel #class="ngModel" (ngModelChange)="getClass(postForm)" required>
+    <mat-option *ngFor="let class of classData;" value="{{class.id}}">{{class.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="class.invalid">Please select class.</mat-error>
+    </mat-form-field>
+    </div>
+
+   
+
+  
+</div>
+
+
 <div class="container"
      fxLayout
      fxLayout.xs="column"
@@ -8,57 +63,27 @@
      fxLayoutGap.xs="0">
 
       <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Session</mat-label>       
-    <mat-icon matPrefix class="icon">face</mat-icon>
-    <!-- <input matInput value="" name="session" ngModel #session="ngModel" required> -->
-     <mat-select placeholder="session"  name="session"  ngModel #session="ngModel"  required>
-      <mat-option  value="2019-20">2019-20</mat-option>
-      <!-- <mat-option  value="2020-21">2020-21</mat-option>
-      <mat-option  value="2021-22">2021-22</mat-option> -->
-    </mat-select>
-    <mat-error *ngIf="session.invalid">Please enter session.</mat-error>
-  </mat-form-field>
-  </div>
 
-<div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-icon matPrefix class="icon">book</mat-icon>
-    <mat-select placeholder="Class"  name="class"  ngModel #class="ngModel" (ngModelChange)="getClass(postForm)" required>
-      <mat-option *ngFor="let class of classData;" value="{{class.id}}">{{class.name}}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="class.invalid">Please select class.</mat-error>
-  </mat-form-field>
-  </div>
 
-    <div class="item item-3" fxFlex="15%">
-    <!-- <mat-form-field >
-    <mat-label>Student Name</mat-label>       
-    <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput name="student_name" ngModel #student_name="ngModel" required>
-    <mat-error *ngIf="student_name.invalid">Please enter student name.</mat-error>
-      </mat-form-field> -->
-
-  <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width">
     <input  placeholder="Pick Student"  matInput name="student_name" ngModel #student_name="ngModel"  (ngModelChange)="getStudentInfo($event)" [matAutocomplete]="auto" required>
     <mat-error *ngIf="student_name.invalid">Please enter student name.</mat-error>
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let student of studentList" [value]="student.first_name">
-        {{student.first_name}}
-      </mat-option>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getAutoStudentSelect($event)'>
+    <mat-option *ngFor="let student of studentList" value="{{student.first_name}}-{{ student.roll_number}}">
+    {{student.first_name}}-{{ student.roll_number}} 
+    </mat-option>
     </mat-autocomplete>
-  </mat-form-field>
+    </mat-form-field>
+    </div>
 
-  </div>
-
-  <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Mother Name</mat-label>       
-    <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput value="" name="mother_name" ngModel #mother_name="ngModel" required>
-    <mat-error *ngIf="mother_name.invalid">Please enter mother name.</mat-error>
-  </mat-form-field>
-  </div>
+   <!--  <div class="item item-3" fxFlex="15%">
+      <mat-form-field >
+      <mat-label>Mother Name</mat-label>       
+      <mat-icon matPrefix class="icon">face</mat-icon>
+      <input matInput value="" name="mother_name" ngModel #mother_name="ngModel" required>
+      <mat-error *ngIf="mother_name.invalid">Please enter mother name.</mat-error>
+      </mat-form-field>
+    </div>
 
 
   <div class="item item-3" fxFlex="15%">
@@ -67,49 +92,66 @@
     <mat-icon matPrefix class="icon">face</mat-icon>
     <input matInput value="" name="father_name" ngModel #father_name="ngModel" required>
     <mat-error *ngIf="father_name.invalid">Please enter father name.</mat-error>
-  </mat-form-field>
-  </div>
+    </mat-form-field>
+  </div> -->
 
    <div class="item item-3" fxFlex="15%">
     <mat-form-field >
-    <mat-label>SNo.</mat-label>       
+    <mat-label>Roll No</mat-label>       
     <mat-icon matPrefix class="icon">face</mat-icon>
-    <input type="number" matInput name="sno" [(ngModel)]="sn_number" #sno="ngModel" readonly>
-  </mat-form-field>
-  </div>
-</div>
-
-
-<div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-
- 
-
-  <div class="item item-2" fxFlex="15%">
-    <mat-form-field >
-    <!-- <mat-icon matPrefix class="icon">date_range</mat-icon> -->
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="searchDate" [(ngModel)]="todayDate" #searchDate="ngModel" >
-    <mat-datepicker-toggle matPrefix [for]="picker">
-    </mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <input matInput type="number" readonly [value]="roll_no" name="roll_no" [(ngModel)]="roll_no" required>
+  
     </mat-form-field>
   </div>
 </div>
 
+
+
+
+
+
+
 <div class="container"
      fxLayout
      fxLayout.xs="column"
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
-    <div class="item item-3" fxFlex="15%">
+
+   <div class="item item-3" fxFlex="15%">
+      <mat-form-field >
+      <mat-label>Admission Fee</mat-label>       
+      <mat-icon matPrefix class="icon">money</mat-icon>
+      <input matInput type="number" name="adm_fee" ngModel #adm_fee="ngModel" required (ngModelChange)="getDepositeAmt(postForm)">
+      <mat-error *ngIf="adm_fee.invalid">Please enter Admission Fee.</mat-error>
+      </mat-form-field>
+  </div>
+
+
+<div class="item item-3" fxFlex="15%">
+
+  <mat-radio-group [(ngModel)]="feeType" required>
+  <mat-radio-button value="1"> Annual<mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="fee" ngModel #fee="ngModel"  ></mat-form-field></mat-radio-button>
+  <mat-radio-button value="2">Bi-Annual <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="bFee" ngModel #bFee="ngModel"  ></mat-form-field></mat-radio-button>
+
+   <mat-radio-button value="3">Quaterly <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="qFee" ngModel #qFee="ngModel"  ></mat-form-field></mat-radio-button>
+</mat-radio-group>
+<!-- </mat-form-field> -->
+</div>
+ &nbsp;&nbsp;&nbsp;&nbsp;
+<div class="item item-3" fxFlex="15%">
+      <mat-form-field >
+      <mat-label>Remaining Fee</mat-label>       
+      <mat-icon matPrefix class="icon">money</mat-icon>
+      <input matInput type="number" name="remaining_fee" ngModel #remaining_fee="ngModel" required>
+      <mat-error *ngIf="remaining_fee.invalid">Please enter Remaining Fee.</mat-error>
+      </mat-form-field>
+  </div>
+
+    <!-- <div class="item item-3" fxFlex="15%">
     <mat-form-field >
     <mat-label>Pre Balance</mat-label>       
     <mat-icon matPrefix class="icon">money</mat-icon>
     <input matInput type="number" name="pre_bal" ngModel #pre_bal="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-    
   </mat-form-field>
   </div>
 
@@ -121,16 +163,6 @@
     
   </mat-form-field>
   </div>
-
-  <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Admission Fee</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="adm_fee" ngModel #adm_fee="ngModel" required (ngModelChange)="getDepositeAmt(postForm)">
-    <mat-error *ngIf="adm_fee.invalid">Please enter Admission Fee.</mat-error>
-  </mat-form-field>
-  </div>
-
 
   <div class="item item-3" fxFlex="15%">
     <mat-form-field >
@@ -155,7 +187,7 @@
     <mat-icon matPrefix class="icon">money</mat-icon>
     <input matInput type="number" name="elec_fee" ngModel #elec_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
   </mat-form-field>
-  </div>
+  </div> -->
 
  </div>
 
@@ -165,12 +197,11 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
-      <div class="item item-3" fxFlex="15%">
+   <!-- <div class="item item-3" fxFlex="15%">
     <mat-form-field >
     <mat-label>Library Fee</mat-label>       
     <mat-icon matPrefix class="icon">money</mat-icon>
     <input matInput type="number" name="lib_fee" ngModel #lib_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-    
   </mat-form-field>
   </div>
 
@@ -214,9 +245,7 @@
     <mat-icon matPrefix class="icon">money</mat-icon>
     <input matInput type="number" name="sclass" ngModel #sclass="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
   </mat-form-field>
-  </div>
-
-  
+  </div> -->
  </div>
 
  <div class="container"
@@ -225,12 +254,11 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
-     <div class="item item-3" fxFlex="15%">
+   <!--   <div class="item item-3" fxFlex="15%">
       <mat-form-field >
       <mat-label>Tuition Fee</mat-label>       
       <mat-icon matPrefix class="icon">money</mat-icon>
       <input matInput type="number" name="tution_fee" ngModel #tution_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-      <!-- <mat-error *ngIf="form.get('tution_fee').invalid">Please enter tution fee.</mat-error> -->
       </mat-form-field>
       </div>
 
@@ -269,7 +297,7 @@
       <mat-icon matPrefix class="icon">money</mat-icon> 
       <input matInput type="number" name="late_fee" ngModel #late_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
       </mat-form-field>
-      </div>
+      </div> -->
 </div>
 
  <div class="container"
@@ -278,7 +306,7 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
       
-       <div class="item item-3" fxFlex="15%">
+    <!--    <div class="item item-3" fxFlex="15%">
       <mat-form-field >
       <mat-label>Total Amount</mat-label>       
       <mat-icon matPrefix class="icon">money</mat-icon>
@@ -321,10 +349,8 @@
       <mat-option value="Sales">Sales</mat-option>
     </mat-select>
       </mat-form-field>
-      </div>
+      </div> -->
   </div>
-
-
 
 <div class="container"
      fxLayout
@@ -333,12 +359,9 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
   <div class="button-row">
-  	 <button type="submit" mat-stroked-button color="primary">Save</button>
-  	  <button mat-raised-button color="primary">Reset</button>
-
+    <button type="submit" mat-stroked-button color="primary">Save</button>
+    <button mat-raised-button color="primary">Reset</button>
   </div>
-  
-
 </div>
 </form>
 </mat-sidenav-container>

@@ -14,9 +14,9 @@ export const CLASSES: ClassList[] = [
   { id: 'Fifth',  name: 'Fifth'    },
   { id: 'Sixth',  name: 'Sixth'    },
   { id: 'Seventh', name: 'Seventh'  },
-  { id: 'Eighth', name: 'Eighth'   },
-  { id: 'Nineth', name: 'Nineth'   },
+  { id: 'Eighth', name: 'Eighth'   }
+ /* { id: 'Nineth', name: 'Nineth'   },
   { id: 'Tenth', name: 'Tenth'    },
   { id: 'Eleventh', name: 'Eleventh' },
-  { id: 'Twelveth', name: 'Twelveth' },
+  { id: 'Twelveth', name: 'Twelveth' },*/
 ];

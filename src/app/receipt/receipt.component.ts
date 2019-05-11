@@ -17,6 +17,7 @@ export class ReceiptComponent implements OnInit {
   sum;
   studentList;
   sn_number;
+  roll_no: number;
 
 	todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   form: FormGroup;
@@ -36,12 +37,12 @@ export class ReceiptComponent implements OnInit {
     let values = Object.values(form.value);*/
     console.log("form: ",form.value);
   	
-    this.rest.postReceipt(form.value).then((response) => {
+   /* this.rest.postReceipt(form.value).then((response) => {
       console.log("post 1");
        alert("Receipt added. !!");
        this.form.reset();
        
-    });
+    });*/
 
   }
 
@@ -120,5 +121,13 @@ getSno(){
     console.log("sno: ",response);
     this.sn_number = response;
   })
+}
+
+getAutoStudentSelect = (stdInfo) => {
+  console.log("getAutoStudentSelect: ",stdInfo.option.value);
+  this.roll_no = 345;
+  let splitted = (stdInfo.option.value).split("-"); 
+  console.log("splitted: ",splitted);
+  this.roll_no = splitted[1];
 }
 }
