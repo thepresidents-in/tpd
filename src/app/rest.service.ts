@@ -70,6 +70,10 @@ constructor(private  httpClient:  HttpClient)
      return firewrap.selectAllByClass('students',classVal);
       //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
   }
+
+  getFeeForReceipt(classVal,feeType) {
+    return firewrap.getFeeForReceipt(classVal,feeType,'fee');
+  }
   postBook(bookData) {
     return this.httpClient.post(`${this.API_URL}`,bookData, httpOptions)
   }

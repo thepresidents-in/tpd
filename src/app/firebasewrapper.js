@@ -170,4 +170,19 @@ getReceiptSno(receipt){
     return p;
   }
 
+  getFeeForReceipt(classVal,feeType,tableName){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection(tableName).where('class', '==', classVal).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
+
 }
