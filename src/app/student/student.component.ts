@@ -63,38 +63,38 @@ export class StudentComponent implements OnInit {
            /*'image' : new FormControl('',{
              validators:[Validators.required]
            }),*/
-            'adhaar_no' : new FormControl('',{ 
-        validators:[Validators.required, Validators.minLength(10)] 
+            'adhaar_no' : new FormControl('',{
+        validators:[Validators.required, Validators.minLength(10)]
       }),
-             'father_occupation' : new FormControl('',{ 
-        validators:[Validators.required, Validators.minLength(10)] 
+             'father_occupation' : new FormControl('',{
+        validators:[Validators.required, Validators.minLength(10)]
       }),
-             'father_qualification' : new FormControl('',{ 
-        validators:[Validators.required, Validators.minLength(10)] 
+             'father_qualification' : new FormControl('',{
+        validators:[Validators.required, Validators.minLength(2)] 
       }),
-             'only_child' : new FormControl('',{ 
-        validators:[Validators.required] 
+             'only_child' : new FormControl('',{
+        validators:[Validators.required]
       }),
-              'annual_income' : new FormControl('',{ 
-        validators:[Validators.required, Validators.minLength(4)] 
+              'annual_income' : new FormControl('',{
+        validators:[Validators.required, Validators.minLength(4)]
       }),
-               'category' : new FormControl('',{ 
-        validators:[Validators.required] 
+               'category' : new FormControl('',{
+        validators:[Validators.required]
       }),
-        'mother_qualification' : new FormControl('',{ 
-        validators:[Validators.required] 
+        'mother_qualification' : new FormControl('',{
+        validators:[Validators.required]
       }),
-        'religion' : new FormControl('',{ 
-        validators:[Validators.required] 
+        'religion' : new FormControl('',{
+        validators:[Validators.required]
       }),
-        'handicapped' : new FormControl('',{ 
-        validators:[Validators.required] 
+        'handicapped' : new FormControl('',{
+        validators:[Validators.required]
       }),
-         'mother_occupation' : new FormControl('',{ 
-        validators:[Validators.required] 
+         'mother_occupation' : new FormControl('',{
+        validators:[Validators.required]
       }),
-          'contact_number2' : new FormControl('',{ 
-        validators:[Validators.required] 
+          'contact_number2' : new FormControl('',{
+        validators:[Validators.required]
       }),
     })
   }
