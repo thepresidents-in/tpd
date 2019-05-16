@@ -16,7 +16,7 @@ export interface DialogData {
 export class ListStudentComponent implements OnInit {
 studentList;
 dataSource ;
-displayedColumns = ['roll_number','first_name','father_name','mother_name','class','dob','uId'];
+displayedColumns = ['roll_number','first_name','father_name','mother_name','class','dob','uId', 'del'];
 
 
   constructor( public rest: RestService, public dialog: MatDialog ,private spinnerService: Ng4LoadingSpinnerService) {}
@@ -39,13 +39,13 @@ displayedColumns = ['roll_number','first_name','father_name','mother_name','clas
     this.spinnerService.show();
     this.rest.getStudents().then((response) => {
     console.log("res KV: ",response);
-    
+
     this.dataSource = new MatTableDataSource(response);
     console.log("dataSource mat:",this.dataSource);
     this.dataSource.sort = this.sort;
     this.spinnerService.hide();
   });
-    
+
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
