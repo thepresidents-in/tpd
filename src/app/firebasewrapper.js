@@ -128,13 +128,13 @@ getReceiptSno(receipt){
 
   deleteAttendanceData(tableName, rollNumber,date,className){
     let p = new Promise( (resolve, reject)=>{
-      //resolve(this.fireStore.collection(tableName).where("date", "==", date).where("roll_number", "==", rollNumber).where("class", "==", className).delete());
-      this.fireStore.collection(tableName).where("date", "==", date).where("roll_number", "==", rollNumber).where("class", "==", className).get()
+      this.fireStore.collection(tableName).where('date', '==', date).where('roll_number', '==', rollNumber).where('class', '==', className).get()
       .then((snapshots) => {
         let rows = []
         snapshots.forEach((doc) => {
            let data = doc.data();
-          rows.delete(data)
+          rows.push(data)
+          //doc.ref.delete();
         })
         resolve(rows)
       })
@@ -146,7 +146,7 @@ getReceiptSno(receipt){
     let uId = this.uuidv4();
       attendance.uId = uId;
       console.log("firebase: ",attendance);
-      return this.fireStore.collection('attendance').doc(uId).set(attendance)
+      return this.fireStore.collection('student_attendance').doc(uId).set(attendance)
   }
 
   addFee(fee){
@@ -178,6 +178,21 @@ getReceiptSno(receipt){
         snapshots.forEach((doc) => {
           let data = doc.data();
           rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
+
+  getAttendanceByIdAndClass(tableName,classVal,date){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection(tableName).where('class', '==', classVal).where("date", "==", date).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data);
         })
         resolve(rows)
       })

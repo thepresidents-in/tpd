@@ -95,14 +95,15 @@ constructor(private  httpClient:  HttpClient)
     return firewrap.addAttendance(attendance);
     //return this.httpClient.post(`${this.API_URL}`,body,httpOptions)
   }
-  /*deleteRowAttendance(body){
-    return this.httpClient.post(`${this.API_URL}`,body,httpOptions)
-  }*/
    deleteRowAttendance(tableName,rollNumber,date,className){
     return firewrap.deleteAttendanceData(tableName,rollNumber,date,className);
   }
-  getAttendanceByClass(body){
+  /*getAttendanceByClass(body){
     return this.httpClient.post(`${this.API_URL}`,body,httpOptions)
+
+  }*/
+   getAttendanceByClass(tableName,classVal,date){
+    return firewrap.getAttendanceByIdAndClass(tableName,classVal,date);
   }
 
   logout() {

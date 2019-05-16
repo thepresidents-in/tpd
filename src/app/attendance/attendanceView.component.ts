@@ -20,10 +20,10 @@ export class AttendanceViewComponent {
 constructor(private rest:RestService,private datePipe:DatePipe){};
 public getClassName(id): void {
 this.classId = id;
-console.log("getClassName:"+this.todayDate);this.dataSource='';
-    let classObj = { "fn": "selectAttendance","params": ["attendance","students",[this.classId],[this.todayDate] ]};
-    console.log(classObj);
-    this.rest.getAttendanceByClass(classObj).subscribe((response) => {
+console.log("getClassName:"+this.todayDate);
+this.dataSource='';
+    this.rest.getAttendanceByClass("student_attendance",this.classId,this.todayDate).then((response) => {
+    	console.log("GET: ",response);
 		 this.dataSource = response;
 		 for(let i=0; i<=[response].length; i++){
 		 	if(response[i].action == 'A'){
@@ -37,7 +37,7 @@ console.log("getClassName:"+this.todayDate);this.dataSource='';
 	});
 }
 public getSearchDate(searchDate): void {
-	//console.log(this.datePipe.transform(searchDate, 'yyyy-MM-dd'));
+	
 	this.todayDate = this.datePipe.transform(searchDate, 'yyyy-MM-dd');
 	console.log("getSearchDate:"+this.todayDate);
 	this.getClassName(this.classId);
