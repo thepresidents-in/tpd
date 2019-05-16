@@ -11,7 +11,7 @@
 
   <div class="item item-3" fxFlex="15%">
     <mat-form-field >
-    <mat-label>SNo.</mat-label>       
+    <mat-label>SNo.</mat-label>
     <mat-icon matPrefix class="icon">face</mat-icon>
     <input type="number" matInput name="sno" [(ngModel)]="sn_number" #sno="ngModel" readonly>
     </mat-form-field>
@@ -28,11 +28,11 @@
 
     <div class="item item-3" fxFlex="15%">
     <mat-form-field >
-    <mat-label>Session</mat-label>       
+    <mat-label>Session</mat-label>
     <mat-icon matPrefix class="icon">face</mat-icon>
     <!-- <input matInput value="" name="session" ngModel #session="ngModel" required> -->
-    <mat-select placeholder="session"  name="session"  ngModel #session="ngModel"  required>
-    <mat-option  value="2019-20">2019-20</mat-option>
+    <mat-select placeholder="session"  name="session" [(ngModel)]="session" #sessiont="ngModel"  required>
+    <mat-option  value="2019-20" selected>2019-20</mat-option>
     <!-- <mat-option  value="2020-21">2020-21</mat-option>
     <mat-option  value="2021-22">2021-22</mat-option> -->
     </mat-select>
@@ -50,9 +50,9 @@
     </mat-form-field>
     </div>
 
-   
 
-  
+
+
 </div>
 
 
@@ -70,20 +70,20 @@
     <mat-error *ngIf="student_name.invalid">Please enter student name.</mat-error>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getAutoStudentSelect($event)'>
     <mat-option *ngFor="let student of studentList" value="{{student.first_name}}-{{ student.roll_number}}">
-    {{student.first_name}}-{{ student.roll_number}} 
+    {{student.first_name}}-{{ student.roll_number}}
     </mat-option>
     </mat-autocomplete>
     </mat-form-field>
     </div>
 
-   
+
 
    <div class="item item-3" fxFlex="15%">
     <mat-form-field >
-    <mat-label>Roll No</mat-label>       
+    <mat-label>Roll No</mat-label>
     <mat-icon matPrefix class="icon">face</mat-icon>
     <input matInput type="number" readonly [value]="roll_no" name="roll_no" [(ngModel)]="roll_no" required>
-  
+
     </mat-form-field>
   </div>
 </div>
@@ -101,13 +101,13 @@
      fxLayoutGap.xs="0">
 <div class="item item-3" fxFlex="15%">
       <mat-form-field >
-      <mat-label>Admission Fee</mat-label>       
+      <mat-label>Admission Fee</mat-label>
       <mat-icon matPrefix class="icon">money</mat-icon>
       <input matInput type="number" name="admission_fee"  [(ngModel)]="admissionFee" required >
       <!-- <mat-error *ngIf="adm_fee.invalid">Please enter Admission Fee.</mat-error> -->
       </mat-form-field>
   </div>
-  
+
 
 
 <div class="item item-3" fxFlex="15%">
@@ -125,14 +125,14 @@
  &nbsp;&nbsp;&nbsp;&nbsp;
 <div class="item item-3" fxFlex="15%">
       <mat-form-field >
-      <mat-label>Remaining Fee</mat-label>       
+      <mat-label>Remaining Fee</mat-label>
       <mat-icon matPrefix class="icon">money</mat-icon>
       <input matInput type="number" name="remaining_fee" [(ngModel)]="remainingFee" required>
-     
+
       </mat-form-field>
   </div>
 
-   
+
 
  </div>
 
@@ -150,7 +150,7 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
-   
+
 </div>
 
  <div class="container"
@@ -158,8 +158,8 @@
      fxLayout.xs="column"
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
-      
-    
+
+
   </div>
 
 <div class="container"
