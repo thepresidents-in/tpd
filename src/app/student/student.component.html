@@ -1,6 +1,6 @@
 <app-home></app-home>
  <mat-sidenav-container>
- <form [formGroup]="form" name="studentData" (submit)="submitStudent()"  class="student-form" >
+ <form [formGroup]="form" name="studentData"  class="student-form" >
 <div class="container"
      fxLayout
      fxLayout.xs="column"
@@ -250,8 +250,8 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
   <div class="button-row">
-  	 <button type="submit" mat-stroked-button color="primary">Save</button>
-  	  <button type="button" (click)="form.reset();" mat-raised-button color="primary">Reset</button>
+  	 <button type="button" (click)="submitStudent()" mat-stroked-button color="primary">Save</button>
+  	  <button type="button" (click)="form.reset()" mat-raised-button color="primary">Reset</button>
 
   </div>
 
