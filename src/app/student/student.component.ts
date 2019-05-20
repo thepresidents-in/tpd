@@ -96,6 +96,9 @@ export class StudentComponent implements OnInit {
           'contact_number2' : new FormControl('',{
         validators:[Validators.required]
       }),
+          'miniority' : new FormControl('',{
+        validators:[Validators.required]
+      }),
     })
   }
 
