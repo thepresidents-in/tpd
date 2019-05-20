@@ -15,7 +15,7 @@ import { RestService } from './rest.service';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule, MatSelectModule,MatDatepickerModule, MatRadioModule, MatNativeDateModule, MatCardModule, MatProgressSpinnerModule, MatMenuModule,MatTabsModule,MatTooltipModule,MatSortModule,MatAutocompleteModule} from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule, MatSelectModule,MatDatepickerModule, MatRadioModule, MatNativeDateModule, MatCardModule, MatProgressSpinnerModule, MatMenuModule,MatTabsModule,MatTooltipModule,MatSortModule,MatAutocompleteModule,MatPaginatorModule} from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
@@ -207,7 +207,8 @@ const appRoutes: Routes =[
     ReactiveFormsModule,
     MatSortModule,
     MatAutocompleteModule,
-    Ng4LoadingSpinnerModule
+    Ng4LoadingSpinnerModule,
+    MatPaginatorModule
    
 
   ],

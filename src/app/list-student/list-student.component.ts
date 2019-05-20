@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject,ViewChild } from '@angular/core';
 import { RestService } from '../rest.service';
-import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort} from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort,MatPaginator} from '@angular/material';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
@@ -35,6 +35,7 @@ displayedColumns = ['roll_number','first_name','father_name','mother_name','clas
   }
 
 @ViewChild(MatSort) sort: MatSort;
+@ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit() {
     this.spinnerService.show();
     this.rest.getStudents().then((response) => {
@@ -43,6 +44,7 @@ displayedColumns = ['roll_number','first_name','father_name','mother_name','clas
     this.dataSource = new MatTableDataSource(response);
     console.log("dataSource mat:",this.dataSource);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.spinnerService.hide();
   });
 
