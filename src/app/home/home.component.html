@@ -8,15 +8,17 @@
       <div fxShow="true" fxHide.lt-md>
       <ul fxLayout fxLayoutGap="20px" class="navigation-items">
     <li [matMenuTriggerFor]="student"  #matMenuTrigger1="matMenuTrigger">
-      <a  mat-list-item (mouseenter)="matMenuTrigger1.openMenu()">
+      <a  mat-list-item (mouseenter)="matMenuTrigger1.openMenu()" >
       <mat-icon class="icon">people</mat-icon>&nbsp;
       <span class="label">Student</span>
       </a>
-      <mat-menu #student="matMenu" (mouseleave)="matMenuTrigger1.closeMenu()" [overlapTrigger]="false">
+      <mat-menu #student="matMenu"  [overlapTrigger]="false">
+          <span (mouseleave)="matMenuTrigger1.closeMenu()">
       <button mat-menu-item [routerLink]="['/student']">Add Student</button>
       <button mat-menu-item [routerLink]="['/liststudent']">View Student</button>
       <button mat-menu-item [routerLink]="['/attendance']">Attendance</button>
       <button mat-menu-item [routerLink]="['/attendanceView']">View Attendance</button>
+      </span>
       </mat-menu>
     </li>
 
@@ -25,9 +27,11 @@
       <mat-icon class="icon">receipt</mat-icon>&nbsp;
       <span class="label">Receipt</span>
       </a>
-      <mat-menu #receipt="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
+      <mat-menu #receipt="matMenu" [overlapTrigger]="false">
+          <span (mouseleave)="matMenuTrigger2.closeMenu()">
       <button mat-menu-item [routerLink]="['/receipt']">Add Receipt</button>
       <button mat-menu-item [routerLink]="['/receiptList']">View Receipt</button>
+      </span>
       </mat-menu>
    </li>
 
@@ -36,9 +40,11 @@
       <mat-icon class="icon">money</mat-icon>&nbsp;
       <span class="label">Fee Structure</span>
       </a>
-      <mat-menu #fee_structure="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
+      <mat-menu #fee_structure="matMenu"  [overlapTrigger]="false">
+          <span (mouseleave)="matMenuTrigger4.closeMenu()">
       <button mat-menu-item [routerLink]="['/fee_structure']">Add Fee</button>
       <button mat-menu-item [routerLink]="['/feeList']">View Fee Structure</button>
+      </span>
       </mat-menu>
    </li>
 
@@ -47,9 +53,11 @@
       <mat-icon class="icon">dashboard</mat-icon>&nbsp;
       <span class="label">Dashboard</span>
       </a>
-      <mat-menu #dashboard="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
+      <mat-menu #dashboard="matMenu" (mouseleave)="matMenuTrigger3.closeMenu()" [overlapTrigger]="false">
+          <span (mouseleave)="matMenuTrigger3.closeMenu()">
       <button mat-menu-item [routerLink]="['/dashboard']">Dashboard</button>
       <button mat-menu-item (click)="logout()">Logout</button>
+      </span>
       </mat-menu>
     </li>
    </ul>
