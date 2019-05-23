@@ -43,16 +43,15 @@ export class StudentComponent implements OnInit {
         validators:[Validators.required, Validators.minLength(3)]
       }),
       'address' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+        validators:[Validators.required, Validators.minLength(10)]
       }),
        'gender' : new FormControl('',{
         validators:[Validators.required]
       }),
         'contact_number' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+        validators:[Validators.required, Validators.minLength(10)]
       }),
-         'email' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+         'email' : new FormControl('',{validators:[Validators.required, Validators.pattern("[^ @]*@[^ @]*")]
       }),
           'dob' : new FormControl('',{
         validators:[Validators.required]
@@ -64,10 +63,10 @@ export class StudentComponent implements OnInit {
              validators:[Validators.required]
            }),*/
             'adhaar_no' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(10)]
+        validators:[Validators.required, Validators.minLength(12)]
       }),
              'father_occupation' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(10)]
+        validators:[Validators.required, Validators.minLength(6)]
       }),
              'father_qualification' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(2)] 
@@ -82,7 +81,7 @@ export class StudentComponent implements OnInit {
         validators:[Validators.required]
       }),
         'mother_qualification' : new FormControl('',{
-        validators:[Validators.required]
+        validators:[Validators.required, Validators.minLength(2)]
       }),
         'religion' : new FormControl('',{
         validators:[Validators.required]
@@ -94,7 +93,7 @@ export class StudentComponent implements OnInit {
         validators:[Validators.required]
       }),
           'contact_number2' : new FormControl('',{
-        validators:[Validators.required]
+        validators:[Validators.required, Validators.minLength(10)]
       }),
           'miniority' : new FormControl('',{
         validators:[Validators.required]

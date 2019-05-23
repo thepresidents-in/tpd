@@ -10,15 +10,17 @@
   	 <mat-form-field class="navigation-items">
   	 <mat-label>Student Name</mat-label>
   	<mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput value="" name="first_name" formControlName="first_name" [ngClass]="{ 'is-invalid': submitted && form.first_name.errors }" >
-     <mat-error *ngIf="form.get('first_name').invalid">Please enter first name.</mat-error>
+    <input matInput value="" name="first_name" formControlName="first_name" >
+     <mat-error *ngIf="form.get('first_name').errors?.required">First name is required.</mat-error>
+     <mat-error *ngIf="form.get('first_name').errors?.minlength">Min length should be 3 characters.</mat-error>
   </mat-form-field>
   </div>
   <div class="item item-2" fxFlex="15%">
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
     <input matInput placeholder="Last Name" name="last_name" formControlName="last_name">
-     <mat-error *ngIf="form.get('last_name').invalid">Please enter last name.</mat-error>
+     <mat-error *ngIf="form.get('last_name').errors?.required">Last name is required.</mat-error>
+     <mat-error *ngIf="form.get('last_name').errors?.minlength">Min Length should be 3 characters.</mat-error>
   </mat-form-field>
   </div>
 
@@ -26,7 +28,8 @@
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
     <input matInput placeholder="Adhaar No" name="adhaar_no" formControlName="adhaar_no">
-     <mat-error *ngIf="form.get('adhaar_no').invalid">Please enter adhaar number.</mat-error> 
+     <mat-error *ngIf="form.get('adhaar_no').errors?.required">Adhaar number is required.</mat-error> 
+     <mat-error *ngIf="form.get('adhaar_no').errors?.minlength">Please enter valid Adhaar Number.</mat-error> 
 
   </mat-form-field>
   </div>
@@ -77,7 +80,8 @@
   	<mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
     <input matInput placeholder="Father Name" name="father_name" formControlName="father_name">
-     <mat-error *ngIf="form.get('father_name').invalid">Please enter father name.</mat-error>
+     <mat-error *ngIf="form.get('father_name').errors?.required">Father name is required.</mat-error>
+     <mat-error *ngIf="form.get('father_name').errors?.minlength">Father name should be atleast 3 characters.</mat-error> 
   </mat-form-field>
   </div>
 
@@ -85,7 +89,8 @@
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
     <input matInput placeholder="Father Qualification" name="father_qualification" formControlName="father_qualification">
-     <mat-error *ngIf="form.get('father_qualification').invalid">Please enter father Qualification.</mat-error>
+     <mat-error *ngIf="form.get('father_qualification').errors?.invalid">Please enter father Qualification.</mat-error>
+     <mat-error *ngIf="form.get('father_qualification').errors?.minlength">Qualification should be atleast 2 characters.</mat-error> 
 
   </mat-form-field>
   </div>
@@ -94,7 +99,8 @@
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
     <input matInput placeholder="Father Occupation" name="father_occupation" formControlName="father_occupation">
-     <mat-error *ngIf="form.get('father_occupation').invalid">Please enter father Occupation.</mat-error>
+     <mat-error *ngIf="form.get('father_occupation').errors?.required">Father Occupation is required.</mat-error>
+     <mat-error *ngIf="form.get('father_occupation').errors?.minlength">Occupation should be atleast 6 characters.</mat-error>
   </mat-form-field>
   </div>
 
@@ -102,7 +108,8 @@
   	<mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
     <input matInput placeholder="Mother Name" name="mother_name" formControlName="mother_name">
-    <mat-error *ngIf="form.get('mother_name').invalid">Please enter mother name.</mat-error>
+    <mat-error *ngIf="form.get('mother_name').errors?.required">Mother name is required.</mat-error>
+    <mat-error *ngIf="form.get('mother_name').errors?.minlength">Mother name should be atleast 3 characters.</mat-error>
   </mat-form-field>
   </div>
 
@@ -110,7 +117,8 @@
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
     <input matInput placeholder="Mother Qualification" name="mother_qualification" formControlName="mother_qualification">
-    <mat-error *ngIf="form.get('mother_qualification').invalid">Please enter mother qualification.</mat-error>
+    <mat-error *ngIf="form.get('mother_qualification').errors?.required">Mother qualification is required.</mat-error>
+    <mat-error *ngIf="form.get('mother_qualification').errors?.minlength">Qualification should be atleast 2 characters.</mat-error> 
   </mat-form-field>
   </div>
 
@@ -118,6 +126,7 @@
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
     <input matInput placeholder="Mother Occupation" name="mother_occupation" formControlName="mother_occupation">
+     <mat-error *ngIf="form.get('mother_occupation').errors?.required">Mother occupation is required.</mat-error>
   </mat-form-field>
   </div>
 
@@ -144,7 +153,8 @@
   		 <mat-label>Address</mat-label>
     <mat-icon matPrefix class="icon">place</mat-icon>
         <textarea matInput name="address" formControlName="address"></textarea>
-         <mat-error *ngIf="form.get('address').invalid">Please enter address.</mat-error>
+         <mat-error *ngIf="form.get('address').errors?.required">Address is required.</mat-error>
+         <mat-error *ngIf="form.get('address').errors?.minlength">Address field value should be 10 characters.</mat-error>
 
   </mat-form-field>
   </div>
@@ -154,7 +164,8 @@
   		 <mat-label>Phone1</mat-label>
     <mat-icon matPrefix class="icon">call</mat-icon>
     <input matInput placeholder="Contact" name="contact_number" formControlName="contact_number" (keypress)=_keyPress($event)>
-      <mat-error *ngIf="form.get('contact_number').invalid">Please enter contact.</mat-error>
+      <mat-error *ngIf="form.get('contact_number').errors?.required">Contact number is required.</mat-error>
+      <mat-error *ngIf="form.get('contact_number').errors?.minlength">Enter valid contact number.</mat-error>
   </mat-form-field>
   </div>
 
@@ -163,7 +174,8 @@
        <mat-label>Phone2</mat-label>
     <mat-icon matPrefix class="icon">call</mat-icon>
     <input matInput placeholder="Contact" name="contact_number2"  formControlName="contact_number2" (keypress)=_keyPress($event)>
-     <mat-error *ngIf="form.get('contact_number2').invalid">Please enter contact2.</mat-error>
+     <mat-error *ngIf="form.get('contact_number2').errors?.required">Contact2 is required.</mat-error>
+      <mat-error *ngIf="form.get('contact_number2').errors?.minlength">Enter valid contact number2.</mat-error>
   </mat-form-field>
   </div>
 
@@ -172,7 +184,8 @@
        <mat-label>Annual Income</mat-label>
     <mat-icon matPrefix class="icon">money</mat-icon>
     <input matInput placeholder="Income" name="annual_income" formControlName="annual_income" >
-    <mat-error *ngIf="form.get('annual_income').invalid">Please enter annual income.</mat-error>
+    <mat-error *ngIf="form.get('annual_income').errors?.required">Annual income is required.</mat-error>
+    <mat-error *ngIf="form.get('annual_income').errors?.minlength">Annual income shold be 4 digit.</mat-error>
   </mat-form-field>
   </div>
 
@@ -197,8 +210,9 @@
   	 <mat-form-field class="navigation-items">
   	 <mat-label>Email</mat-label>
   	<mat-icon matPrefix class="icon">email</mat-icon>
-    <input matInput value="" name="email" formControlName="email">
-     <mat-error *ngIf="form.get('email').invalid">Please enter valid email address.</mat-error>
+    <input matInput value="" name="email" formControlName="email" required="">
+     <mat-error *ngIf="form.get('email').errors?.required">Email is require.</mat-error>
+     <mat-error *ngIf="form.get('email').errors?.pattern">Please enter valid email address.</mat-error>
 
   </mat-form-field>
   </div>
@@ -231,7 +245,7 @@
     <mat-select placeholder="Class"  name="class" formControlName="class">
       <mat-option *ngFor="let class of classData;" value="{{class.id}}">{{class.name}}</mat-option>
     </mat-select>
-     <mat-error *ngIf="form.get('class').invalid">Please select class.</mat-error>
+     <mat-error *ngIf="form.get('class').errors?.required">Please select class.</mat-error>
   </mat-form-field>
   </div>
 <!-- <div class="item item-1" fxFlex="15%">

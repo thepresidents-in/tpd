@@ -18,20 +18,25 @@ export class EditStudentComponent implements OnInit {
 	private sub: any;
     editStudentData;
     classData = CLASSES ;
+     minDate = new Date(2000, 0, 1);
+  maxDate :any;
 
-  constructor(public rest: RestService,private route:  ActivatedRoute,private router: Router) { }
+  constructor(public rest: RestService,private route:  ActivatedRoute,private router: Router ,public datePipe: DatePipe) { }
 
   ngOnInit() {
-  	
-     this.sub = this.route.params.subscribe(params => {
-    console.log("std id: "+[params['id']]);
-    this.editStudentId = params['id'];
-    this.rest.getStudentsById(params['id']).then((response) => {
-    console.log("res KV: ",response);
-    this.studentData = response ;
-    console.log("studentData edit :",this.studentData);
+    let date = this.datePipe.transform(new Date(), 'yyyy-MM-dd') ;
+    const now = new Date();
+    now.setFullYear(now.getFullYear() - 1);
+    this.maxDate = now.toISOString().slice(0,10);
+    this.sub = this.route.params.subscribe(params => {
+        console.log("std id: "+[params['id']]);
+        this.editStudentId = params['id'];
+        this.rest.getStudentsById(params['id']).then((response) => {
+          console.log("res KV: ",response);
+          this.studentData = response ;
+          console.log("studentData edit :",this.studentData);
+        });
     });
-  });
   }
 
    submitEditStudent(form: NgForm) {
@@ -40,6 +45,7 @@ export class EditStudentComponent implements OnInit {
     }
     console.log("edit form :",form);
     let keys = Object.keys(form.controls);
+    form.value.dob= this.datePipe.transform(form.value.dob, 'yyyy-MM-dd');
     //form.value.dob = (form.value.dob).toString();
     let values = Object.values(form.value);
     //let classValue = Object.values(form.value.class) ;
