@@ -20,6 +20,8 @@ export class StudentComponent implements OnInit {
 	classData = CLASSES ;
   form: FormGroup;
   imagePreview: string;
+  minDate = new Date(2000, 0, 1);
+  maxDate :any;
 
   constructor(public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) {
   	/*this.rest.getClasses().subscribe((response) => {
@@ -29,6 +31,9 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit() {
+    const now = new Date();
+    now.setFullYear(now.getFullYear() - 1);
+    this.maxDate = now.toISOString().slice(0,10);
     this.form = new FormGroup({
       'first_name' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(3)]

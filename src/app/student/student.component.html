@@ -230,7 +230,7 @@
 </div>
   <div class="item item-2" fxFlex="15%">
   	<mat-form-field >
-    <input matInput [matDatepicker]="picker" placeholder="DOB" name="dob" formControlName="dob">
+    <input matInput [matDatepicker]="picker" placeholder="DOB" name="dob" formControlName="dob" [min]="minDate" [max]="maxDate">
   <mat-datepicker-toggle matPrefix [for]="picker">
 
   </mat-datepicker-toggle>
