@@ -27,9 +27,10 @@
   <div class="item item-2" fxFlex="15%">
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
-    <input matInput placeholder="Adhaar No" name="adhaar_no" [(ngModel)]="student.adhaar_no" #adhaar_no="ngModel" required minlength="12">
+    <input matInput placeholder="Adhaar No" name="adhaar_no" [(ngModel)]="student.adhaar_no" #adhaar_no="ngModel" required minlength="12" maxlength="12">
      <mat-error *ngIf="adhaar_no.errors?.required">Adhaar number is required.</mat-error> 
       <mat-error *ngIf="adhaar_no.errors?.minlength">Please enter valid Adhaar Number.</mat-error> 
+      <mat-error *ngIf="adhaar_no.errors?.maxlength">Please enter valid Adhaar Number.</mat-error>
 
   </mat-form-field>
   </div>
@@ -164,9 +165,10 @@
     <mat-form-field >
        <mat-label>Phone1</mat-label>
     <mat-icon matPrefix class="icon">call</mat-icon>
-    <input matInput placeholder="Contact" name="contact_number" [(ngModel)]="student.contact_number" #contact_number="ngModel" required minlength="10">
+    <input matInput placeholder="Contact" name="contact_number" [(ngModel)]="student.contact_number" #contact_number="ngModel" required maxlength="10" pattern="^[0-9]{10}$">
       <mat-error *ngIf="contact_number.errors?.required">Contact number is required.</mat-error>
-       <mat-error *ngIf="contact_number.errors?.minlength">Enter valid contact number.</mat-error>
+       <mat-error *ngIf="contact_number.errors?.maxlength">Contact number should be 10 numbers.</mat-error>
+       <mat-error *ngIf="contact_number.errors?.pattern">It is not a valid contact number.</mat-error>
   </mat-form-field>
   </div>
 
@@ -174,9 +176,10 @@
     <mat-form-field >
        <mat-label>Phone2</mat-label>
     <mat-icon matPrefix class="icon">call</mat-icon>
-    <input matInput placeholder="Contact" name="contact_number2" [(ngModel)]="student.contact_number2" #contact_number2="ngModel" required minlength="10">
+    <input matInput placeholder="Contact" name="contact_number2" [(ngModel)]="student.contact_number2" #contact_number2="ngModel" required maxlength="10" pattern="^[0-9]{10}$">
     <mat-error *ngIf="contact_number2.errors?.required">Contact number2 is required.</mat-error>
-       <mat-error *ngIf="contact_number2.errors?.minlength">Enter valid contact number2.</mat-error>
+       <mat-error *ngIf="contact_number2.errors?.maxlength">Contact number2 should be 10 numbers.</mat-error>
+       <mat-error *ngIf="contact_number2.errors?.pattern">It is not a valid contact number2.</mat-error>
   </mat-form-field>
   </div>
 

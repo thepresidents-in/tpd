@@ -54,7 +54,7 @@ export class StudentComponent implements OnInit {
         validators:[Validators.required]
       }),
         'contact_number' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(10)]
+        validators:[Validators.required, Validators.maxLength(10), Validators.pattern("[6-9]\\d{9}")]
       }),
          'email' : new FormControl('',{validators:[Validators.required, Validators.pattern("[^ @]*@[^ @]*")]
       }),
@@ -68,7 +68,7 @@ export class StudentComponent implements OnInit {
              validators:[Validators.required]
            }),*/
             'adhaar_no' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(12)]
+        validators:[Validators.required, Validators.minLength(12), Validators.maxLength(12)]
       }),
              'father_occupation' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(6)]
@@ -98,7 +98,7 @@ export class StudentComponent implements OnInit {
         validators:[Validators.required]
       }),
           'contact_number2' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(10)]
+        validators:[Validators.required, Validators.maxLength(10), Validators.pattern("[6-9]\\d{9}")]
       }),
           'miniority' : new FormControl('',{
         validators:[Validators.required]

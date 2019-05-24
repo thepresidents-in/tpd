@@ -165,7 +165,8 @@
     <mat-icon matPrefix class="icon">call</mat-icon>
     <input matInput placeholder="Contact" name="contact_number" formControlName="contact_number" (keypress)=_keyPress($event)>
       <mat-error *ngIf="form.get('contact_number').errors?.required">Contact number is required.</mat-error>
-      <mat-error *ngIf="form.get('contact_number').errors?.minlength">Enter valid contact number.</mat-error>
+      <mat-error *ngIf="form.get('contact_number').errors?.maxlength">Contact number should be 10 numbers.</mat-error>
+      <mat-error *ngIf="form.get('contact_number').errors?.pattern">It is not a valid contact number.</mat-error>
   </mat-form-field>
   </div>
 
@@ -175,7 +176,8 @@
     <mat-icon matPrefix class="icon">call</mat-icon>
     <input matInput placeholder="Contact" name="contact_number2"  formControlName="contact_number2" (keypress)=_keyPress($event)>
      <mat-error *ngIf="form.get('contact_number2').errors?.required">Contact2 is required.</mat-error>
-      <mat-error *ngIf="form.get('contact_number2').errors?.minlength">Enter valid contact number2.</mat-error>
+      <mat-error *ngIf="form.get('contact_number2').errors?.maxlength">Contact number2 should be 10 numbers.</mat-error>
+      <mat-error *ngIf="form.get('contact_number2').errors?.pattern">It is not a valid contact number2.</mat-error>
   </mat-form-field>
   </div>
 
