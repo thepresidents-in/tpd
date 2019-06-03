@@ -36,7 +36,7 @@ export class StudentComponent implements OnInit {
     this.maxDate = now.toISOString().slice(0,10);
     this.form = new FormGroup({
       'first_name' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+        validators:[Validators.required, Validators.minLength(3),Validators.pattern('/[ A-Za-z]/')]
       }),
       'last_name' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(3)]
