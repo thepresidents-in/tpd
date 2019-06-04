@@ -22,6 +22,7 @@
     <input matInput placeholder="Last Name" name="last_name" formControlName="last_name">
      <mat-error *ngIf="form.get('last_name').errors?.required">Last name is required.</mat-error>
      <mat-error *ngIf="form.get('last_name').errors?.minlength">Min Length should be 3 characters.</mat-error>
+      <mat-error *ngIf="form.get('last_name').errors?.pattern">Enter valid last name.</mat-error>
   </mat-form-field>
   </div>
 
@@ -84,6 +85,7 @@
     <input matInput placeholder="Father Name" name="father_name" formControlName="father_name">
      <mat-error *ngIf="form.get('father_name').errors?.required">Father name is required.</mat-error>
      <mat-error *ngIf="form.get('father_name').errors?.minlength">Father name should be atleast 3 characters.</mat-error> 
+      <mat-error *ngIf="form.get('father_name').errors?.pattern">Enter valid father name.</mat-error>
   </mat-form-field>
   </div>
 
@@ -113,6 +115,7 @@
     <input matInput placeholder="Mother Name" name="mother_name" formControlName="mother_name">
     <mat-error *ngIf="form.get('mother_name').errors?.required">Mother name is required.</mat-error>
     <mat-error *ngIf="form.get('mother_name').errors?.minlength">Mother name should be atleast 3 characters.</mat-error>
+     <mat-error *ngIf="form.get('mother_name').errors?.pattern">Enter valid mother name.</mat-error>
   </mat-form-field>
   </div>
 

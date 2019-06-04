@@ -10,27 +10,30 @@
      <mat-form-field class="navigation-items">
      <mat-label>Student Name</mat-label>
     <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput value="" name="first_name" class="form-control" [(ngModel)]="student.first_name" #first_name="ngModel" [ngClass]="{ 'is-invalid': postForm.submitted && first_name.invalid }" required minlength="3">
+    <input matInput value="" name="first_name" class="form-control" [(ngModel)]="student.first_name" #first_name="ngModel" [ngClass]="{ 'is-invalid': postForm.submitted && first_name.invalid }" required minlength="3" pattern="^[a-zA-Z]*">
      <mat-error *ngIf="first_name.errors?.required">First name is required.</mat-error>
      <mat-error *ngIf="first_name.errors?.minlength">Min length should be 3 characters.</mat-error>
+      <mat-error *ngIf="first_name.errors?.pattern">Please enter valid first name.</mat-error>
   </mat-form-field>
   </div>
   <div class="item item-2" fxFlex="15%">
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
-    <input matInput placeholder="Last Name" name="last_name" [(ngModel)]="student.last_name" #last_name="ngModel" required minlength="3">
+    <input matInput placeholder="Last Name" name="last_name" [(ngModel)]="student.last_name" #last_name="ngModel" required minlength="3" pattern="^[a-zA-Z]*">
      <mat-error *ngIf="last_name.errors?.required">Last name is required.</mat-error>
      <mat-error *ngIf="last_name.errors?.minlength">Min length should be 3 characters.</mat-error>
+     <mat-error *ngIf="last_name.errors?.pattern">Please enter valid last name.</mat-error>
   </mat-form-field>
   </div>
 
   <div class="item item-2" fxFlex="15%">
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
-    <input matInput placeholder="Adhaar No" name="adhaar_no" [(ngModel)]="student.adhaar_no" #adhaar_no="ngModel" required minlength="12" maxlength="12">
+    <input matInput placeholder="Adhaar No" name="adhaar_no" [(ngModel)]="student.adhaar_no" #adhaar_no="ngModel" required minlength="12" maxlength="12" pattern="[0-9]+">
      <mat-error *ngIf="adhaar_no.errors?.required">Adhaar number is required.</mat-error> 
-      <mat-error *ngIf="adhaar_no.errors?.minlength">Please enter valid Adhaar Number.</mat-error> 
-      <mat-error *ngIf="adhaar_no.errors?.maxlength">Please enter valid Adhaar Number.</mat-error>
+      <mat-error *ngIf="adhaar_no.errors?.minlength">Please enter valid length of Adhaar Number.</mat-error> 
+      <mat-error *ngIf="adhaar_no.errors?.maxlength">Please enter valid length of Adhaar Number.</mat-error>
+      <mat-error *ngIf="adhaar_no.errors?.pattern">Please enter valid Adhaar Number.</mat-error>
 
   </mat-form-field>
   </div>
@@ -80,9 +83,10 @@
   <div class="item item-2" fxFlex="15%">
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
-    <input matInput placeholder="Father Name" name="father_name" [(ngModel)]="student.father_name" #father_name="ngModel" required minlength="3">
+    <input matInput placeholder="Father Name" name="father_name" [(ngModel)]="student.father_name" #father_name="ngModel" required minlength="3" pattern="^[a-zA-Z]*">
      <mat-error *ngIf="father_name.errors?.required">Father name is required.</mat-error>
      <mat-error *ngIf="father_name.errors?.minlength">Father name should be atleast 3 characters..</mat-error>
+     <mat-error *ngIf="father_name.errors?.pattern">Please enter valid father name.</mat-error>
   </mat-form-field>
   </div>
 
@@ -108,9 +112,10 @@
   <div class="item item-3" fxFlex="15%">
     <mat-form-field >
     <mat-icon matPrefix class="icon">perm_identity</mat-icon>
-    <input matInput placeholder="Mother Name" name="mother_name" [(ngModel)]="student.mother_name" #mother_name="ngModel" required minlength="3">
+    <input matInput placeholder="Mother Name" name="mother_name" [(ngModel)]="student.mother_name" #mother_name="ngModel" required minlength="3" pattern="^[a-zA-Z]*">
     <mat-error *ngIf="mother_name.errors?.required">Mother name is required.</mat-error>
     <mat-error *ngIf="mother_name.errors?.minlength">Mother name should be atleast 3 characters.</mat-error>
+    <mat-error *ngIf="mother_name.errors?.pattern">Please enter valid mather name.</mat-error>
   </mat-form-field>
   </div>
 
