@@ -1,5 +1,4 @@
 <app-home></app-home>
-
 <h3>Add Receipt</h3>
 <mat-sidenav-container>
  <form  name="receiptData" (submit)="saveStudentFee(postForm.form)" #postForm="ngForm">
@@ -10,16 +9,16 @@
     fxLayoutGap.xs="0">
 
   <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
+    <mat-form-field>
     <mat-label>SNo.</mat-label>
     <mat-icon matPrefix class="icon">face</mat-icon>
-    <input type="number" matInput name="sno" [(ngModel)]="sn_number" #sno="ngModel" readonly>
+    <input type="number" matInput name="sno" [(ngModel)]="sn_number" #sno="ngModel" [disabled]="snoDisabled" readonly>
     </mat-form-field>
   </div>
 
   <div class="item item-2" fxFlex="15%">
-    <mat-form-field >
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="searchDate" [(ngModel)]="todayDate" #searchDate="ngModel" >
+    <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="todayDate" #date="ngModel" >
     <mat-datepicker-toggle matPrefix [for]="picker">
     </mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
@@ -27,7 +26,7 @@
   </div>
 
     <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
+    <mat-form-field>
     <mat-label>Session</mat-label>
     <mat-icon matPrefix class="icon">face</mat-icon>
     <!-- <input matInput value="" name="session" ngModel #session="ngModel" required> -->
@@ -42,17 +41,13 @@
 
     <div class="item item-3" fxFlex="15%">
     <mat-form-field >
-    <mat-icon matPrefix class="icon">book</mat-icon>
-    <mat-select placeholder="Class"  name="class"  ngModel #class="ngModel" (ngModelChange)="getClass(postForm)" required>
-    <mat-option *ngFor="let class of classData;" value="{{class.id}}">{{class.name}}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="class.invalid">Please select class.</mat-error>
+      <mat-icon matPrefix class="icon">book</mat-icon>
+      <mat-select placeholder="Class"  name="class"  ngModel #class="ngModel" (ngModelChange)="getClass(postForm)" required>
+      <mat-option *ngFor="let class of classData;" value="{{class.id}}">{{class.name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="class.invalid">Please select class.</mat-error>
     </mat-form-field>
     </div>
-
-
-
-
 </div>
 
 
@@ -61,9 +56,7 @@
      fxLayout.xs="column"
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
-
-      <div class="item item-3" fxFlex="15%">
-
+    <div class="item item-3" fxFlex="15%">
 
     <mat-form-field class="example-full-width">
     <input  placeholder="Pick Student"  matInput name="student_name" ngModel #student_name="ngModel"  (ngModelChange)="getStudentInfo($event)" [matAutocomplete]="auto" required>
@@ -76,23 +69,14 @@
     </mat-form-field>
     </div>
 
-
-
    <div class="item item-3" fxFlex="15%">
     <mat-form-field >
     <mat-label>Roll No</mat-label>
     <mat-icon matPrefix class="icon">face</mat-icon>
     <input matInput type="number" readonly [value]="roll_no" name="roll_no" [(ngModel)]="roll_no" required>
-
     </mat-form-field>
   </div>
 </div>
-
-
-
-
-
-
 
 <div class="container"
      fxLayout
@@ -112,13 +96,20 @@
 
 <div class="item item-3" fxFlex="15%">
 
-  <mat-radio-group  >
-  <mat-radio-button value="0" name="feeType" [(ngModel)]="feeType" (click)="test(class,0)"> Annual<mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="annualFee" [value]="annualFee" [(ngModel)]="annualFee" ></mat-form-field></mat-radio-button>
+  <mat-radio-group>
+  <mat-radio-button value="0" name="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,0)"> Annual  
+    <mat-form-field>&nbsp;&nbsp;<input matInput type="number" name="fee" [value]="fee" [(ngModel)]="fee" ></mat-form-field>
+  <!--   <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="annualFee" [value]="annualFee" [(ngModel)]="annualFee" ></mat-form-field> -->
+  </mat-radio-button><br/>
 
-  <mat-radio-button value="1" name="feeType" [(ngModel)]="feeType" (click)="test(class,1)">Bi-Annual <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="biAnnualFee" [value]="biAnnualFee" [(ngModel)]="biAnnualFee"  >
-   </mat-form-field></mat-radio-button>
+  <mat-radio-button value="1" name="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,1)">Bi-Annual 
+   <!--  <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="biAnnualFee" [value]="biAnnualFee" [(ngModel)]="biAnnualFee"></mat-form-field> -->
+  </mat-radio-button><br/>
 
-   <mat-radio-button value="2" name="feeType" [(ngModel)]="feeType" (click)="test(class,2)">Quaterly <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="quaterlyFee" [value]="quaterlyFee" [(ngModel)]="quaterlyFee" ></mat-form-field></mat-radio-button>
+   <mat-radio-button value="2" name="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,2)">Quaterly 
+  <!--  <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="quaterlyFee" [value]="quaterlyFee" [(ngModel)]="quaterlyFee" ></mat-form-field> -->
+  </mat-radio-button>
+  
 </mat-radio-group>
 <!-- </mat-form-field> -->
 </div>
@@ -128,39 +119,10 @@
       <mat-label>Remaining Fee</mat-label>
       <mat-icon matPrefix class="icon">money</mat-icon>
       <input matInput type="number" name="remaining_fee" [(ngModel)]="remainingFee" required>
-
       </mat-form-field>
   </div>
 
-
-
  </div>
-
- <div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-
- </div>
-
- <div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-
-
-</div>
-
- <div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-
-
-  </div>
 
 <div class="container"
      fxLayout
@@ -169,7 +131,7 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
   <div class="button-row">
-    <button type="submit" mat-stroked-button color="primary">Save</button>
+    <button type="submit" [disabled]="isFee" mat-stroked-button color="primary">Save</button>
     <button mat-raised-button color="primary">Reset</button>
   </div>
 </div>
