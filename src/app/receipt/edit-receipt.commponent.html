@@ -10,11 +10,26 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
+ <div class="item item-3" fxFlex="15%">
+    <mat-form-field >
+    <mat-label>SNo.</mat-label>       
+    <mat-icon matPrefix class="icon">face</mat-icon>
+    <input matInput type="number" name="sno" [(ngModel)]="receipt.sno" #sno="ngModel">
+  </mat-form-field>
+  </div>
+
+   <div class="item item-2" fxFlex="15%">
+    <mat-form-field >
+    <mat-icon matPrefix class="icon">date</mat-icon>  
+    <input matInput name="date" [(ngModel)]="receipt.date" #date="ngModel" readonly >
+    </mat-form-field>
+  </div>
+
       <div class="item item-3" fxFlex="15%">
     <mat-form-field >
     <mat-label>Session</mat-label>       
     <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput value="" name="session" [(ngModel)]="receipt.session" #session="ngModel" required>
+    <input matInput value="" name="session" [(ngModel)]="receipt.session" #session="ngModel" required readonly>
     <mat-error *ngIf="session.invalid">Please enter session.</mat-error>
   </mat-form-field>
   </div>
@@ -26,286 +41,64 @@
     
   </mat-form-field>
   </div>
+</div>
 
+   
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
     <div class="item item-3" fxFlex="15%">
     <mat-form-field >
     <mat-label>Student Name</mat-label>       
     <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput name="student_name" [(ngModel)]="receipt.student_name" #student_name="ngModel" required>
-    <mat-error *ngIf="student_name.invalid">Please enter student name.</mat-error>
+    <input matInput  name="student_name" [(ngModel)]="receipt.student_name" #student_name="ngModel">
   </mat-form-field>
   </div>
 
-  <div class="item item-3" fxFlex="15%">
+    <div class="item item-3" fxFlex="15%">
     <mat-form-field >
-    <mat-label>Mother Name</mat-label>       
-    <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput value="" name="mother_name" [(ngModel)]="receipt.mother_name" #mother_name="ngModel" required>
-    <mat-error *ngIf="mother_name.invalid">Please enter mother name.</mat-error>
-  </mat-form-field>
-  </div>
-
-
-  <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Father Name</mat-label>       
-    <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput value="" name="father_name" [(ngModel)]="receipt.father_name" #father_name="ngModel" required>
-    <mat-error *ngIf="father_name.invalid">Please enter father name.</mat-error>
-  </mat-form-field>
-  </div>
-
-   <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>SNo.</mat-label>       
-    <mat-icon matPrefix class="icon">face</mat-icon>
-    <input matInput type="number" name="sno" [(ngModel)]="receipt.sno" #sno="ngModel">
+    <mat-label>Roll No.</mat-label>       
+    <mat-icon matPrefix class="icon">book</mat-icon>
+    <input matInput name="roll_number" [(ngModel)]="receipt.roll_number" #roll_number="ngModel" >
   </mat-form-field>
   </div>
 </div>
-
 
 <div class="container"
      fxLayout
      fxLayout.xs="column"
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
-
- 
-
-  <div class="item item-2" fxFlex="15%">
+  <div class="item item-3" fxFlex="15%">
     <mat-form-field >
-    <mat-icon matPrefix class="icon">date_range</mat-icon>	
-    <input matInput name="searchDate" [(ngModel)]="receipt.searchDate" #searchDate="ngModel" readonly >
+      <mat-label>Admission Fee</mat-label>       
+      <mat-icon matPrefix class="icon">money</mat-icon>
+      <input matInput type="number" name="admission_fee" [(ngModel)]="receipt.admission_fee" #admission_fee="ngModel" required >
+      <mat-error *ngIf="admission_fee.invalid">Please enter Admission Fee.</mat-error>
     </mat-form-field>
   </div>
-</div>
-
-<div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-    <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Pre Balance</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="pre_bal" [(ngModel)]="receipt.pre_bal" #pre_bal="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-    
-  </mat-form-field>
-  </div>
-
-    <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Form Chargs.</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="form_chrgs" [(ngModel)]="receipt.form_chrgs" #form_chrgs="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-    
-  </mat-form-field>
-  </div>
-
-  <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Admission Fee</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="adm_fee" [(ngModel)]="receipt.adm_fee" #adm_fee="ngModel" required (ngModelChange)="getDepositeAmt(postForm)">
-    <mat-error *ngIf="adm_fee.invalid">Please enter Admission Fee.</mat-error>
-  </mat-form-field>
-  </div>
 
 
   <div class="item item-3" fxFlex="15%">
     <mat-form-field >
-    <mat-label>Dearness Fee</mat-label>       
+    <mat-label>Fee</mat-label>       
     <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="dearness_fee" [(ngModel)]="receipt.dearness_fee" #dearness_fee="ngModel" required (ngModelChange)="getDepositeAmt(postForm)">
-    <mat-error *ngIf="dearness_fee.invalid">Please enter dearness fee.</mat-error>
+    <input matInput type="number" name="fee" [(ngModel)]="receipt.fee" #fee="ngModel" required >
+    <mat-error *ngIf="fee.invalid">Please enter fee.</mat-error>
   </mat-form-field>
   </div>
 
    <div class="item item-3" fxFlex="15%">
     <mat-form-field >
-    <mat-label>Devlop Fee</mat-label>       
+    <mat-label>Remaining Fee</mat-label>       
     <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="dev_fee" [(ngModel)]="receipt.dev_fee" #dev_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-  </mat-form-field>
-  </div>
-
-  <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Electric Fee.</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="elec_fee" [(ngModel)]="receipt.elec_fee" #elec_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
+    <input matInput type="number" name="remaining_fee" [(ngModel)]="receipt.remaining_fee" #remaining_fee="ngModel" >
   </mat-form-field>
   </div>
 
  </div>
-
- <div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-
-      <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Library Fee</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="lib_fee" [(ngModel)]="receipt.lib_fee" #lib_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-    
-  </mat-form-field>
-  </div>
-
-    <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Lab Fee</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="lab_fee" [(ngModel)]="receipt.lab_fee" #lab_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-    
-  </mat-form-field>
-  </div>
-
-  <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Music Fee</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="music_fee" [(ngModel)]="receipt.music_fee" #music_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-    
-  </mat-form-field>
-  </div>
-
-  <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Annual Func Chrgs</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="annual_func_fee" [(ngModel)]="receipt.annual_func_fee" #annual_func_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-  </mat-form-field>
-  </div>
-
-   <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>Exam Fee</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="exam_fee" [(ngModel)]="receipt.exam_fee" #exam_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-  </mat-form-field>
-  </div>
-
-  <div class="item item-3" fxFlex="15%">
-    <mat-form-field >
-    <mat-label>S Class Fee.</mat-label>       
-    <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput type="number" name="sclass" [(ngModel)]="receipt.sclass" #sclass="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-  </mat-form-field>
-  </div>
-
-  
- </div>
-
- <div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-
-     <div class="item item-3" fxFlex="15%">
-      <mat-form-field >
-      <mat-label>Tuition Fee</mat-label>       
-      <mat-icon matPrefix class="icon">money</mat-icon>
-      <input matInput type="number" name="tution_fee" [(ngModel)]="receipt.tution_fee" #tution_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-      <!-- <mat-error *ngIf="form.get('tution_fee').invalid">Please enter tution fee.</mat-error> -->
-      </mat-form-field>
-      </div>
-
-  <div class="item item-3" fxFlex="15%">
-      <mat-form-field >
-      <mat-label>Activity Fee</mat-label>       
-      <mat-icon matPrefix class="icon">money</mat-icon>
-      <input matInput type="number" name="acti_fee" [(ngModel)]="receipt.acti_fee" #acti_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-      </mat-form-field>
-      </div>
-
-      <div class="item item-3" fxFlex="15%">
-      <mat-form-field >
-      <mat-label>Month</mat-label>       
-      <mat-icon matPrefix class="icon">money</mat-icon>
-      <mat-select placeholder="Month" name="monthName"  [(ngModel)]="receipt.monthName" #monthName="ngModel">
-      <mat-option value="January">January</mat-option>
-      <mat-option value="February">February</mat-option>
-      <mat-option value="March">March</mat-option>
-      <mat-option value="April">April</mat-option>
-      <mat-option value="May">May</mat-option>
-      <mat-option value="June">June</mat-option>
-      <mat-option value="July">July</mat-option>
-      <mat-option value="August">August</mat-option>
-      <mat-option value="September">September</mat-option>
-      <mat-option value="October">October</mat-option>
-      <mat-option value="November">November</mat-option>
-      <mat-option value="December">December</mat-option>
-  </mat-select>
-      </mat-form-field>
-      </div>
-
-        <div class="item item-3" fxFlex="15%">
-      <mat-form-field >
-      <mat-label>Late Fee(if any)</mat-label>       
-      <mat-icon matPrefix class="icon">money</mat-icon> 
-      <input matInput type="number" name="late_fee" [(ngModel)]="receipt.late_fee" #late_fee="ngModel" (ngModelChange)="getDepositeAmt(postForm)">
-      </mat-form-field>
-      </div>
-</div>
-
- <div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-      
-       <div class="item item-3" fxFlex="15%">
-      <mat-form-field >
-      <mat-label>Total Amount</mat-label>       
-      <mat-icon matPrefix class="icon">money</mat-icon>
-      <input matInput type="number" name="total_amount" [(ngModel)]="receipt.total_amount" #total_amount="ngModel" required>
-      <mat-error *ngIf="total_amount.invalid">Please enter total amount.</mat-error>
-      </mat-form-field>
-      </div>
-
-       <div class="item item-3" fxFlex="15%">
-      <mat-form-field >
-      <mat-label>Amount Deposite</mat-label>       
-      <mat-icon matPrefix class="icon">money</mat-icon>
-      <input matInput type="number" name="amt_deposite" [(ngModel)]="receipt.amt_deposite" #amt_deposite="ngModel" required>
-      <mat-error *ngIf="amt_deposite.invalid">Please enter total amount.</mat-error>
-      </mat-form-field>
-      </div>
-
-       <div class="item item-3" fxFlex="15%">
-      <mat-form-field >
-      <mat-label>Balance Amount</mat-label>       
-      <mat-icon matPrefix class="icon">money</mat-icon>
-      <input matInput type="number" name="bal_amt" [(ngModel)]="receipt.bal_amt"  #bal_amt="ngModel">
-      </mat-form-field>
-      </div>
-
-       <div class="item item-3" fxFlex="15%">
-      <mat-form-field >
-      <mat-label>Remark</mat-label>       
-      <mat-icon matPrefix class="icon">pencil</mat-icon>
-      <input matInput  name="remark" [(ngModel)]="receipt.remark" #remark="ngModel">
-      </mat-form-field>
-      </div>
-
-       <div class="item item-3" fxFlex="15%">
-      <mat-form-field >
-      <mat-label>Received By</mat-label>       
-      <mat-icon matPrefix class="icon">money</mat-icon>
-       <mat-select placeholder="Received By" name="received_by" [(ngModel)]="receipt.received_by" #received_by="ngModel">
-      <mat-option value="Admin">Admin</mat-option>
-      <mat-option value="Sales">Sales</mat-option>
-    </mat-select>
-      </mat-form-field>
-      </div>
-  </div>
-
 
 
 <div class="container"
@@ -319,11 +112,7 @@
   	  <button type="button" [routerLink]="['/receiptList']" mat-raised-button color="primary">Cancel</button>
 
   </div>
-  
-
 </div>
 </form>
 </mat-sidenav-container>
-
-
 <router-outlet></router-outlet>

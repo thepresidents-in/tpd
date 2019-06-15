@@ -36,78 +36,18 @@ displayedColumns = ['roll_number','first_name','father_name','mother_name','clas
 }
 
 updateStudentFee(form: NgForm){
-	if(form.invalid){
-		return;
-	}
-	console.log("update form: ",form);
-	console.log("id: "+this.edirReceiptId);
-	if(this.sum > 0){
-		//form.controls.amt_deposite.value = this.sum;
-    form.controls.amt_deposite.setValue(this.sum);
-	}
-	console.log("update form2: ",form);
-	this.rest.update('receipt',this.edirReceiptId,form.value).then((response) => {
+  	if(form.invalid){
+  		return;
+  	}
+  	console.log("update form: ",form);
+  	if(this.sum > 0){
+      form.controls.amt_deposite.setValue(this.sum);
+  	}
+  	console.log("update form2: ",form);
+	/*this.rest.update('receipt',this.edirReceiptId,form.value).then((response) => {
        alert("Receipt added. !!");
        this.router.navigate(['/receiptList']);
-    });
+    });*/
 }
-
- getDepositeAmt(formData){
-   console.log("val:",formData);
-   console.log(formData.controls.pre_bal.value);
-   console.log(formData.controls.form_chrgs.value);
-     if(formData.controls.pre_bal.value == ''){
-       formData.controls.pre_bal.value =0;
-     }
-     if(formData.controls.form_chrgs.value == ''){
-       formData.controls.form_chrgs.value = 0;
-     }
-     if(formData.controls.adm_fee.value == ''){
-       formData.controls.adm_fee.value = 0;
-     }
-     if(formData.controls.dearness_fee.value == ''){
-       formData.controls.dearness_fee.value = 0;
-     }
-    if(formData.controls.dev_fee.value == ''){
-       formData.controls.dev_fee.value = 0;
-     }
-     if(formData.controls.elec_fee.value == ''){
-       formData.controls.elec_fee.value = 0;
-     }
-     if(formData.controls.lib_fee.value == ''){
-       formData.controls.lib_fee.value = 0;
-     }
-     if(formData.controls.lab_fee.value == ''){
-       formData.controls.lab_fee.value = 0;
-     }
-     if(formData.controls.music_fee.value == ''){
-       formData.controls.music_fee.value = 0;
-     }
-     if(formData.controls.annual_func_fee.value == ''){
-       formData.controls.annual_func_fee.value = 0;
-     }
-     if(formData.controls.exam_fee.value == ''){
-       formData.controls.exam_fee.value = 0;
-     }
-     if(formData.controls.sclass.value == ''){
-       formData.controls.sclass.value = 0;
-     }
-     if(formData.controls.tution_fee.value == ''){
-       formData.controls.tution_fee.value = 0;
-     }
-
-     if(formData.controls.acti_fee.value == ''){
-       formData.controls.acti_fee.value = 0;
-     }
-     if(formData.controls.late_fee.value == ''){
-       formData.controls.late_fee.value = 0;
-     }
-      let depositeAmt = +(formData.controls.pre_bal.value ) + (formData.controls.form_chrgs.value) + (formData.controls.adm_fee.value) + (formData.controls.dearness_fee.value)  + (formData.controls.dev_fee.value)
-     + (formData.controls.elec_fee.value) + (formData.controls.lib_fee.value) + (formData.controls.lab_fee.value) + (formData.controls.music_fee.value) 
-     + (formData.controls.annual_func_fee.value) + (formData.controls.exam_fee.value) + (formData.controls.sclass.value) + (formData.controls.tution_fee.value)  + (formData.controls.acti_fee.value)  + (formData.controls.late_fee.value);
-     this.sum = depositeAmt;
-     formData.controls.amt_deposite.value = this.sum;
-     console.log("sum:: "+this.sum);
-  }
 
 }
