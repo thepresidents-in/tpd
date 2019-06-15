@@ -1,7 +1,7 @@
 import { Component,OnInit,ViewChild,Inject } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { RestService } from '../rest.service';
-import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort} from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort,MatPaginator} from '@angular/material';
 import { Router } from '@angular/router';
 
 export interface DialogData {
@@ -29,11 +29,13 @@ export class FeeListComponent {
   }
 
 @ViewChild(MatSort) sort: MatSort;
+@ViewChild(MatPaginator) paginator: MatPaginator;
 	ngOnInit() {
     this.spinnerService.show();
     this.rest.getFee().then((response) => {
     this.dataSource = new MatTableDataSource(response);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.spinnerService.hide();
   });
     

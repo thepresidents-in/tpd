@@ -9,7 +9,7 @@
   <!-- Position Column -->
   <ng-container matColumnDef="roll_number">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Roll Number</mat-header-cell>
-            <mat-cell *matCellDef="let element ">{{element.roll_number }} 
+            <mat-cell *matCellDef="let element ">{{element.roll_number }}
             </mat-cell>
         </ng-container>
 
@@ -44,12 +44,20 @@
         </ng-container>
 
         <ng-container matColumnDef="uId">
-            <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
-            <mat-cell [routerLink]="['/student',element.uId]" *matCellDef="let element"><mat-icon  matTooltip="Edit Student" matPrefix class="icon">edit</mat-icon> <mat-icon (click)="openDialog(element)" matTooltip="Delete Student" matPrefix class="icon">delete</mat-icon>
+            <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+            <mat-cell [routerLink]="['/student',element.uId]" *matCellDef="let element">
+                <mat-icon  matTooltip="Edit Student" matPrefix class="icon">edit</mat-icon>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="del">
+            <mat-header-cell *matHeaderCellDef>Del</mat-header-cell>
+            <mat-cell [routerLink]="['/student',element.uId]" *matCellDef="let element">
+                <mat-icon (click)="openDialog(element)" matTooltip="Delete Student" matPrefix class="icon">delete</mat-icon>
             </mat-cell>
         </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 <router-outlet></router-outlet>

@@ -19,6 +19,5 @@ export class HomeComponent implements OnInit {
       localStorage.removeItem('access_token');
     })
   }
- 
 
 }

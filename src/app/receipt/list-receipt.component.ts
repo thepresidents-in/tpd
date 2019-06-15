@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject,ViewChild } from '@angular/core';
 import { RestService } from '../rest.service';
-import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort,MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
@@ -15,7 +15,7 @@ export interface DialogData {
 })
 export class ListReceiptComponent implements OnInit {
 	dataSource ;
-displayedColumns = ['session','class','student_name','father_name','mother_name','total_amount','amt_deposite','pre_bal','bal_amount','annual_func_fee','dearness_fee','dev_fee','elec_fee','exam_fee','form_chrgs','lab_fee','lib_fee','monthName','music_fee','received_by','remark','sclass','searchDate','uId'];
+displayedColumns = ['session','class','roll_no','student_name','admission_fee','fee','remaining_fee','feeType','date','uId'];
 constructor(public rest:RestService, public dialog: MatDialog,private router: Router, private spinnerService: Ng4LoadingSpinnerService){
 
 }
@@ -39,6 +39,7 @@ openDialog(receiptData) {
   }
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 ngOnInit() {
   this.spinnerService.show();
   this.rest.getReceipt().then((response) => {
@@ -47,6 +48,7 @@ ngOnInit() {
     console.log("dataSource receipt :",this.dataSource);
     this.dataSource = new MatTableDataSource(response);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.spinnerService.hide();
 });
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject,ViewChild } from '@angular/core';
 import { RestService } from '../rest.service';
-import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort} from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA ,MatTableDataSource,MatSort,MatPaginator} from '@angular/material';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
@@ -16,7 +16,7 @@ export interface DialogData {
 export class ListStudentComponent implements OnInit {
 studentList;
 dataSource ;
-displayedColumns = ['roll_number','first_name','father_name','mother_name','class','dob','uId'];
+displayedColumns = ['roll_number','first_name','father_name','mother_name','class','dob','uId', 'del'];
 
 
   constructor( public rest: RestService, public dialog: MatDialog ,private spinnerService: Ng4LoadingSpinnerService) {}
@@ -35,17 +35,19 @@ displayedColumns = ['roll_number','first_name','father_name','mother_name','clas
   }
 
 @ViewChild(MatSort) sort: MatSort;
+@ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit() {
     this.spinnerService.show();
     this.rest.getStudents().then((response) => {
     console.log("res KV: ",response);
-    
+
     this.dataSource = new MatTableDataSource(response);
     console.log("dataSource mat:",this.dataSource);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.spinnerService.hide();
   });
-    
+
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

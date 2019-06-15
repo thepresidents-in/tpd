@@ -20,6 +20,8 @@ export class StudentComponent implements OnInit {
 	classData = CLASSES ;
   form: FormGroup;
   imagePreview: string;
+  minDate = new Date(2000, 0, 1);
+  maxDate :any;
 
   constructor(public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) {
   	/*this.rest.getClasses().subscribe((response) => {
@@ -29,30 +31,32 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit() {
+    const now = new Date();
+    now.setFullYear(now.getFullYear() - 1);
+    this.maxDate = now.toISOString().slice(0,10);
     this.form = new FormGroup({
       'first_name' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+        validators:[Validators.required, Validators.minLength(3),Validators.pattern("^[a-zA-Z]*")]
       }),
       'last_name' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+        validators:[Validators.required, Validators.minLength(3),Validators.pattern("^[a-zA-Z]*")]
       }),
       'father_name' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+        validators:[Validators.required, Validators.minLength(3),Validators.pattern("^[a-zA-Z]*")]
       }),
       'mother_name' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+        validators:[Validators.required, Validators.minLength(3),Validators.pattern("^[a-zA-Z]*")]
       }),
       'address' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+        validators:[Validators.required, Validators.minLength(10)]
       }),
        'gender' : new FormControl('',{
         validators:[Validators.required]
       }),
         'contact_number' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+        validators:[Validators.required, Validators.maxLength(10), Validators.pattern("[6-9]\\d{9}")]
       }),
-         'email' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3)]
+         'email' : new FormControl('',{validators:[Validators.required, Validators.pattern("[^ @]*@[^ @]*")]
       }),
           'dob' : new FormControl('',{
         validators:[Validators.required]
@@ -63,38 +67,41 @@ export class StudentComponent implements OnInit {
            /*'image' : new FormControl('',{
              validators:[Validators.required]
            }),*/
-            'adhaar_no' : new FormControl('',{ 
-        validators:[Validators.required, Validators.minLength(10)] 
+            'adhaar_no' : new FormControl('',{
+        validators:[Validators.required, Validators.minLength(12), Validators.maxLength(12)]
       }),
-             'father_occupation' : new FormControl('',{ 
-        validators:[Validators.required, Validators.minLength(10)] 
+             'father_occupation' : new FormControl('',{
+        validators:[Validators.required, Validators.minLength(6)]
       }),
-             'father_qualification' : new FormControl('',{ 
-        validators:[Validators.required, Validators.minLength(10)] 
+             'father_qualification' : new FormControl('',{
+        validators:[Validators.required, Validators.minLength(2)] 
       }),
-             'only_child' : new FormControl('',{ 
-        validators:[Validators.required] 
+             'only_child' : new FormControl('',{
+        validators:[Validators.required]
       }),
-              'annual_income' : new FormControl('',{ 
-        validators:[Validators.required, Validators.minLength(4)] 
+              'annual_income' : new FormControl('',{
+        validators:[Validators.required, Validators.minLength(4)]
       }),
-               'category' : new FormControl('',{ 
-        validators:[Validators.required] 
+               'category' : new FormControl('',{
+        validators:[Validators.required]
       }),
-        'mother_qualification' : new FormControl('',{ 
-        validators:[Validators.required] 
+        'mother_qualification' : new FormControl('',{
+        validators:[Validators.required, Validators.minLength(2)]
       }),
-        'religion' : new FormControl('',{ 
-        validators:[Validators.required] 
+        'religion' : new FormControl('',{
+        validators:[Validators.required]
       }),
-        'handicapped' : new FormControl('',{ 
-        validators:[Validators.required] 
+        'handicapped' : new FormControl('',{
+        validators:[Validators.required]
       }),
-         'mother_occupation' : new FormControl('',{ 
-        validators:[Validators.required] 
+         'mother_occupation' : new FormControl('',{
+        validators:[Validators.required]
       }),
-          'contact_number2' : new FormControl('',{ 
-        validators:[Validators.required] 
+          'contact_number2' : new FormControl('',{
+        validators:[Validators.required, Validators.maxLength(10), Validators.pattern("[6-9]\\d{9}")]
+      }),
+          'miniority' : new FormControl('',{
+        validators:[Validators.required]
       }),
     })
   }

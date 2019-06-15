@@ -1,3 +1,5 @@
+  
+<div style="height: 40vh;">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
@@ -8,7 +10,7 @@
       <div fxShow="true" fxHide.lt-md>
       <ul fxLayout fxLayoutGap="20px" class="navigation-items">
     <li [matMenuTriggerFor]="student"  #matMenuTrigger1="matMenuTrigger">
-      <a  mat-list-item (mouseenter)="matMenuTrigger1.openMenu()">
+      <a  mat-list-item (mouseenter)="matMenuTrigger1.openMenu()" >
       <mat-icon class="icon">people</mat-icon>&nbsp;
       <span class="label">Student</span>
       </a>
@@ -36,9 +38,11 @@
       <mat-icon class="icon">money</mat-icon>&nbsp;
       <span class="label">Fee Structure</span>
       </a>
-      <mat-menu #fee_structure="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
+      <mat-menu #fee_structure="matMenu"  [overlapTrigger]="false">
+          <span (mouseleave)="matMenuTrigger4.closeMenu()">
       <button mat-menu-item [routerLink]="['/fee_structure']">Add Fee</button>
       <button mat-menu-item [routerLink]="['/feeList']">View Fee Structure</button>
+      </span>
       </mat-menu>
    </li>
 
@@ -47,7 +51,7 @@
       <mat-icon class="icon">dashboard</mat-icon>&nbsp;
       <span class="label">Dashboard</span>
       </a>
-      <mat-menu #dashboard="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
+      <mat-menu #dashboard="matMenu" (mouseleave)="matMenuTrigger3.closeMenu()" [overlapTrigger]="false">
       <button mat-menu-item [routerLink]="['/dashboard']">Dashboard</button>
       <button mat-menu-item (click)="logout()">Logout</button>
       </mat-menu>
@@ -57,3 +61,21 @@
   </mat-toolbar-row>
   </mat-toolbar>
 
+ <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+       <a [routerLink]="['/student']" mat-list-item>Add Student</a>
+       <a [routerLink]="['/liststudent']" mat-list-item>View Student</a>
+       <a [routerLink]="['/receipt']" mat-list-item>Add Receipt</a>
+       <a [routerLink]="['/receiptList']" mat-list-item>View Receipt</a>
+      </mat-nav-list>
+      <mat-nav-list>
+       <a [routerLink]="['/attendance']" mat-list-item>Add attendence</a>
+       <a [routerLink]="['/attendanceView']" mat-list-item>View AttendANCE</a>
+       <a [routerLink]="['/fee_structure']" mat-list-item>Add Fee</a>
+       <a [routerLink]="['/feeList']" mat-list-item>View Fee Structure</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!-- <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content> -->
+  </mat-sidenav-container>
+</div>
