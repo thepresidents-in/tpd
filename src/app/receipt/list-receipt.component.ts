@@ -15,7 +15,7 @@ export interface DialogData {
 })
 export class ListReceiptComponent implements OnInit {
 	dataSource ;
-displayedColumns = ['session','class','roll_number','student_name','admission_fee','fee','remaining_fee','feeType','date','uId'];
+displayedColumns = ['session','class','roll_no','student_name','admission_fee','fee','remaining_fee','feeType','date','uId'];
 constructor(public rest:RestService, public dialog: MatDialog,private router: Router, private spinnerService: Ng4LoadingSpinnerService){
 
 }

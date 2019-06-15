@@ -32,7 +32,7 @@ export class ReceiptComponent implements OnInit {
   fee:number;
   isFee: boolean=true;
   form: FormGroup;
-  constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {
   	console.log("date: "+(new Date()) );
     }
 
@@ -49,6 +49,7 @@ export class ReceiptComponent implements OnInit {
       console.log("post 1");
        alert("Receipt added. !!");
        this.form.reset();
+       this.router.navigate(['/receiptList']);
 
     });
   }
