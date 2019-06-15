@@ -18,7 +18,7 @@ classId;
 studentData: any = [];
 attendanceObj;
 delAttendanceObj;
-
+delId:any;
 constructor(public rest:RestService,public router:Router,public datePipe: DatePipe){
  console.log("class:",this.classData);	
 };
@@ -49,21 +49,32 @@ onRadioClick(index,val,student) {
     let values = [date,student.class,student.roll_number,student.action,student.first_name,student.last_name];
     //this.delAttendanceObj = {"fn": "deleteRowAttendance","params": ["attendance",[student.roll_number],[date],[student.class] ]};
 	console.log("roll_no: "+student.roll_number+" date: "+date+ "class: "+student.class);
-	this.rest.deleteRowAttendance("student_attendance",student.roll_number,date,student.class).then((response) => {
-		console.log("delete attendance: ",response[0]['uId']);
-		if(response[0]['uId']){
-			 this.rest.delete("student_attendance",response[0]['uId']).then((del_response) => {
-                console.log("del res: ",del_response);
-          });
-		}
-         
-	});
 	var attObj = {};
 	keys.forEach((key, i) => attObj[key] = values[i]);
+	//this.postAttendance(attObj);
 	console.log("attObj: ",attObj);
-	this.rest.postAttendance(attObj).then((post_response) => {
-		console.log("attendance added.",post_response);
+	this.deleteAttendance(student.roll_number,date,student.class,attObj);
+	
+	
+	
+    }
+
+    deleteAttendance= (roll_number,date,className,attObj) => {
+    	this.rest.deleteRowAttendance("student_attendance",roll_number,date,className).then((response) => {
+		console.log("delete attendance: "+response[0].uId);
+		this.rest.delete("student_attendance",response[0].uId).then((response) => {
+			alert("deleted");
+		})
+		//setTimeout(() => {
+			this.postAttendance(attObj);
+        //}, 1000);
+	});
+    }
+    postAttendance= (Obj)=> {
+    	this.rest.postAttendance(Obj).then((post_response) => {
+		alert("attendance added.");
 		//this.router.navigate(['/liststudent']);
 	});
+
     }
 }
