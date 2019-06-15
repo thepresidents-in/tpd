@@ -28,7 +28,7 @@ flag: boolean;
          this.flag = this.Auth.canActivate();
                     console.log("flag: ",this.flag);
                     if(this.flag === true){
-                      this.router.navigate(['home']);
+                      this.router.navigate(['dashboard']);
                     }else{
                       this.router.navigate(['']);
                     }
