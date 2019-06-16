@@ -170,7 +170,7 @@ getReceiptSno(receipt){
     return p;
   }
 
-  getFeeForReceipt(classVal,feeType,tableName){
+  getFeeForReceipt(classVal,tableName){
     let p = new Promise( (resolve, reject)=>{
       this.fireStore.collection(tableName).where('class', '==', classVal).get()
       .then((snapshots) => {
@@ -199,5 +199,21 @@ getReceiptSno(receipt){
     });
     return p;
   }
+
+  getSubmitedFeeData(classVal,roll_no,tableName){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection(tableName).where('class', '==', classVal).where("roll_no","==", roll_no).orderBy("remaining_fee","asc").limit(1).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
+ 
 
 }
