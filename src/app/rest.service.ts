@@ -72,7 +72,7 @@ constructor(private  httpClient:  HttpClient)
   }
 
   getFeeForReceipt(classVal,feeType) {
-    return firewrap.getFeeForReceipt(classVal,feeType,'fee');
+    return firewrap.getFeeForReceipt(classVal,'fee');
   }
   postBook(bookData) {
     return this.httpClient.post(`${this.API_URL}`,bookData, httpOptions)
@@ -124,5 +124,11 @@ constructor(private  httpClient:  HttpClient)
 
   getDuplicate(tableName,val){
     return firewrap.check(tableName,val);
+  }
+  getSubmitFeeData(classValue,roll_no,tableName){
+    return firewrap.getSubmitedFeeData(classValue,roll_no,tableName);
+  }
+   getFullFee(classValue){
+    return firewrap.getFeeForReceipt(classValue,'fee');
   }
 };

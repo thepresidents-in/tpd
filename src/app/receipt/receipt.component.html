@@ -63,7 +63,7 @@
     <mat-error *ngIf="student_name.invalid">Please enter student name.</mat-error>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getAutoStudentSelect($event)'>
     <mat-option *ngFor="let student of studentList" value="{{student.first_name}}-{{ student.roll_number}}">
-    {{student.first_name}}-{{ student.roll_number}}
+    {{student.first_name}} {{ student.last_name}}
     </mat-option>
     </mat-autocomplete>
     </mat-form-field>
@@ -97,16 +97,16 @@
 <div class="item item-3" fxFlex="15%">
 
   <mat-radio-group>
-  <mat-radio-button value="0" name="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,0)"> Annual  
-    <mat-form-field>&nbsp;&nbsp;<input matInput type="number" name="fee" [value]="fee" [(ngModel)]="fee" ></mat-form-field>
+  <mat-radio-button value="0" name="feeType" [value]="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,0)" [checked]="aCheck" [disabled]="annualDisabled"> Annual  
+    <mat-form-field>&nbsp;&nbsp;<input matInput type="number" name="fee" [value]="fee" [(ngModel)]="fee"></mat-form-field>
   <!--   <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="annualFee" [value]="annualFee" [(ngModel)]="annualFee" ></mat-form-field> -->
   </mat-radio-button><br/>
 
-  <mat-radio-button value="1" name="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,1)">Bi-Annual 
+  <mat-radio-button value="1" name="feeType" [value]="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,1)" [checked]="bCheck" [disabled]="biAnnualDisabled">Bi-Annual 
    <!--  <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="biAnnualFee" [value]="biAnnualFee" [(ngModel)]="biAnnualFee"></mat-form-field> -->
   </mat-radio-button><br/>
 
-   <mat-radio-button value="2" name="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,2)">Quaterly 
+   <mat-radio-button value="2" name="feeType" [value]="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,2)" [checked]="qCheck" [disabled]="quaterlyDisabled">Quaterly 
   <!--  <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="quaterlyFee" [value]="quaterlyFee" [(ngModel)]="quaterlyFee" ></mat-form-field> -->
   </mat-radio-button>
   

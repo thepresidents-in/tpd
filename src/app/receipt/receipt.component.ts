@@ -32,6 +32,15 @@ export class ReceiptComponent implements OnInit {
   fee:number;
   isFee: boolean=true;
   form: FormGroup;
+  classValue:any;
+  annualDisabled:boolean=true;
+  biAnnualDisabled:boolean=true;
+  quaterlyDisabled:boolean=true;
+  qCheck:boolean=false;
+  bCheck:boolean=false;
+  aCheck:boolean=false;
+  fullFee:number;
+  rollNum:any;
   constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {
   	console.log("date: "+(new Date()) );
     }
@@ -44,20 +53,25 @@ export class ReceiptComponent implements OnInit {
     if(form.invalid){
     return;
     }
+    alert(this.feeType);
+    if((form.value).hasOwnProperty("feeType") === false ){
+      console.log("in fee type");
+      form.value["feeType"] = this.feeType;
+    }
     console.log("form: ",form.value);
     this.rest.postReceipt(form.value).then((response) => {
       console.log("post 1");
        alert("Receipt added. !!");
-       this.form.reset();
+       //this.form.reset();
        this.router.navigate(['/receiptList']);
 
     });
   }
 
   getClass(formData){
-    let classValue = formData.controls.class.value;
+    this.classValue = formData.controls.class.value;
 
-     this.rest.getStudentsByClass(classValue).then((response) => {
+     this.rest.getStudentsByClass(this.classValue).then((response) => {
     console.log("res KV: ",response);
     this.studentList = response;
     this.feeType = null;
@@ -66,27 +80,96 @@ export class ReceiptComponent implements OnInit {
 }
 
 getStudentInfo(std){
-  console.log("student:",std);
+  this.rollNum = (std).split("-");
+  console.log("getStudentInfo student:"+this.rollNum[1]+"and class: "+this.classValue);
+   this.rest.getSubmitFeeData(this.classValue,this.rollNum[1],'receipt').then((submittedResponse) => {
+    console.log("res getSubmitFeeData: ",submittedResponse);
+   alert(submittedResponse.length);
+     
+    if(submittedResponse.length != 0){
+      if(submittedResponse[0]['remaining_fee'] == 0){
+         alert(this.rollNum[0]+" fee has been completed.");
+         this.isFee= true;
+         this.annualDisabled= true;
+        this.biAnnualDisabled= true;
+        this.quaterlyDisabled= true;
+        this.router.navigate(['/receiptList']);
+      }
+      //alert("in");
+    console.log("res feeType: "+submittedResponse[0]['feeType']);
+    if(submittedResponse[0]['feeType'] ==0){
+        this.annualDisabled= true;
+        this.biAnnualDisabled= true;
+        this.quaterlyDisabled= true;
+        this.isFee= true;
+        this.fee=0;
+        this.aCheck = true;
+        //alert(rollNum[0]+" fee has been completed.");
+    }else if(submittedResponse[0]['feeType'] ==1  && submittedResponse[0]['remaining_fee'] != 0){
+        this.annualDisabled= true;
+       this.biAnnualDisabled=  false;
+        this.quaterlyDisabled= true;
+        this.fee =submittedResponse[0]['remaining_fee']
+        this.admissionFee=0;
+        this.remainingFee = 0;
+        this.isFee= false;
+        this.feeType=1;
+        this.bCheck=true;
+    }
+    else if(submittedResponse[0]['feeType'] ==2 && submittedResponse[0]['remaining_fee'] !=0 ){
+       this.rest.getFullFee(this.classValue).then((fullRes) => {
+        let qF = Math.round((Math.round((fullRes[0]['quaterly_fee'])/3))*2);
+          if(submittedResponse[0]['remaining_fee'] == qF) {
+            this.annualDisabled= true;
+            this.biAnnualDisabled= true;
+            this.quaterlyDisabled= false;
+            this.admissionFee=0;
+            this.fee = Math.round((submittedResponse[0]['remaining_fee'])/2);
+            this.remainingFee = this.fee;
+            this.feeType=2;
+            this.isFee= false;
+            this.qCheck=true;
+          }
+          else{
+            this.annualDisabled= true;
+            this.biAnnualDisabled= true;
+            this.quaterlyDisabled= false;
+            this.admissionFee=0;
+            this.fee = submittedResponse[0]['remaining_fee'];
+            this.remainingFee = 0;
+            this.feeType=2;
+            this.isFee= false;
+            this.qCheck=true;
+          }
+    });
+    }
+  }
+  else{
+      this.annualDisabled=false;
+      this.biAnnualDisabled=false;
+      this.quaterlyDisabled=false;
+      
+  }
+});
 }
 
 getSno(){
- 
   this.rest.getReceiptSno().then((response)=> {
      this.spinnerService.show();
     console.log("sno: ",response);
     this.sn_number = response;
     //this.sessiont = '2019-20'
     this.snoDisabled = false;
-
   });
    this.spinnerService.hide();
 }
 
 getAutoStudentSelect = (stdInfo) => {
-  console.log("getAutoStudentSelect: ",stdInfo.option.value);
+  //console.log("getAutoStudentSelect: ",stdInfo.option.value);
   let splitted = (stdInfo.option.value).split("-");
   console.log("splitted: ",splitted);
   this.roll_no = splitted[1];
+   console.log("getAutoStudentSelect: ",stdInfo);
 }
 
 getFeeData = (classVal,feeType) =>  {
@@ -98,7 +181,7 @@ this.spinnerService.show();
 this.rest.getFeeForReceipt(selectedClass,feeType).then((response) => {
       console.log("resp: ",response);
       console.log("dam_fee "+response[0]['admission_fee']);
-
+      this.fullFee = response[0]['annual_fee'];
       if(feeType == 0){
         //this.annualFee = response[0]['annual_fee'];
          this.fee = response[0]['annual_fee'];
@@ -127,8 +210,6 @@ this.rest.getFeeForReceipt(selectedClass,feeType).then((response) => {
       }
       this.isFee = false;
        // this.spinnerService.hide();
-
-
     });
 }
 }
