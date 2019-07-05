@@ -1,10 +1,11 @@
 
   <body *ngFor ="let data of studentDetail;">
+    <ng-container *ngFor ="let receiptData of receiptDetail;">
     <header class="clearfix">
       <div id="logo">
         <img src="assets/logo.png">
       </div>
-      <h1>INVOICE 3-2-1</h1>
+      <h1>INVOICE - {{ receiptData.sno }}</h1>
       <div id="company" class="clearfix">
         <div>The President</div>
         <div>Daniyari,<br /> AZ 85004, UP</div>
@@ -16,7 +17,7 @@
         <div><span>Class</span> {{ data.class }}</div>
         <div><span>ADDRESS</span> {{ data.address }}</div>
         <div><span>EMAIL</span> <a href="mailto:optimistanoop@gmail.com">{{ data.email }}</a></div>
-        <div><span>DATE</span> August 17, 2015</div>
+        <div><span>DATE</span> {{ receiptData.date | date: 'dd-MM-yyyy'}}</div>
        <!--  <div><span>DUE DATE</span> September 17, 2015</div> -->
       </div>
     </header>
@@ -33,36 +34,29 @@
         </thead>
         <tbody>
           <tr>
-            <td class="service">Tution Fee</td>
+            <td class="service">Admission Fee</td>
             <td class="desc">Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="unit">$40.00</td>
+            <td class="unit">{{ receiptData.admission_fee }}</td>
             <!-- <td class="qty">26</td> -->
-            <td class="total">$1,040.00</td>
+            <td class="total">{{ receiptData.admission_fee }}</td>
           </tr>
           <tr>
-            <td class="service">Exam Fee</td>
+            <td class="service">Submitted Fee</td>
             <td class="desc">Developing a Content Management System-based Website</td>
-            <td class="unit">$40.00</td>
+            <td class="unit">{{ receiptData.fee }}</td>
             <!-- <td class="qty">80</td> -->
-            <td class="total">$3,200.00</td>
+            <td class="total">{{ receiptData.fee }}</td>
           </tr>
           <tr>
-            <td class="service">Activity Fee</td>
+            <td class="service">Remaining Fee</td>
             <td class="desc">Optimize the site for search engines (SEO)</td>
-            <td class="unit">$40.00</td>
+            <td class="unit">{{ receiptData.remaining_fee }}</td>
             <!-- <td class="qty">20</td> -->
-            <td class="total">$800.00</td>
-          </tr>
-          <tr>
-            <td class="service">Computer Fee</td>
-            <td class="desc">Initial training sessions for staff responsible for uploading web content</td>
-            <td class="unit">$40.00</td>
-            <!-- <td class="qty">4</td> -->
-            <td class="total">$160.00</td>
+            <td class="total"></td>
           </tr>
           <tr>
             <td colspan="3">SUBTOTAL</td>
-            <td class="total">$5,200.00</td>
+            <td class="total">{{ total }}</td>
           </tr>
           <tr>
             <td colspan="3">TAX 25%</td>
@@ -70,7 +64,7 @@
           </tr>
           <tr>
             <td colspan="3" class="grand total">GRAND TOTAL</td>
-            <td class="grand total">$6,500.00</td>
+            <td class="grand total">{{ total }}</td>
           </tr>
         </tbody>
       </table>
@@ -82,4 +76,5 @@
     <footer>
       Invoice was created on a computer and is valid without the signature and seal.
     </footer>
+  </ng-container>
   </body>
