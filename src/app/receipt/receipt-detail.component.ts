@@ -12,6 +12,7 @@ export class ReceiptDetailComponent {
 	receiptId: string;
 	receiptDetail:any;
 	studentDetail:any;
+	total:number;
 	constructor(private route: ActivatedRoute,private rest: RestService) {
 	}
   
@@ -22,7 +23,8 @@ export class ReceiptDetailComponent {
 
 		this.rest.getReceiptById(this.receiptId).then((receiptDetails) => {
 		this.receiptDetail = receiptDetails;
-		console.log("res details class: "+receiptDetails[0]['class']);
+		this.total = receiptDetails[0]['admission_fee']+receiptDetails[0]['fee'];
+		console.log("res details KV: ",this.receiptDetail);
 		console.log("res details roll_no: "+receiptDetails[0]['roll_no']);
 		this.rest.selectAllByClassAndRollNum(receiptDetails[0]['class'],parseInt(receiptDetails[0]['roll_no'])).then((studentDetails) =>{
 			this.studentDetail = studentDetails;
