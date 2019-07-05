@@ -215,5 +215,19 @@ getReceiptSno(receipt){
     return p;
   }
  
+  selectAllByClassAndRollNum(tableName,classVal,rollNum){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection(tableName).where('class', '==', classVal).where("roll_number", "==", rollNum).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
 
 }

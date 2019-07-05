@@ -131,4 +131,9 @@ constructor(private  httpClient:  HttpClient)
    getFullFee(classValue){
     return firewrap.getFeeForReceipt(classValue,'fee');
   }
+  selectAllByClassAndRollNum(classVal,rollNum){
+     //const body = JSON.stringify({"fn": 'selectAll', "params": ["students"]});
+     return firewrap.selectAllByClassAndRollNum('students',classVal,rollNum);
+      //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
+  }
 };
