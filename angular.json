@@ -31,7 +31,8 @@
               },
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [ "node_modules/jspdf/dist/jspdf.min.js" ,
+              "node_modules/jquery/dist/jquery.js"]
           },
           "configurations": {
             "production": {
