@@ -53,7 +53,7 @@ export class ReceiptComponent implements OnInit {
     if(form.invalid){
     return;
     }
-    alert(this.feeType);
+    console.log(this.feeType);
     if((form.value).hasOwnProperty("feeType") === false ){
       console.log("in fee type");
       form.value["feeType"] = this.feeType;
@@ -155,17 +155,13 @@ getStudentInfo(std){
 
 getSno(){
   this.rest.getReceiptSno().then((response)=> {
-     this.spinnerService.show();
     console.log("sno: ",response);
     this.sn_number = response;
-    //this.sessiont = '2019-20'
     this.snoDisabled = false;
   });
-   this.spinnerService.hide();
 }
 
 getAutoStudentSelect = (stdInfo) => {
-  //console.log("getAutoStudentSelect: ",stdInfo.option.value);
   let splitted = (stdInfo.option.value).split("-");
   console.log("splitted: ",splitted);
   this.roll_no = splitted[1];
@@ -173,9 +169,7 @@ getAutoStudentSelect = (stdInfo) => {
 }
 
 getFeeData = (classVal,feeType) =>  {
-console.log("test1: "+classVal.control.value);
 let selectedClass = classVal.control.value;
-//this.annualFee = this.biAnnualFee = this.quaterlyFee= this.admissionFee = 0;
 this.fee = 0;
 this.spinnerService.show();
 this.rest.getFeeForReceipt(selectedClass,feeType).then((response) => {
@@ -189,6 +183,7 @@ this.rest.getFeeForReceipt(selectedClass,feeType).then((response) => {
         this.admissionFee = response[0]['admission_fee'];
         console.log("annualFee: "+this.admissionFee);
         this.feeType = 0;
+        this.aCheck=true;
       }
       if(feeType == 1){
         //this.biAnnualFee = (response[0]['bi_annual_fee'])/2;
@@ -198,6 +193,7 @@ this.rest.getFeeForReceipt(selectedClass,feeType).then((response) => {
         this.admissionFee = response[0]['admission_fee'];
          console.log("biAnnualFee: "+this.admissionFee);
          this.feeType = 1;
+         this.bCheck= true;
       }
       if(feeType == 2) {
         //this.quaterlyFee = (response[0]['quaterly_fee'])/3;
@@ -207,6 +203,7 @@ this.rest.getFeeForReceipt(selectedClass,feeType).then((response) => {
         this.admissionFee = response[0]['admission_fee'];
          console.log("quaterlyFee: "+this.admissionFee);
          this.feeType = 2;
+          this.qCheck=true;
       }
       this.isFee = false;
        // this.spinnerService.hide();
