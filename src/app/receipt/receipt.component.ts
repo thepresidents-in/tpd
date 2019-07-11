@@ -80,8 +80,11 @@ export class ReceiptComponent implements OnInit {
 }
 
 getStudentInfo(std){
+  this.aCheck = false;
+        this.bCheck = false;
+        this.qCheck = false;
   this.rollNum = (std).split("-");
-  console.log("getStudentInfo student:"+this.rollNum[1]+"and class: "+this.classValue);
+  console.log("getStudentInfo studentKV:"+this.rollNum[1]+"and class: "+this.classValue);
    this.rest.getSubmitFeeData(this.classValue,this.rollNum[1],'receipt').then((submittedResponse) => {
     console.log("res getSubmitFeeData: ",submittedResponse);
    alert(submittedResponse.length);
@@ -104,17 +107,25 @@ getStudentInfo(std){
         this.isFee= true;
         this.fee=0;
         this.aCheck = true;
+        this.bCheck = false;
+        this.qCheck = false;
         //alert(rollNum[0]+" fee has been completed.");
     }else if(submittedResponse[0]['feeType'] ==1  && submittedResponse[0]['remaining_fee'] != 0){
-        this.annualDisabled= true;
+      alert("New checked fee");
+        /*this.annualDisabled= true;
        this.biAnnualDisabled=  false;
-        this.quaterlyDisabled= true;
+        this.quaterlyDisabled= true;*/
         this.fee =submittedResponse[0]['remaining_fee']
         this.admissionFee=0;
         this.remainingFee = 0;
         this.isFee= false;
-        this.feeType=1;
         this.bCheck=true;
+        this.aCheck = false;
+        this.qCheck = false;
+        this.feeType=1;
+        console.log("aCheck: "+this.aCheck);
+        console.log("bCheck: "+this.bCheck);
+        console.log("qCheck: "+this.qCheck);
     }
     else if(submittedResponse[0]['feeType'] ==2 && submittedResponse[0]['remaining_fee'] !=0 ){
        this.rest.getFullFee(this.classValue).then((fullRes) => {
@@ -129,6 +140,8 @@ getStudentInfo(std){
             this.feeType=2;
             this.isFee= false;
             this.qCheck=true;
+            this.bCheck = false;
+        this.aCheck = false;
           }
           else{
             this.annualDisabled= true;
@@ -140,6 +153,8 @@ getStudentInfo(std){
             this.feeType=2;
             this.isFee= false;
             this.qCheck=true;
+            this.aCheck = false;
+        this.bCheck = false;
           }
     });
     }

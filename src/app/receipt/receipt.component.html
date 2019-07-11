@@ -90,7 +90,7 @@
       <mat-form-field >
       <mat-label>Admission Fee</mat-label>
       <mat-icon matPrefix class="icon">money</mat-icon>
-      <input matInput type="number" name="admission_fee"  [(ngModel)]="admissionFee" required >
+      <input matInput type="number" name="admission_fee"  [(ngModel)]="admissionFee" required readonly>
       <!-- <mat-error *ngIf="adm_fee.invalid">Please enter Admission Fee.</mat-error> -->
       </mat-form-field>
   </div>
@@ -100,16 +100,16 @@
 <div class="item item-3" fxFlex="15%">
 
   <mat-radio-group>
-  <mat-radio-button value="0" name="feeType" [value]="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,0)" [checked]="aCheck" [disabled]="annualDisabled"> Annual  
-    <mat-form-field>&nbsp;&nbsp;<input matInput type="number" name="fee" [value]="fee" [(ngModel)]="fee"></mat-form-field>
+  <mat-radio-button  name="feeK" value="0"  (click)="getFeeData(class,0)"  [disabled]="annualDisabled" [checked]="aCheck===true"> Annual 
+    <mat-form-field>&nbsp;&nbsp;<input matInput type="number" name="fee" [value]="fee" [(ngModel)]="fee" readonly></mat-form-field>
   <!--   <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="annualFee" [value]="annualFee" [(ngModel)]="annualFee" ></mat-form-field> -->
   </mat-radio-button><br/>
 
-  <mat-radio-button value="1" name="feeType" [value]="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,1)" [checked]="bCheck" [disabled]="biAnnualDisabled">Bi-Annual 
+  <mat-radio-button  name="feeK" value="1" (click)="getFeeData(class,1)" [disabled]="biAnnualDisabled" [checked]="bCheck===true">Bi-Annual 
    <!--  <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="biAnnualFee" [value]="biAnnualFee" [(ngModel)]="biAnnualFee"></mat-form-field> -->
   </mat-radio-button><br/>
 
-   <mat-radio-button value="2" name="feeType" [value]="feeType" [(ngModel)]="feeType" (click)="getFeeData(class,2)" [checked]="qCheck" [disabled]="quaterlyDisabled">Quaterly 
+   <mat-radio-button  name="feeK" value="2"  (click)="getFeeData(class,2)" [disabled]="quaterlyDisabled" [checked]="qCheck===true">Quaterly 
   <!--  <mat-form-field >&nbsp;&nbsp;<input matInput type="number" name="quaterlyFee" [value]="quaterlyFee" [(ngModel)]="quaterlyFee" ></mat-form-field> -->
   </mat-radio-button>
   
@@ -121,7 +121,7 @@
       <mat-form-field >
       <mat-label>Remaining Fee</mat-label>
       <mat-icon matPrefix class="icon">money</mat-icon>
-      <input matInput type="number" name="remaining_fee" [(ngModel)]="remainingFee" required>
+      <input matInput type="number" name="remaining_fee" [(ngModel)]="remainingFee" required readonly>
       </mat-form-field>
   </div>
 
@@ -135,7 +135,7 @@
      fxLayoutGap.xs="0">
   <div class="button-row">
     <button type="submit" [disabled]="isFee" mat-stroked-button color="primary">Save</button>
-    <button mat-raised-button color="primary">Reset</button>
+    <button type="button" mat-raised-button color="primary">Reset</button>
   </div>
 </div>
 </form>
