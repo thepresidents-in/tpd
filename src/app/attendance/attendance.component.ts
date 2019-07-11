@@ -4,7 +4,7 @@ import { FormControl,NgForm,Validators } from '@angular/forms';
 import { RestService } from '../rest.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-attendance',
@@ -12,28 +12,29 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./attendance.component.css']
 })
 export class AttendanceComponent {
-
-classData = CLASSES;
-classId;
-studentData: any = [];
-attendanceObj;
-delAttendanceObj;
-delId:any;
-constructor(public rest:RestService,public router:Router,public datePipe: DatePipe){
- console.log("class:",this.classData);	
+	classData = CLASSES;
+	classId;
+	studentData: any = [];
+	attendanceObj;
+	delAttendanceObj;
+	delId:any;
+    constructor(public rest:RestService,
+    	public router:Router,
+    	public datePipe: DatePipe,
+    	public spinnerService: Ng4LoadingSpinnerService){
+    console.log("class:",this.classData);	
 };
 
 public getClassName(id): void {
-	console.log("class name: "+id);
-this.classId = id;  
-console.log("getClassName:"+this.classId);
-    let classObj = {"fn": "selectAllById","params": ["students",['class'],[id] ]};
-    this.rest.getStudentsByClass(this.classId).then((response) => {
-    	console.log("att response: ",response);
+	this.classId = id;  
+	console.log("getClassName:"+this.classId);
+	let classObj = {"fn": "selectAllById","params": ["students",['class'],[id] ]};
+	this.rest.getStudentsByClass(this.classId).then((response) => {
+		console.log("att response: ",response);
 		 this.studentData = response;
-    	 for(let i=0; i<((this.studentData).length ); i++){
-           this.studentData[i].action = 'P';
-		 }
+		 for(let i=0; i<((this.studentData).length ); i++){
+		   this.studentData[i].action = 'P';
+		}
 	});
 }
 
@@ -47,34 +48,39 @@ onRadioClick(index,val,student) {
     let date = this.datePipe.transform(new Date(), 'yyyy-MM-dd') ;
     let keys = ['date','class','roll_number','action','first_name','last_name'];
     let values = [date,student.class,student.roll_number,student.action,student.first_name,student.last_name];
-    //this.delAttendanceObj = {"fn": "deleteRowAttendance","params": ["attendance",[student.roll_number],[date],[student.class] ]};
 	console.log("roll_no: "+student.roll_number+" date: "+date+ "class: "+student.class);
 	var attObj = {};
 	keys.forEach((key, i) => attObj[key] = values[i]);
-	//this.postAttendance(attObj);
 	console.log("attObj: ",attObj);
-	this.deleteAttendance(student.roll_number,date,student.class,attObj);
-	
-	
-	
-    }
+	this.checkPresentAttend(student.roll_number,date,student.class,attObj);
+}
 
-    deleteAttendance= (roll_number,date,className,attObj) => {
-    	this.rest.deleteRowAttendance("student_attendance",roll_number,date,className).then((response) => {
-		console.log("delete attendance: "+response[0].uId);
-		this.rest.delete("student_attendance",response[0].uId).then((response) => {
-			alert("deleted");
-		})
-		//setTimeout(() => {
-			this.postAttendance(attObj);
-        //}, 1000);
-	});
-    }
-    postAttendance= (Obj)=> {
-    	this.rest.postAttendance(Obj).then((post_response) => {
-		alert("attendance added.");
-		//this.router.navigate(['/liststudent']);
-	});
+deleteAttendance= (roll_number,date,className,attObj) => {
+	this.spinnerService.show();
+	this.rest.deleteRowAttendance("student_attendance",roll_number,date,className).then((response) => {
+	console.log("delete attendance: ",response);
+	this.rest.delete("student_attendance",response[0].uId).then((response) => {
+		alert("deleted");
+	})
+	this.postAttendance(attObj);
+    });
+}
+postAttendance= (Obj)=> {
+	this.rest.postAttendance(Obj).then((post_response) => {
+	alert("attendance added.");
+    });
+}
 
-    }
+checkPresentAttend(roll_number,date,classVal,attObj){
+	this.spinnerService.show();
+    this.rest.checkPresentAttend("student_attendance",roll_number,date,classVal).then((checkResponse) => {
+    if(checkResponse.length >0){
+       this.deleteAttendance(roll_number,date,classVal,attObj);
+       //this.spinnerService.hide();
+     }
+     else{
+       this.postAttendance(attObj);
+     }//this.spinnerService.hide();
+   })
+}
 }

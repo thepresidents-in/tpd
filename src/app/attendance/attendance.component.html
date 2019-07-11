@@ -6,7 +6,7 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
   <div class="item item-1" fxFlex="15%">
-	<mat-form-field >
+	<mat-form-field>
 	<mat-icon matPrefix class="icon">book</mat-icon>
 	<mat-select placeholder="Class" ngModel (ngModelChange)="getClassName($event)" name="class" #class="ngModel">
 	<mat-option *ngFor="let class of classData;" [value]="class.id">{{class.name}}</mat-option>
@@ -14,7 +14,7 @@
 	</mat-form-field>
   </div>
 </div>
-
+<ng4-loading-spinner> </ng4-loading-spinner>
  <form name="attendanceData" class="student-form">
   <table style="width:100%" >
    <thead> <tr>
@@ -51,15 +51,5 @@
     </td>
     </tr>
   </table>
-<!-- <div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutAlign="left"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-<div class="button-row">
-     <button type="submit" mat-stroked-button color="primary">Save</button>
-      <button mat-raised-button color="primary">Reset</button>
-  </div></div> -->
 </form>
 </mat-sidenav-container>

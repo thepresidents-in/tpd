@@ -230,4 +230,19 @@ getReceiptSno(receipt){
     return p;
   }
 
+  checkPresentAttend(rollNum,date,classVal){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection("student_attendance").where('roll_number', '==', rollNum).where('date', '==', date).where('class', '==', classVal).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
+
 }
