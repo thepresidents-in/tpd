@@ -81,14 +81,13 @@ export class ReceiptComponent implements OnInit {
 
 getStudentInfo(std){
   this.aCheck = false;
-        this.bCheck = false;
-        this.qCheck = false;
+  this.bCheck = false;
+  this.qCheck = false;
   this.rollNum = (std).split("-");
   console.log("getStudentInfo studentKV:"+this.rollNum[1]+"and class: "+this.classValue);
    this.rest.getSubmitFeeData(this.classValue,this.rollNum[1],'receipt').then((submittedResponse) => {
-    console.log("res getSubmitFeeData: ",submittedResponse);
-   alert(submittedResponse.length);
-     
+   console.log("res getSubmitFeeData: ",submittedResponse);
+   console.log(submittedResponse.length);
     if(submittedResponse.length != 0){
       if(submittedResponse[0]['remaining_fee'] == 0){
          alert(this.rollNum[0]+" fee has been completed.");
@@ -98,8 +97,6 @@ getStudentInfo(std){
         this.quaterlyDisabled= true;
         this.router.navigate(['/receiptList']);
       }
-      //alert("in");
-    console.log("res feeType: "+submittedResponse[0]['feeType']);
     if(submittedResponse[0]['feeType'] ==0){
         this.annualDisabled= true;
         this.biAnnualDisabled= true;
@@ -112,9 +109,6 @@ getStudentInfo(std){
         //alert(rollNum[0]+" fee has been completed.");
     }else if(submittedResponse[0]['feeType'] ==1  && submittedResponse[0]['remaining_fee'] != 0){
       alert("New checked fee");
-        /*this.annualDisabled= true;
-       this.biAnnualDisabled=  false;
-        this.quaterlyDisabled= true;*/
         this.fee =submittedResponse[0]['remaining_fee']
         this.admissionFee=0;
         this.remainingFee = 0;
@@ -123,9 +117,6 @@ getStudentInfo(std){
         this.aCheck = false;
         this.qCheck = false;
         this.feeType=1;
-        console.log("aCheck: "+this.aCheck);
-        console.log("bCheck: "+this.bCheck);
-        console.log("qCheck: "+this.qCheck);
     }
     else if(submittedResponse[0]['feeType'] ==2 && submittedResponse[0]['remaining_fee'] !=0 ){
        this.rest.getFullFee(this.classValue).then((fullRes) => {
@@ -163,7 +154,6 @@ getStudentInfo(std){
       this.annualDisabled=false;
       this.biAnnualDisabled=false;
       this.quaterlyDisabled=false;
-      
   }
 });
 }

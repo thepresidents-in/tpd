@@ -1,5 +1,5 @@
 <app-home></app-home>
-<p>Receipt list </p>
+<h4>Receipt List</h4>
 <ng4-loading-spinner> </ng4-loading-spinner>
 <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -64,9 +64,9 @@
 
         <ng-container matColumnDef="uId">
             <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
-            <mat-cell *matCellDef="let element">
+            <mat-cell *matCellDef="let element;let i = index;">
                 <span><mat-icon (click)="editReceipt(element.uId)" matTooltip="Edit Receipt" matPrefix class="icon">edit</mat-icon> </span>
-                <span><mat-icon (click)="openDialog(element)" matTooltip="Delete Receipt" matPrefix class="icon">delete</mat-icon></span>
+                <span><mat-icon (click)="openDialog(element,i)" matTooltip="Delete Receipt" matPrefix class="icon">delete</mat-icon></span>
             </mat-cell>
         </ng-container>
 
