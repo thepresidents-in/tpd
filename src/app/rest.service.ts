@@ -136,4 +136,7 @@ constructor(private  httpClient:  HttpClient)
      return firewrap.selectAllByClassAndRollNum('students',classVal,rollNum);
       //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
   }
+  checkPresentAttend(tableName,roll_number,date,classVal) {
+    return firewrap.checkPresentAttend(roll_number,date,classVal);
+  }
 };
