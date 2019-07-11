@@ -26,9 +26,9 @@
     <main>
       <table>
         <thead>
-          <tr rowspan="4">
+          <tr rowspan="3">
             <th class="service">Fee Name</th>
-            <th class="desc">DESCRIPTION</th>
+            <th class="desc"></th>
             <th>Fee</th>
             <!-- <th>QTY</th> -->
             <th>TOTAL</th>
@@ -37,21 +37,21 @@
         <tbody>
           <tr>
             <td class="service">Admission Fee</td>
-            <td class="desc">Creating a recognizable design solution based on the company's existing visual identity</td>
+            <td class="desc"></td>
             <td class="unit">{{ receiptData.admission_fee }}</td>
             <!-- <td class="qty">26</td> -->
             <td class="total">{{ receiptData.admission_fee }}</td>
           </tr>
           <tr>
             <td class="service">Submitted Fee</td>
-            <td class="desc">Developing a Content Management System-based Website</td>
+            <td class="desc"></td>
             <td class="unit">{{ receiptData.fee }}</td>
             <!-- <td class="qty">80</td> -->
             <td class="total">{{ receiptData.fee }}</td>
           </tr>
           <tr>
             <td class="service">Remaining Fee</td>
-            <td class="desc">Optimize the site for search engines (SEO)</td>
+            <td class="desc"></td>
             <td class="unit">{{ receiptData.remaining_fee }}</td>
             <!-- <td class="qty">20</td> -->
             <td class="total"></td>
@@ -60,10 +60,10 @@
             <td colspan="3">SUBTOTAL</td>
             <td class="total">{{ total }}</td>
           </tr>
-          <tr>
+         <!--  <tr>
             <td colspan="3">TAX 25%</td>
             <td class="total">$1,300.00</td>
-          </tr>
+          </tr> -->
           <tr>
             <td colspan="3" class="grand total">GRAND TOTAL</td>
             <td class="grand total">{{ total }}</td>
@@ -72,7 +72,7 @@
       </table>
       <div id="notices">
         <div>NOTICE:</div>
-        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+        <div class="notice">The President Daniyari</div>
       </div>
     </main>
     <footer>

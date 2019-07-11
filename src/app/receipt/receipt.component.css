@@ -104,7 +104,7 @@ table .desc {
 
 table td {
   padding: 20px;
-  text-align: right;
+  /*text-align: right;*/
 }
 
 table td.service,

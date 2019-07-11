@@ -18,11 +18,13 @@ export class AttendanceComponent {
 	attendanceObj;
 	delAttendanceObj;
 	delId:any;
+	curDate:string;
     constructor(public rest:RestService,
     	public router:Router,
     	public datePipe: DatePipe,
     	public spinnerService: Ng4LoadingSpinnerService){
     console.log("class:",this.classData);	
+    this.curDate=  this.datePipe.transform(new Date(), 'dd-MM-yyyy') ;
 };
 
 public getClassName(id): void {
