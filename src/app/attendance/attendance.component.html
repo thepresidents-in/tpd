@@ -9,10 +9,16 @@
   <div class="item item-1" fxFlex="15%">
 	<mat-form-field>
 	<mat-icon matPrefix class="icon">book</mat-icon>
-	<mat-select placeholder="Class" ngModel (ngModelChange)="getClassName($event)" name="class" #class="ngModel">
+	<mat-select placeholder="Select Class" ngModel (ngModelChange)="getClassName($event)" name="class" #class="ngModel">
 	<mat-option *ngFor="let class of classData;" [value]="class.id">{{class.name}}</mat-option>
 	</mat-select>
 	</mat-form-field>
+  </div>
+  <div class="item item-1" fxFlex="15%">
+        <mat-form-field>
+        <mat-icon matPrefix class="icon">date_range</mat-icon>
+         <input matInput name="date" [(ngModel)]="curDate" readonly>
+        </mat-form-field>
   </div>
 </div>
 <ng4-loading-spinner> </ng4-loading-spinner>
@@ -30,13 +36,13 @@
   </thead>
     <tr *ngFor="let student of studentData;let i = index;">
     <td><mat-form-field>
-    <input  matInput name="roll_number{{i}}" [(ngModel)]="student.roll_number" #roll_number{{i}}="ngModel">
+    <input  matInput name="roll_number{{i}}" [(ngModel)]="student.roll_number" #roll_number{{i}}="ngModel" readonly>
     </mat-form-field></td>
     <td><mat-form-field>
-            <input  matInput name="first_name{{i}}" [(ngModel)]="student.first_name" #first_name{{i}}="ngModel">
+            <input  matInput name="first_name{{i}}" [(ngModel)]="student.first_name" #first_name{{i}}="ngModel" readonly>
     </mat-form-field></td>
     <td><mat-form-field>
-            <input  matInput name="last_name{{i}}" [(ngModel)]="student.last_name" #last_name{{i}}="ngModel">
+            <input  matInput name="last_name{{i}}" [(ngModel)]="student.last_name" #last_name{{i}}="ngModel" readonly>
     </mat-form-field></td>
     <td>
     <mat-radio-button  name="action{{i}}" [(ngModel)]="student.action"  #action{{i}}="ngModel" (click)='onRadioClick(i,"P",student)' ></mat-radio-button> 
