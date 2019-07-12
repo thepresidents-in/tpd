@@ -108,10 +108,12 @@ getStudentInfo(std){
         this.qCheck = false;
         //alert(rollNum[0]+" fee has been completed.");
     }else if(submittedResponse[0]['feeType'] ==1  && submittedResponse[0]['remaining_fee'] != 0){
-      alert("New checked fee");
         this.fee =submittedResponse[0]['remaining_fee']
         this.admissionFee=0;
         this.remainingFee = 0;
+        this.annualDisabled= true;
+        this.biAnnualDisabled= true;
+        this.quaterlyDisabled= true;
         this.isFee= false;
         this.bCheck=true;
         this.aCheck = false;
@@ -124,7 +126,7 @@ getStudentInfo(std){
           if(submittedResponse[0]['remaining_fee'] == qF) {
             this.annualDisabled= true;
             this.biAnnualDisabled= true;
-            this.quaterlyDisabled= false;
+            this.quaterlyDisabled= true;
             this.admissionFee=0;
             this.fee = Math.round((submittedResponse[0]['remaining_fee'])/2);
             this.remainingFee = this.fee;
@@ -137,7 +139,7 @@ getStudentInfo(std){
           else{
             this.annualDisabled= true;
             this.biAnnualDisabled= true;
-            this.quaterlyDisabled= false;
+            this.quaterlyDisabled= true;
             this.admissionFee=0;
             this.fee = submittedResponse[0]['remaining_fee'];
             this.remainingFee = 0;
