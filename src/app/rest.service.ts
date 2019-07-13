@@ -139,4 +139,7 @@ constructor(private  httpClient:  HttpClient)
   checkPresentAttend(tableName,roll_number,date,classVal) {
     return firewrap.checkPresentAttend(roll_number,date,classVal);
   }
+  getRecentStudentData(tableName){
+    return firewrap.getRecentStudentData(tableName);
+  }
 };

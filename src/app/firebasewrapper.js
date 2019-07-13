@@ -245,4 +245,19 @@ getReceiptSno(receipt){
     return p;
   }
 
+  getRecentStudentData(tableName){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection(tableName).orderBy("uId","desc").limit(5).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
+
 }
