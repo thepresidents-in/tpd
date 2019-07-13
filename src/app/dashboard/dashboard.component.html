@@ -1,5 +1,6 @@
 <app-home></app-home>
 <mat-sidenav-container>
+
   <div class="container"
      fxLayout
      fxLayout.xs="column"
@@ -15,50 +16,24 @@
      fxLayout.xs="column"
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
-     <div fxFlex="20%">
+     <div fxFlex="50%">
   	<mat-card class="example-card">
+      <ng4-loading-spinner> </ng4-loading-spinner>
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Student</mat-card-title>
-    <mat-card-subtitle>Class-1 <button mat-button>View</button></mat-card-subtitle>
-     <mat-card-subtitle>Class-2 <button mat-button>View</button></mat-card-subtitle>
-      <mat-card-subtitle>Class-3 <button mat-button>View</button></mat-card-subtitle>
+    <mat-card-title style="color:#3d4156;text-decoration: underline;font-weight: 700;">Recent</mat-card-title>
+    <mat-card-subtitle *ngFor="let recData of data"><span>Student {{ recData.first_name }} {{ recData.last_name }} was added in class <b>{{ recData.class }}</b></span>  &nbsp;&nbsp; <mat-icon style="float: right;" [routerLink]="['/studentDetail',recData.uId]" matTooltip="view" matPrefix class="icon">visibility</mat-icon></mat-card-subtitle>
   </mat-card-header>
 </mat-card>
  </div>
- <div fxFlex="20%">
+ <div fxFlex="50%">
   	<mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Student</mat-card-title>
-    <mat-card-subtitle>Class-1 <button mat-button>View</button></mat-card-subtitle>
-     <mat-card-subtitle>Class-2 <button mat-button>View</button></mat-card-subtitle>
-      <mat-card-subtitle>Class-3 <button mat-button>View</button></mat-card-subtitle>
+    <mat-card-title style="color:#3d4156;text-decoration: underline;font-weight: 700;">Recent</mat-card-title>
+    <mat-card-subtitle *ngFor="let recData of receiptData"><span>{{recData.remaining_fee }} remaining fee of {{ recData.student_name }} in class <b>{{ recData.class }}</b></span>  &nbsp;&nbsp; <mat-icon style="float: right;" [routerLink]="['/receiptDetail',recData.uId]" matTooltip="view" matPrefix class="icon">visibility</mat-icon></mat-card-subtitle>
   </mat-card-header>
 </mat-card>
  </div>
- <div fxFlex="20%">
-  	<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Student</mat-card-title>
-    <mat-card-subtitle>Class-1 <button mat-button>View</button></mat-card-subtitle>
-     <mat-card-subtitle>Class-2 <button mat-button>View</button></mat-card-subtitle>
-      <mat-card-subtitle>Class-3 <button mat-button>View</button></mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
 </div>
-
-     <div fxFlex="20%">
- 
-  	<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Student</mat-card-title>
-    <mat-card-subtitle>Class-1 <button mat-button>View</button></mat-card-subtitle>
-     <mat-card-subtitle>Class-2 <button mat-button>View</button></mat-card-subtitle>
-      <mat-card-subtitle>Class-3 <button mat-button>View</button></mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-  </div></div>
 </mat-sidenav-container>
