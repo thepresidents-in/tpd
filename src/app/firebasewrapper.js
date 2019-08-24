@@ -3,13 +3,21 @@ export class FirebaseWrapper {
 
   constructor(){
     let config = {
-    apiKey: "AIzaSyD9B2YdN4gAPqryKSiHRQocPc9kA_ZSFLY",
-    authDomain: "jhoraapp.firebaseapp.com",
-    databaseURL: "https://jhoraapp.firebaseio.com",
-    projectId: "jhoraapp",
-    storageBucket: "jhoraapp.appspot.com",
-    messagingSenderId: "105398319929"
-  };
+      apiKey: "AIzaSyD9B2YdN4gAPqryKSiHRQocPc9kA_ZSFLY",
+      authDomain: "jhoraapp.firebaseapp.com",
+      databaseURL: "https://jhoraapp.firebaseio.com",
+      projectId: "jhoraapp",
+      storageBucket: "jhoraapp.appspot.com",
+      messagingSenderId: "105398319929"
+    };
+    config = {
+      apiKey: "AIzaSyBBhRox04I34uBsemmItrodE2awn6Z8Zjo",
+      authDomain: "trkmmv.firebaseapp.com",
+      databaseURL: "https://trkmmv.firebaseio.com",
+      projectId: "trkmmv",
+      storageBucket: "trkmmv.appspot.com",
+      messagingSenderId: "569221175582"
+    };
     firebase.initializeApp(config);
     this.fireStore = firebase.firestore();
   }
@@ -225,7 +233,7 @@ getReceiptSno(receipt){
     });
     return p;
   }
- 
+
   selectAllByClassAndRollNum(tableName,classVal,rollNum){
     let p = new Promise( (resolve, reject)=>{
       this.fireStore.collection(tableName).where('class', '==', classVal).where("roll_number", "==", rollNum).get()
