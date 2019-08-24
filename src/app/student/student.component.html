@@ -1,8 +1,20 @@
 <app-home></app-home>
-<h4>Add Student</h4>
-
  <mat-sidenav-container>
  <form [formGroup]="form" name="studentData"  class="student-form" >
+  <div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+  <div class="item item-1" fxFlex="15%">
+     <mat-form-field class="navigation-items">
+     <mat-label>Student ID Number*</mat-label>
+    <mat-icon matPrefix class="icon">book</mat-icon>
+    <input matInput value="" name="idNumber" formControlName="idNumber" (keypress)=_keyPress($event)>
+     <mat-error *ngIf="form.get('idNumber').errors?.required">ID Number is required.</mat-error>
+  </mat-form-field>
+  </div>
+</div>
 <div class="container"
      fxLayout
      fxLayout.xs="column"
@@ -193,7 +205,7 @@
     <mat-form-field >
        <mat-label>Annual Income*</mat-label>
     <mat-icon matPrefix class="icon">money</mat-icon>
-    <input matInput placeholder="Income" name="annual_income" formControlName="annual_income" >
+    <input matInput placeholder="Income" name="annual_income" formControlName="annual_income" (keypress)=_keyPress($event)>
     <mat-error *ngIf="form.get('annual_income').errors?.required">Annual income is required.</mat-error>
     <mat-error *ngIf="form.get('annual_income').errors?.minlength">Annual income should be 4 digit.</mat-error>
   </mat-form-field>
@@ -222,7 +234,7 @@
   	 <mat-label>Email</mat-label>
   	<mat-icon matPrefix class="icon">email</mat-icon>
     <input matInput value="" name="email" formControlName="email" >
-     <mat-error *ngIf="form.get('email').errors?.required">Email is require.</mat-error>
+     <mat-error *ngIf="form.get('email').errors?.required">Email is required.</mat-error>
      <mat-error *ngIf="form.get('email').errors?.pattern">Please enter valid email address.</mat-error>
 
   </mat-form-field>
@@ -257,6 +269,12 @@
       <mat-option *ngFor="let class of classData;" value="{{class.class_name}}">{{class.class_name}}</mat-option>
     </mat-select>
      <mat-error *ngIf="form.get('class').errors?.required">Please select class.</mat-error>
+  </mat-form-field>
+  </div>
+  <div class="item item-3" fxFlex="15%">
+    <mat-form-field >
+    <mat-icon matPrefix class="icon">money</mat-icon>
+    <input matInput placeholder="Discount" name="discount" formControlName="discount" (keypress)=_keyPress($event)>
   </mat-form-field>
   </div>
 <!-- <div class="item item-1" fxFlex="15%">

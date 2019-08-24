@@ -9,6 +9,20 @@
      fxLayoutGap.xs="0">
   <div class="item item-1" fxFlex="15%">
      <mat-form-field class="navigation-items">
+     <mat-label>ID Number</mat-label>
+    <mat-icon matPrefix class="icon">face</mat-icon>
+    <input matInput  name="idNumber" class="form-control" [(ngModel)]="student.idNumber" #first_name="ngModel" readonly >
+    <!--  <mat-error *ngIf="idNumber.errors?.required">ID Number is required.</mat-error> -->
+  </mat-form-field>
+  </div>
+</div>
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+  <div class="item item-1" fxFlex="15%">
+     <mat-form-field class="navigation-items">
      <mat-label>Student Name</mat-label>
     <mat-icon matPrefix class="icon">face</mat-icon>
     <input matInput value="" name="first_name" class="form-control" [(ngModel)]="student.first_name" #first_name="ngModel" [ngClass]="{ 'is-invalid': postForm.submitted && first_name.invalid }" required minlength="3" pattern="^[a-zA-Z]*">
@@ -253,9 +267,16 @@
     <mat-form-field >
     <mat-icon matPrefix class="icon">book</mat-icon>
     <mat-select placeholder="Class"  name="class" [(ngModel)]="student.class" #class="ngModel" required>
-      <mat-option *ngFor="let class of classData;" value="{{class.id}}">{{class.name}}</mat-option>
+      <mat-option *ngFor="let class of classData;" value="{{class.class_name}}">{{class.class_name}}</mat-option>
     </mat-select>
      <mat-error *ngIf="class.errors?.required">Class is required.</mat-error>
+  </mat-form-field>
+  </div>
+   <div class="item item-3" fxFlex="15%">
+    <mat-form-field >
+    <mat-icon matPrefix class="icon">money</mat-icon>
+    <input matInput placeholder="Discount" name="discount" [(ngModel)]="student.discount" #discount="ngModel">
+    <!-- <mat-error *ngIf="discount.errors?.pattern">Please enter valid discount.</mat-error> -->
   </mat-form-field>
   </div>
 </div>

@@ -103,6 +103,10 @@ export class StudentComponent implements OnInit {
           'miniority' : new FormControl('',{
         validators:[Validators.required]
       }),
+          'idNumber' : new FormControl('',{
+        validators:[Validators.required]
+      }),
+          'discount' : new FormControl(''),
     });
 
     this.rest.getClassData().then((response) => {
