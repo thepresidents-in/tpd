@@ -17,7 +17,7 @@ export interface DialogData {
 })
 export class StudentComponent implements OnInit {
 	studentData: any = {};
-	classData = CLASSES ;
+	classData : any[] ;
   form: FormGroup;
   imagePreview: string;
   minDate = new Date(2000, 0, 1);
@@ -103,13 +103,19 @@ export class StudentComponent implements OnInit {
           'miniority' : new FormControl('',{
         validators:[Validators.required]
       }),
-    })
+    });
+
+    this.rest.getClassData().then((response) => {
+      console.log("class data: ",response);
+      this.classData = response;
+    });
+    
   }
 
   ngOnDestroy() {
     //this.sub.unsubscribe();
   }
- onImagePicked(event:Event){
+ /*onImagePicked(event:Event){
    const file = (event.target as HTMLInputElement).files[0];
    this.form.patchValue({image:file});
    this.form.get('image').updateValueAndValidity();
@@ -119,11 +125,12 @@ export class StudentComponent implements OnInit {
    };
    reader.readAsDataURL(file);
 
- }
+ }*/
 
   submitStudent() {
      if(this.form.invalid){
-      this.ngOnInit();
+      alert("Please fill all mandatory fields.");
+      //this.ngOnInit();
     }else{
         this.form.value.dob= this.datePipe.transform(this.form.value.dob, 'yyyy-MM-dd');
         console.log("student add... ",this.form.value);

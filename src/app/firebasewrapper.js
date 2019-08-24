@@ -59,6 +59,17 @@ getReceiptSno(receipt){
       return this.fireStore.collection('receipt').doc(uId).set(receipt)
 
   }
+  addClass(student){
+    return this.fireStore.collection('students').where('class', '==', student.class).get().then((students)=>{
+       return students.size || students.length;
+    })
+    .then((data)=>{
+      data ? (student.roll_number = data +1) : (student.roll_number = 1);
+      let uId = this.uuidv4();
+      student.uId = uId;
+      return this.fireStore.collection('students').doc(uId).set(student)
+    })
+  }
 
   selectAll(tableName){
     let p = new Promise( (resolve, reject)=>{
@@ -258,6 +269,11 @@ getReceiptSno(receipt){
       })
     });
     return p;
+  }
+  addClass(class_data){
+    let uId = this.uuidv4();
+      class_data.uId = uId;
+      return this.fireStore.collection('class_table').doc(uId).set(class_data)
   }
 
 }
