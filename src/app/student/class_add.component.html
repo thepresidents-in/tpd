@@ -1,0 +1,39 @@
+<app-home></app-home>
+<mat-sidenav-container>
+<h4>Add Class</h4>
+</mat-sidenav-container>
+ <mat-sidenav-container>
+ <form [formGroup]="form" name="studentData"  class="student-form" >
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+  <div class="item item-1" fxFlex="15%">
+  	 <mat-form-field class="navigation-items">
+  	 <mat-label>Class Name</mat-label>
+  	<mat-icon matPrefix class="icon">book</mat-icon>
+    <input matInput value="" name="class_name" formControlName="class_name" >
+     <mat-error *ngIf="form.get('class_name').errors?.required">Class name is required.</mat-error>
+     <mat-error *ngIf="form.get('class_name').errors?.minlength">Min length should be 3 characters.</mat-error>
+      <!-- <mat-error *ngIf="form.get('class_name').errors?.pattern">Enter valid name.</mat-error> -->
+  </mat-form-field>
+  </div>
+</div>
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="left"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+  <div class="button-row">
+  	 <button type="button" (click)="submitClass()" mat-stroked-button color="primary">Save</button>
+  	  <button type="button" (click)="form.reset()" mat-raised-button color="primary">Reset</button>
+
+  </div>
+
+
+</div>
+
+</form>
+</mat-sidenav-container>

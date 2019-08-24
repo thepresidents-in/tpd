@@ -41,6 +41,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { ReceiptDetailComponent } from './receipt/receipt-detail.component';
 import { FeeStructureComponent } from './fee-structure/fee-structure.component';
 import { FeeListComponent,FeeDialogContent } from './fee-structure/fee-list.component';
+import { ClassAddComponent } from './student/class_add.component';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -137,6 +138,10 @@ const appRoutes: Routes =[
   path : 'feeList',
   component: FeeListComponent,
   canActivate: [AuthGuard]
+},
+{
+  path : 'classAdd',
+  component : ClassAddComponent
 }
 
 ];
@@ -169,7 +174,8 @@ const appRoutes: Routes =[
     FeeStructureComponent,
     FeeListComponent,
     FeeDialogContent,
-    receiptDialogContent
+    receiptDialogContent,
+    ClassAddComponent
 
   ],
   imports: [
