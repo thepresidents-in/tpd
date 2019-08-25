@@ -42,6 +42,7 @@ import { ReceiptDetailComponent } from './receipt/receipt-detail.component';
 import { FeeStructureComponent } from './fee-structure/fee-structure.component';
 import { FeeListComponent,FeeDialogContent } from './fee-structure/fee-list.component';
 import { ClassAddComponent } from './student/class_add.component';
+import { CollegeReceiptComponent } from './college-receipt/college-receipt.component';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -142,6 +143,14 @@ const appRoutes: Routes =[
 {
   path : 'classAdd',
   component : ClassAddComponent
+},
+{
+  path : 'college_receipt',
+  component : CollegeReceiptComponent
+}, 
+{
+  path : 'college_receiptList',
+  component : CollegeReceiptComponent
 }
 
 ];
@@ -175,7 +184,8 @@ const appRoutes: Routes =[
     FeeListComponent,
     FeeDialogContent,
     receiptDialogContent,
-    ClassAddComponent
+    ClassAddComponent,
+    CollegeReceiptComponent
 
   ],
   imports: [
