@@ -147,6 +147,10 @@ const appRoutes: Routes =[
 {
   path : 'college_receipt',
   component : CollegeReceiptComponent
+}, 
+{
+  path : 'college_receiptList',
+  component : CollegeReceiptComponent
 }
 
 ];

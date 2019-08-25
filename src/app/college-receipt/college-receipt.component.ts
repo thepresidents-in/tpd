@@ -27,7 +27,7 @@ export class CollegeReceiptComponent implements OnInit {
   form: FormGroup;
   classValue:any;
   rollNum:any;
-  discount:any;
+  discount:Number;
   submittedFee:any;
   constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {}
 
@@ -43,6 +43,13 @@ export class CollegeReceiptComponent implements OnInit {
     return;
     }
     console.log("form: ",form.value);
+     this.rest.postCollegeReceipt(form.value).then((response) => {
+      console.log("post 1");
+       alert("Receipt added. !!");
+       //this.form.reset();
+       this.router.navigate(['/receiptList']);
+
+    });
   }
   getClass(formData){
     this.classValue = formData.controls.class.value;
@@ -55,20 +62,16 @@ export class CollegeReceiptComponent implements OnInit {
 getStudentInfo(std){
    let splitStr =  (std).split("-");
    this.rollNum = (splitStr[1]).split("-");
-   this.discount = (splitStr[2]).split("-");
+   this.discount = Number((splitStr[2]).split("-"));
    console.log("getStudentInfo studentKV:"+this.rollNum[0]+"and class: "+this.classValue+" and dis "+this.rollNum[1]);
-   if(this.discount != ''){
-   	this.submittedFee = this.admissionFee - this.discount ;
+   if(this.discount != null){
+   	this.submittedFee = this.admissionFee - Number(this.discount) ;
    }
    else {
    	this.submittedFee = this.admissionFee ;
    }
    console.log("submittedFee: "+this.submittedFee);
    this.isFee = false;
-   this.rest.getSubmitFeeData(this.classValue,this.rollNum[0],'receipt').then((submittedResponse) => {
-   console.log("res getSubmitFeeData: ",submittedResponse);
-   console.log(submittedResponse.length);
-});
 }
 getSno(){
   this.rest.getReceiptSno().then((response)=> {

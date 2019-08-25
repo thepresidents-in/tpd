@@ -151,4 +151,9 @@ constructor(private  httpClient:  HttpClient)
      return firewrap.selectAll('class_table');
       //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
   }
+   postCollegeReceipt(receiptDate) {
+    console.log("rest postReceipt");
+    return firewrap.addCollegeReceipt(receiptDate);
+    //return this.httpClient.post(`${this.API_URL}`,studentData, httpOptions)
+  }
 };
