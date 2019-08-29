@@ -14,7 +14,7 @@ receiptData:any[]
 
   ngOnInit() {
   	 this.rest.getRecentStudentData("students").then((response) => {
-  	 this.spinnerService.show();
+  	 //this.spinnerService.show();
      console.log("res KV: ",response);
      this.data = response;
     this.rest.getRecentStudentData("receipt").then((receiptResponse) => {
@@ -24,7 +24,7 @@ receiptData:any[]
 });
     
   });
-  	 this.spinnerService.hide();
+  	 //this.spinnerService.hide();
   }
 
 }
