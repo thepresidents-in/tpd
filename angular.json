@@ -23,7 +23,8 @@
               "src/assets",
               "src/firebase.json",
               "src/manifest.json",
-              "src/sw.js"
+              "src/sw.js",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               {
@@ -31,8 +32,10 @@
               },
               "src/styles.css"
             ],
-            "scripts": [ "node_modules/jspdf/dist/jspdf.min.js" ,
-              "node_modules/jquery/dist/jquery.js"]
+            "scripts": [
+              "node_modules/jspdf/dist/jspdf.min.js",
+              "node_modules/jquery/dist/jquery.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -50,7 +53,9 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "src/ngsw-config.json"
             }
           }
         },
@@ -87,7 +92,8 @@
               "src/assets",
               "src/firebase.json",
               "src/manifest.json",
-              "src/sw.js"
+              "src/sw.js",
+              "src/manifest.webmanifest"
             ]
           }
         },

@@ -43,6 +43,8 @@ import { FeeStructureComponent } from './fee-structure/fee-structure.component';
 import { FeeListComponent,FeeDialogContent } from './fee-structure/fee-list.component';
 import { ClassAddComponent } from './student/class_add.component';
 import { CollegeReceiptComponent } from './college-receipt/college-receipt.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -224,7 +226,8 @@ const appRoutes: Routes =[
     MatSortModule,
     MatAutocompleteModule,
     Ng4LoadingSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
    
 
   ],
