@@ -18,6 +18,14 @@ export class FirebaseWrapper {
       storageBucket: "trkmmv.appspot.com",
       messagingSenderId: "569221175582"
     };
+    /* config = {
+      apiKey: "AIzaSyAfr67DADkoyrt5DEoc9IHcKqlps05AsZ0",
+      authDomain: "disd-aaa.firebaseapp.com",
+      databaseURL: "https://disd-aaa.firebaseio.com",
+      projectId: "disd-aaa",
+      storageBucket: "disd-aaa.appspot.com",
+      messagingSenderId: "302980355079"
+    };*/
     firebase.initializeApp(config);
     this.fireStore = firebase.firestore();
   }

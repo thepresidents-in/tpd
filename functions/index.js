@@ -1,4 +1,4 @@
-/*const functions = require('firebase-functions');
+const functions = require('firebase-functions');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -11,10 +11,10 @@ exports.helloWorldPost = functions.https.onRequest((request, response) => {
  let id_val = request.body.id;
  response.send({id:id_val,name:'khushboo'});
  });
-*/
 
-const functions = require('firebase-functions');
-const projectId = process.env.GCLOUD_PROJECT || 'trkmmv';
+
+/*const functions = require('firebase-functions');
+const projectId = process.env.GCLOUD_PROJECT || 'disd-aaa';
 const util = new (require('./util'))()
 const {serviceAccount, bigquery, storage, bucket, admin, firestoredb} = util.firebaseSetup(projectId);
 
@@ -29,4 +29,4 @@ exports.getStudent = functions.https.onRequest((req, res) => {
     .catch((err)=>{
       console.log(err);
     })
-});
+});*/

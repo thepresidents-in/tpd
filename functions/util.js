@@ -14,7 +14,7 @@ module.exports = class Util{
   }
 
   firebaseSetup(projectId){
-    if(!(projectId === 'trkmmv')){
+    if(!(projectId === 'disd-aaa')){
       throw new Error('projectId not valid to initialize firebase App');
     }
     let serviceAccount = require(`./${projectId}.json`);

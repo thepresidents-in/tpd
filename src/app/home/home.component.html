@@ -1,6 +1,6 @@
  <div style="height: 10vh;"> 
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
+  <mat-toolbar style="background-color: #38B6FF;border:1px solid #38B6FF;color:#FFF;" color="#38B6FF">
+    <mat-toolbar-row style=" ">
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
         <mat-icon>menu</mat-icon>
       </button>
@@ -9,9 +9,9 @@
       <div fxShow="true" fxHide.lt-md>
       <ul fxLayout fxLayoutGap="20px" class="navigation-items">
     <li [matMenuTriggerFor]="student"  #matMenuTrigger1="matMenuTrigger">
-      <a  mat-list-item (mouseenter)="matMenuTrigger1.openMenu()" >
-      <mat-icon class="icon">people</mat-icon>&nbsp;
-      <span class="label">Student</span>
+      <a mat-list-item (mouseenter)="matMenuTrigger1.openMenu()" >
+      <!-- <mat-icon class="icon">people</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Student</span>
       </a>
       <mat-menu #student="matMenu" (mouseleave)="matMenuTrigger1.closeMenu()" [overlapTrigger]="false">
       <a mat-menu-item routerLink='/student' routerLinkActive="active">Add Student</a>
@@ -24,8 +24,8 @@
 
     <li [matMenuTriggerFor]="receipt" #matMenuTrigger2="matMenuTrigger">
       <a mat-list-item (mouseenter)="matMenuTrigger2.openMenu()">
-      <mat-icon class="icon">receipt</mat-icon>&nbsp;
-      <span class="label">Receipt</span>
+      <!-- <mat-icon class="icon">receipt</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Receipt</span>
       </a>
       <mat-menu #receipt="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
       <a mat-menu-item routerLink='/receipt' routerLinkActive="active">Add Receipt</a>
@@ -37,8 +37,8 @@
 
     <li [matMenuTriggerFor]="fee_structure" #matMenuTrigger4="matMenuTrigger">
       <a mat-list-item (mouseenter)="matMenuTrigger4.openMenu()">
-      <mat-icon class="icon">money</mat-icon>&nbsp;
-      <span class="label">Fee Structure</span>
+     <!--  <mat-icon class="icon">money</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Fee Structure</span>
       </a>
       <mat-menu #fee_structure="matMenu"  [overlapTrigger]="false">
           <span (mouseleave)="matMenuTrigger4.closeMenu()">
@@ -50,12 +50,12 @@
 
     <li [matMenuTriggerFor]="dashboard" #matMenuTrigger3="matMenuTrigger">
       <a mat-list-item (mouseenter)="matMenuTrigger3.openMenu()">
-      <mat-icon class="icon">dashboard</mat-icon>&nbsp;
-      <span class="label">Dashboard</span>
+      <!-- <mat-icon class="icon">dashboard</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Dashboard</span>
       </a>
       <mat-menu #dashboard="matMenu" (mouseleave)="matMenuTrigger3.closeMenu()" [overlapTrigger]="false">
-      <button mat-menu-item routerLink="['/dashboard']">Dashboard</button>
-      <button mat-menu-item (click)="logout()">Logout</button>
+      <a mat-menu-item routerLink='/dashboard' routerLinkActive="active">Dashboard</a>
+      <a mat-menu-item (click)="logout()">Logout</a>
       </mat-menu>
     </li>
    </ul>
