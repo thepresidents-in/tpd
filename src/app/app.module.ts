@@ -46,6 +46,7 @@ import { CollegeReceiptComponent } from './college-receipt/college-receipt.compo
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ExpensesComponent } from './expenses/expenses.component';
+import { ListexpensesComponent } from './listexpenses/listexpenses.component';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -156,8 +157,12 @@ const appRoutes: Routes =[
   component : CollegeReceiptComponent
 },
 {
-  path : 'expenses',
+  path : 'expense',
   component : ExpensesComponent
+},
+{
+  path : 'expenses',
+  component : ListexpensesComponent
 }
 
 ];
@@ -193,7 +198,8 @@ const appRoutes: Routes =[
     receiptDialogContent,
     ClassAddComponent,
     CollegeReceiptComponent,
-    ExpensesComponent
+    ExpensesComponent,
+    ListexpensesComponent
 
   ],
   imports: [
