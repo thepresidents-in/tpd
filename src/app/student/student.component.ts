@@ -23,12 +23,7 @@ export class StudentComponent implements OnInit {
   minDate = new Date(2000, 0, 1);
   maxDate :any;
 
-  constructor(public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) {
-  	/*this.rest.getClasses().subscribe((response) => {
-    console.log("res KV class: ",response);
-    this.classData = response;
-    });*/
-  }
+  constructor(public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) { }
 
   ngOnInit() {
     const now = new Date();
@@ -64,17 +59,14 @@ export class StudentComponent implements OnInit {
            'class' : new FormControl('',{
         validators:[Validators.required]
       }),
-           /*'image' : new FormControl('',{
-             validators:[Validators.required]
-           }),*/
-            'adhaar_no' : new FormControl('',{
+        'adhaar_no' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(12), Validators.maxLength(12)]
       }),
              'father_occupation' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(6)]
       }),
              'father_qualification' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(2)] 
+        validators:[Validators.required, Validators.minLength(2)]
       }),
              'only_child' : new FormControl('',{
         validators:[Validators.required]
@@ -82,7 +74,7 @@ export class StudentComponent implements OnInit {
               'annual_income' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(4)]
       }),
-               'category' : new FormControl('',{
+        'category' : new FormControl('',{
         validators:[Validators.required]
       }),
         'mother_qualification' : new FormControl('',{
@@ -97,39 +89,27 @@ export class StudentComponent implements OnInit {
          'mother_occupation' : new FormControl('',{
         validators:[Validators.required]
       }),
-          'contact_number2' : new FormControl('',{
+        'contact_number2' : new FormControl('',{
         validators:[Validators.required, Validators.maxLength(10), Validators.pattern("[6-9]\\d{9}")]
       }),
-          'miniority' : new FormControl('',{
+        'miniority' : new FormControl('',{
         validators:[Validators.required]
       }),
-          'idNumber' : new FormControl('',{
+        'idNumber' : new FormControl('',{
         validators:[Validators.required]
       }),
-          'discount' : new FormControl(''),
+        'discount' : new FormControl(''),
     });
 
     this.rest.getClassData().then((response) => {
       console.log("class data: ",response);
       this.classData = response;
     });
-    
+
   }
 
   ngOnDestroy() {
-    //this.sub.unsubscribe();
   }
- /*onImagePicked(event:Event){
-   const file = (event.target as HTMLInputElement).files[0];
-   this.form.patchValue({image:file});
-   this.form.get('image').updateValueAndValidity();
-   const reader = new FileReader();
-   reader.onload = () => {
-     this.imagePreview = reader.result;
-   };
-   reader.readAsDataURL(file);
-
- }*/
 
   submitStudent() {
      if(this.form.invalid){
@@ -166,5 +146,4 @@ _keyPress(event: any) {
 })
 export class SaveDialogContent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public rest: RestService,public router: Router) {}
-  //this.router.navigate(['/liststudent']);
 }

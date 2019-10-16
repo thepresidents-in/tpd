@@ -294,9 +294,13 @@ getReceiptSno(receipt){
    addCollegeReceipt(receipt){
     let uId = this.uuidv4();
       receipt.uId = uId;
-      console.log("firebase: ",receipt);
       return this.fireStore.collection('college_receipt').doc(uId).set(receipt)
 
   }
 
+  addExpense(expense){
+    let uId = this.uuidv4();
+    expense.uId = uId;
+    return this.fireStore.collection('expenses').doc(uId).set(expense)
+  }
 }

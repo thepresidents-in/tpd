@@ -1,14 +1,3 @@
-/*import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RestService {
-
-  constructor() { }
-}
-*/
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -84,7 +73,7 @@ constructor(private  httpClient:  HttpClient)
   getRollNumber(classId){
       return  this.httpClient.post(`${this.API_URL}`,classId, httpOptions)
   }
-  
+
   postEditStudent(editStudentData){
       return this.httpClient.post(`${this.API_URL}`,editStudentData,httpOptions)
   }
@@ -155,5 +144,9 @@ constructor(private  httpClient:  HttpClient)
     console.log("rest postReceipt");
     return firewrap.addCollegeReceipt(receiptDate);
     //return this.httpClient.post(`${this.API_URL}`,studentData, httpOptions)
+  }
+
+  postExpense(expense){
+    return firewrap.addExpense(expense)
   }
 };

@@ -71,9 +71,9 @@ const appRoutes: Routes =[
   canActivate: [AuthGuard]
 },
 
-{ path: 'student/:id', 
+{ path: 'student/:id',
   component: EditStudentComponent,
-  canActivate: [AuthGuard] 
+  canActivate: [AuthGuard]
 },
 {
   path : 'receipt',
@@ -85,9 +85,9 @@ const appRoutes: Routes =[
   component: ListReceiptComponent,
   canActivate: [AuthGuard]
 },
-{ path: 'editReceipt/:id', 
+{ path: 'editReceipt/:id',
   component: EditReceiptComponent,
-  canActivate: [AuthGuard] 
+  canActivate: [AuthGuard]
 },
 {
   path : 'bookAdd',
@@ -150,10 +150,14 @@ const appRoutes: Routes =[
 {
   path : 'college_receipt',
   component : CollegeReceiptComponent
-}, 
+},
 {
   path : 'college_receiptList',
   component : CollegeReceiptComponent
+},
+{
+  path : 'expenses',
+  component : ExpensesComponent
 }
 
 ];
@@ -230,7 +234,7 @@ const appRoutes: Routes =[
     Ng4LoadingSpinnerModule,
     MatPaginatorModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
-   
+
 
   ],
   providers: [DatePipe,
