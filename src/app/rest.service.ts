@@ -153,4 +153,7 @@ constructor(private  httpClient:  HttpClient)
   postExpense(expense){
     return firewrap.addExpense(expense)
   }
+  getExpenses(){
+    return firewrap.selectAll('expenses')
+  }
 };

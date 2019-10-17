@@ -47,7 +47,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CollegeListReceiptComponent,collegeReceiptDialogContent} from './college-receipt/college-list-receipt.component';
 import { ExpensesComponent } from './expenses/expenses.component';
-import { ListexpensesComponent } from './listexpenses/listexpenses.component';
+import { ListexpensesComponent, ExpenseDialogContent } from './listexpenses/listexpenses.component';
 import { EditCollegeReceiptComponent } from './edit-college-receipt/edit-college-receipt.component';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
@@ -159,9 +159,9 @@ const appRoutes: Routes =[
   component : CollegeListReceiptComponent
 },
 {
-  path: 'editCollegeReceipt/:id', 
+  path: 'editCollegeReceipt/:id',
   component: EditCollegeReceiptComponent,
-  canActivate: [AuthGuard] 
+  canActivate: [AuthGuard]
 },
 
 {
@@ -183,9 +183,7 @@ const appRoutes: Routes =[
     StudentComponent,
     LoginComponent,
     ListStudentComponent,
-
     EditStudentComponent,
-
     ReceiptComponent,
     DialogContent,
     BooksComponent,
@@ -210,7 +208,8 @@ const appRoutes: Routes =[
     collegeReceiptDialogContent,
     ExpensesComponent,
     ListexpensesComponent,
-    EditCollegeReceiptComponent
+    EditCollegeReceiptComponent,
+    ExpenseDialogContent
 
   ],
   imports: [
@@ -252,12 +251,10 @@ const appRoutes: Routes =[
     MatPaginatorModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 
-
   ],
   exports: [RouterModule],
-  providers: [DatePipe,
-  AuthGuard],
+  providers: [DatePipe, AuthGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DialogContent,SaveDialogContent,FeeDialogContent,receiptDialogContent,collegeReceiptDialogContent]
+  entryComponents: [DialogContent,SaveDialogContent,FeeDialogContent,receiptDialogContent,collegeReceiptDialogContent, ExpenseDialogContent]
 })
 export class AppModule { }

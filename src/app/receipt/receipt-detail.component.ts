@@ -20,14 +20,14 @@ export class ReceiptDetailComponent {
 
 	constructor(private route: ActivatedRoute,private rest: RestService,private spinner: Ng4LoadingSpinnerService) {
 	}
-  
+
   ngOnInit() {
   	this.spinner.show();
 		this.route.params.subscribe(params => {
 		this.receiptId =  params['id'];
 		});
-   
-		this.rest.getReceiptById(this.receiptId).then((receiptDetails) => {
+
+		this.rest.getReceiptById('receipt', this.receiptId).then((receiptDetails) => {
 		this.receiptDetail = receiptDetails;
 		this.total = receiptDetails[0]['admission_fee']+receiptDetails[0]['fee'];
 		console.log("res details KV: ",this.receiptDetail);
@@ -39,12 +39,12 @@ export class ReceiptDetailComponent {
 		  })
 		});
 
-		
 
-		
+
+
     }
     downloadPDF() {
-    	
+
     	var doc = new jsPDF();
 		var specialElementHandlers = {
 		'#content': function (element, renderer) {
