@@ -54,7 +54,7 @@
         </ng-container>
         <ng-container matColumnDef="del">
             <mat-header-cell *matHeaderCellDef>Del</mat-header-cell>
-            <mat-cell [routerLink]="['/student',element.uId]" *matCellDef="let element">
+            <mat-cell *matCellDef="let element">
                 <mat-icon (click)="openDialog(element)" matTooltip="Delete Receipt" matPrefix class="icon">delete</mat-icon>
             </mat-cell>
         </ng-container>
