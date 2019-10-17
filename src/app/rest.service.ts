@@ -149,7 +149,7 @@ constructor(private  httpClient:  HttpClient)
      //const body = JSON.stringify({"fn": 'selectAll', "params": ["students"]});
      return firewrap.selectAll('college_receipt');
       //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
-
+}
   postExpense(expense){
     return firewrap.addExpense(expense)
   }
