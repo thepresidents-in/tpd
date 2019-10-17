@@ -114,7 +114,7 @@ export class StudentComponent implements OnInit {
   submitStudent() {
      if(this.form.invalid){
       alert("Please fill all mandatory fields.");
-      //this.ngOnInit();
+      return false;
     }else{
         this.form.value.dob= this.datePipe.transform(this.form.value.dob, 'yyyy-MM-dd');
         console.log("student add... ",this.form.value);

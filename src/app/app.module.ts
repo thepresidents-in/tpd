@@ -48,6 +48,7 @@ import { environment } from '../environments/environment';
 import { CollegeListReceiptComponent,collegeReceiptDialogContent} from './college-receipt/college-list-receipt.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { ListexpensesComponent } from './listexpenses/listexpenses.component';
+import { EditCollegeReceiptComponent } from './edit-college-receipt/edit-college-receipt.component';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -159,7 +160,7 @@ const appRoutes: Routes =[
 },
 {
   path: 'editCollegeReceipt/:id', 
-  component: EditReceiptComponent,
+  component: EditCollegeReceiptComponent,
   canActivate: [AuthGuard] 
 },
 
@@ -208,7 +209,8 @@ const appRoutes: Routes =[
     CollegeListReceiptComponent,
     collegeReceiptDialogContent,
     ExpensesComponent,
-    ListexpensesComponent
+    ListexpensesComponent,
+    EditCollegeReceiptComponent
 
   ],
   imports: [

@@ -17,7 +17,7 @@ export interface DialogData {
 })
 export class CollegeListReceiptComponent implements OnInit {
   dataSource;
-  displayedColumns = ['idNumber','student_name','class','admission_fee','submittedFee','discount','uId', 'del'];
+  displayedColumns = ['idNumber','student_name','class','date','admission_fee','submittedFee','discount','uId', 'del'];
   constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router,public dialog: MatDialog) {}
 
 @ViewChild(MatSort) sort: MatSort;

@@ -14,11 +14,11 @@
       <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Student</span>
       </a>
       <mat-menu #student="matMenu" (mouseleave)="matMenuTrigger1.closeMenu()" [overlapTrigger]="false">
-      <button mat-menu-item routerLink='/student' routerLinkActive="active">Add Student</button>
+      <a mat-menu-item routerLink='/student' routerLinkActive="active">Add Student</a>
       <a mat-menu-item routerLink='/liststudent' routerLinkActive="active">View Student</a>
       <a mat-menu-item routerLink='/attendance' routerLinkActive="active">Attendance</a>
       <a mat-menu-item routerLink='/attendanceView' routerLinkActive="active" >View Attendance</a>
-      <button mat-menu-item routerLink='/classAdd' routerLinkActive="active">Add Class</button>
+      <a mat-menu-item routerLink='/classAdd' routerLinkActive="active">Add Class</a>
       </mat-menu>
     </li>
 

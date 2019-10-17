@@ -41,8 +41,8 @@ constructor(private  httpClient:  HttpClient)
      return firewrap.selectAll('receipt');
       //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
   }
-  getReceiptById(id){
-    return firewrap.selectAllById('receipt',id);
+  getReceiptById(tableName,id){
+    return firewrap.selectAllById(tableName,id);
   }
   update(tableName,id,data){
     return firewrap.update(tableName,id,data);

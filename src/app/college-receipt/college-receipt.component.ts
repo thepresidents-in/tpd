@@ -40,7 +40,8 @@ export class CollegeReceiptComponent implements OnInit {
   }
   saveStudentFee(form: NgForm){
     if(form.invalid){
-    return;
+    alert("Please enter all mandatory fields.");
+    return false;
     }
     console.log("form: ",form.value);
     let student_name=form.value.student_name.split('-');
