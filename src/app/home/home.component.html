@@ -1,10 +1,10 @@
- <div style="height: 10vh;"> 
+ <div style="height: 40vh;"> 
   <mat-toolbar style="background-color: #38B6FF;border:1px solid #38B6FF;color:#FFF;" color="#38B6FF">
     <mat-toolbar-row style=" ">
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
         <mat-icon>menu</mat-icon>
       </button>
-      <span routerLink="['/dashboard']">The Presidents</span>
+      <span routerLink="['/dashboard']"  style="font-weight: 600;font-size: 18px;font: Helvetica Neue,sans-serif">The Presidents</span>
       <span class="menu-spacer"></span>
       <div fxShow="true" fxHide.lt-md>
       <ul fxLayout fxLayoutGap="20px" class="navigation-items">
@@ -14,11 +14,11 @@
       <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Student</span>
       </a>
       <mat-menu #student="matMenu" (mouseleave)="matMenuTrigger1.closeMenu()" [overlapTrigger]="false">
-      <a mat-menu-item routerLink='/student' routerLinkActive="active">Add Student</a>
+      <button mat-menu-item routerLink='/student' routerLinkActive="active">Add Student</button>
       <a mat-menu-item routerLink='/liststudent' routerLinkActive="active">View Student</a>
       <a mat-menu-item routerLink='/attendance' routerLinkActive="active">Attendance</a>
       <a mat-menu-item routerLink='/attendanceView' routerLinkActive="active" >View Attendance</a>
-      <a mat-menu-item routerLink='/classAdd' routerLinkActive="active">Add Class</a>
+      <button mat-menu-item routerLink='/classAdd' routerLinkActive="active">Add Class</button>
       </mat-menu>
     </li>
 

@@ -43,11 +43,12 @@ export class CollegeReceiptComponent implements OnInit {
     return;
     }
     console.log("form: ",form.value);
+    let student_name=form.value.student_name.split('-');
+    form.value.student_name = student_name[0];
      this.rest.postCollegeReceipt(form.value).then((response) => {
       console.log("post 1");
        alert("Receipt added. !!");
-       //this.form.reset();
-       this.router.navigate(['/receiptList']);
+       this.router.navigate(['/college_receiptList']);
 
     });
   }

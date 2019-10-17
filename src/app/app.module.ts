@@ -45,6 +45,10 @@ import { ClassAddComponent } from './student/class_add.component';
 import { CollegeReceiptComponent } from './college-receipt/college-receipt.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CollegeListReceiptComponent,collegeReceiptDialogContent} from './college-receipt/college-list-receipt.component';
+
+
+
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -152,8 +156,13 @@ const appRoutes: Routes =[
 }, 
 {
   path : 'college_receiptList',
-  component : CollegeReceiptComponent
-}
+  component : CollegeListReceiptComponent
+},
+{
+  path: 'editCollegeReceipt/:id', 
+  component: EditReceiptComponent,
+  canActivate: [AuthGuard] 
+},
 
 ];
 
@@ -187,7 +196,9 @@ const appRoutes: Routes =[
     FeeDialogContent,
     receiptDialogContent,
     ClassAddComponent,
-    CollegeReceiptComponent
+    CollegeReceiptComponent,
+    CollegeListReceiptComponent,
+    collegeReceiptDialogContent
 
   ],
   imports: [
@@ -231,9 +242,10 @@ const appRoutes: Routes =[
    
 
   ],
+  exports: [RouterModule],
   providers: [DatePipe,
   AuthGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DialogContent,SaveDialogContent,FeeDialogContent,receiptDialogContent]
+  entryComponents: [DialogContent,SaveDialogContent,FeeDialogContent,receiptDialogContent,collegeReceiptDialogContent]
 })
 export class AppModule { }
