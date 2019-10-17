@@ -1,4 +1,4 @@
- <div style="height: 40vh;"> 
+ <div style="height: 10vh;">
   <mat-toolbar style="background-color: #38B6FF;border:1px solid #38B6FF;color:#FFF;" color="#38B6FF">
     <mat-toolbar-row style=" ">
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
@@ -44,6 +44,18 @@
           <span (mouseleave)="matMenuTrigger4.closeMenu()">
       <a mat-menu-item routerLink='/fee_structure' routerLinkActive="active">Add Fee</a>
       <a mat-menu-item routerLink='/feeList' routerLinkActive="active">View Fee Structure</a>
+      </span>
+      </mat-menu>
+   </li>
+    <li [matMenuTriggerFor]="expenses" #matMenuTrigger5="matMenuTrigger">
+      <a mat-list-item (mouseenter)="matMenuTrigger5.openMenu()">
+     <!--  <mat-icon class="icon">money</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Expenses</span>
+      </a>
+      <mat-menu #expenses="matMenu"  [overlapTrigger]="false">
+          <span (mouseleave)="matMenuTrigger5.closeMenu()">
+      <a mat-menu-item routerLink='/expense' routerLinkActive="active">Add Expense</a>
+      <a mat-menu-item routerLink='/expenses' routerLinkActive="active">View Expenses</a>
       </span>
       </mat-menu>
    </li>

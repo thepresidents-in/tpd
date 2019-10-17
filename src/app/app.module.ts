@@ -46,9 +46,8 @@ import { CollegeReceiptComponent } from './college-receipt/college-receipt.compo
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CollegeListReceiptComponent,collegeReceiptDialogContent} from './college-receipt/college-list-receipt.component';
-
-
-
+import { ExpensesComponent } from './expenses/expenses.component';
+import { ListexpensesComponent } from './listexpenses/listexpenses.component';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -74,9 +73,9 @@ const appRoutes: Routes =[
   canActivate: [AuthGuard]
 },
 
-{ path: 'student/:id', 
+{ path: 'student/:id',
   component: EditStudentComponent,
-  canActivate: [AuthGuard] 
+  canActivate: [AuthGuard]
 },
 {
   path : 'receipt',
@@ -88,9 +87,9 @@ const appRoutes: Routes =[
   component: ListReceiptComponent,
   canActivate: [AuthGuard]
 },
-{ path: 'editReceipt/:id', 
+{ path: 'editReceipt/:id',
   component: EditReceiptComponent,
-  canActivate: [AuthGuard] 
+  canActivate: [AuthGuard]
 },
 {
   path : 'bookAdd',
@@ -153,7 +152,7 @@ const appRoutes: Routes =[
 {
   path : 'college_receipt',
   component : CollegeReceiptComponent
-}, 
+},
 {
   path : 'college_receiptList',
   component : CollegeListReceiptComponent
@@ -163,6 +162,15 @@ const appRoutes: Routes =[
   component: EditReceiptComponent,
   canActivate: [AuthGuard] 
 },
+
+{
+  path : 'expense',
+  component : ExpensesComponent
+},
+{
+  path : 'expenses',
+  component : ListexpensesComponent
+}
 
 ];
 
@@ -198,7 +206,9 @@ const appRoutes: Routes =[
     ClassAddComponent,
     CollegeReceiptComponent,
     CollegeListReceiptComponent,
-    collegeReceiptDialogContent
+    collegeReceiptDialogContent,
+    ExpensesComponent,
+    ListexpensesComponent
 
   ],
   imports: [
@@ -239,7 +249,7 @@ const appRoutes: Routes =[
     Ng4LoadingSpinnerModule,
     MatPaginatorModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
-   
+
 
   ],
   exports: [RouterModule],
