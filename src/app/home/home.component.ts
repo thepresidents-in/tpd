@@ -8,11 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+host:string;
+hostFlag=true;
   constructor(private api: RestService,private router: Router) { }
 
   ngOnInit() {
+    console.log("host: "+(window.location.hostname));
+    this.host = window.location.hostname;
   }
+  ngAfterViewInit() {
+    this.host = window.location.hostname;
+    if(this.host === 'disd-aaa.firebaseapp.com'){
+      this.hostFlag = false;
+      console.log("in ng after: "+this.hostFlag);
+    }
+}
   logout(){
     this.api.logout().then((response)=>{
       this.router.navigateByUrl('/');
