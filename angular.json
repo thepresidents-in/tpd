@@ -22,17 +22,22 @@
               "src/favicon.ico",
               "src/assets",
               "src/firebase.json",
-              "src/manifest.json",
-              "src/sw.js"
+              "src/sw.js",
+              "src/manifest.webmanifest",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               {
                 "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
               },
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [ "node_modules/jspdf/dist/jspdf.min.js" ,
-              "node_modules/jquery/dist/jquery.js"]
+            "scripts": [
+              "node_modules/jspdf/dist/jspdf.min.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -50,7 +55,9 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "src/ngsw-config.json"
             }
           }
         },
@@ -86,8 +93,9 @@
               "src/favicon.ico",
               "src/assets",
               "src/firebase.json",
-              "src/manifest.json",
-              "src/sw.js"
+              "src/sw.js",
+              "src/manifest.webmanifest",
+              "src/manifest.webmanifest"
             ]
           }
         },

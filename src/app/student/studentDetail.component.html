@@ -1,2 +1,150 @@
 <app-home></app-home>
-<p>Student Detail</p>
+<ng4-loading-spinner> </ng4-loading-spinner>
+<div class="container emp-profile">
+            <form method="post" *ngFor = "let student of studentData">
+                <div class="row" >
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                            <!-- <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                       {{ student.first_name }} {{ student.last_name }}
+                                    </h5>
+                                    <h6>
+                                        {{ student.class }}
+                                    </h6>
+                                    <p class="proile-rating">DOB : <span>{{ student.dob | date: 'dd-MM-yyyy'}}</span></p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Contact Details</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="button" [routerLink]="['/student',student.uId]" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" title="Edit Student" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>Personal Details</p>
+                            <a href="">Category: {{student.category}}</a><br/>
+                            <a href="">Gender: {{student.gender}}</a><br/>
+                            <a href="">Handicapped: {{ student.handicapped}}</a><br/> 
+                            <a href="">Only Child: {{ student.only_child}}</a> 
+                            <p>Family Details</p>
+                            <a href="">Father Qualification: {{ student.father_occupation}}</a><br/>
+                            <a href="">Father Occupation : {{ student.father_occupation }}</a><br/>
+                            <a href="">Mother Qualification: {{ student.mother_occupation}}</a><br/>
+                            <a href="">Mother Occupation : {{ student.mother_occupation }}</a><br/>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Id Number</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.idNumber }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.first_name }} {{ student.last_name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>DOB</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.dob }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Father Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.father_name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Mother Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.mother_name }}</p>
+                                            </div>
+                                        </div>
+                                        
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.email }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.contact_number }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone2</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.contact_number2 }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.address }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Adhaar Number</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.adhaar_no }}</p>
+                                            </div>
+                                        </div>
+                                <!-- <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Your Bio</label><br/>
+                                        <p>Your detail description</p>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>

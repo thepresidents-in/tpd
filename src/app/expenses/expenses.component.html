@@ -1,0 +1,57 @@
+<app-home></app-home>
+ <mat-sidenav-container>
+  <div class="col-lg-12">
+
+  <mat-card style="margin: 50px;">
+    <mat-card-title style="background-color: transparent;
+    padding: 10px;
+    position: relative;border-bottom:0.5px solid grey;font-weight: 600;
+    font-size: 14px;">Add Expense</mat-card-title>
+
+ <form [formGroup]="form" name="expenseData"  class="expense-form" >
+
+<div class="row">
+  <div class="col-sm-2 col-lg-3 col-md-2">
+   <mat-form-field >
+     <input matInput [matDatepicker]="picker" placeholder="Date*" name="date" formControlName="date" [min]="minDate" [max]="maxDate">
+     <mat-datepicker-toggle matPrefix [for]="picker">
+     </mat-datepicker-toggle>
+     <mat-datepicker #picker></mat-datepicker>
+     <mat-error *ngIf="form.get('date').invalid">Please enter date.</mat-error>
+   </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+      <mat-select placeholder="Expense Type*"  name="type" formControlName="type">
+        <mat-option value="Academics">Academics</mat-option>
+        <mat-option value="Operations">Operations</mat-option>
+        <mat-option value="Administrative">Administrative</mat-option>
+        <mat-option value="Others">Others</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+    <div class="col-sm-2 col-lg-3 col-md-2">
+      <mat-form-field >
+      <input matInput placeholder="Expense*" name="expense" formControlName="expense" (keypress)=_keyPress($event)>
+      <mat-error *ngIf="form.get('expense').errors?.required">Expense is required.</mat-error>
+      <mat-error *ngIf="form.get('expense').errors?.minlength">Expense should be atleast 2 digit.</mat-error>
+    </mat-form-field>
+    </div>
+
+   <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput placeholder="Description" name="description" formControlName="description" (keypress)=_keyPress($event)>
+  </mat-form-field>
+   </div>
+</div>
+<div class="row">
+  <div class="col-sm-2 col-lg-6 col-md-2">
+    <button type="button" (click)="submitExpense()" mat-stroked-button style="color:#38B6FF;">Save</button>
+      <button type="button" (click)="form.reset()" mat-stroked-button style="background-color: #38B6FF;color:#FFF">Reset</button>
+  </div>
+</div>
+</form>
+</mat-card></div>
+</mat-sidenav-container>

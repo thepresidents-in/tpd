@@ -43,6 +43,12 @@ import { FeeStructureComponent } from './fee-structure/fee-structure.component';
 import { FeeListComponent,FeeDialogContent } from './fee-structure/fee-list.component';
 import { ClassAddComponent } from './student/class_add.component';
 import { CollegeReceiptComponent } from './college-receipt/college-receipt.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { CollegeListReceiptComponent,collegeReceiptDialogContent} from './college-receipt/college-list-receipt.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { ListexpensesComponent, ExpenseDialogContent } from './listexpenses/listexpenses.component';
+import { EditCollegeReceiptComponent } from './edit-college-receipt/edit-college-receipt.component';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
@@ -68,9 +74,9 @@ const appRoutes: Routes =[
   canActivate: [AuthGuard]
 },
 
-{ path: 'student/:id', 
+{ path: 'student/:id',
   component: EditStudentComponent,
-  canActivate: [AuthGuard] 
+  canActivate: [AuthGuard]
 },
 {
   path : 'receipt',
@@ -82,9 +88,9 @@ const appRoutes: Routes =[
   component: ListReceiptComponent,
   canActivate: [AuthGuard]
 },
-{ path: 'editReceipt/:id', 
+{ path: 'editReceipt/:id',
   component: EditReceiptComponent,
-  canActivate: [AuthGuard] 
+  canActivate: [AuthGuard]
 },
 {
   path : 'bookAdd',
@@ -119,11 +125,13 @@ const appRoutes: Routes =[
 },
 {
   path : 'dashboard',
-  component: DashboardComponent
+  component: DashboardComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'studentDetail/:id',
-  component: StudentDetailComponent
+  component: StudentDetailComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'receiptDetail/:id',
@@ -146,11 +154,29 @@ const appRoutes: Routes =[
 },
 {
   path : 'college_receipt',
-  component : CollegeReceiptComponent
-}, 
+  component : CollegeReceiptComponent,
+  canActivate: [AuthGuard]
+},
 {
   path : 'college_receiptList',
-  component : CollegeReceiptComponent
+  component : CollegeListReceiptComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'editCollegeReceipt/:id',
+  component: EditCollegeReceiptComponent,
+  canActivate: [AuthGuard]
+},
+
+{
+  path : 'expense',
+  component : ExpensesComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path : 'expenses',
+  component : ListexpensesComponent,
+  canActivate: [AuthGuard]
 }
 
 ];
@@ -163,9 +189,7 @@ const appRoutes: Routes =[
     StudentComponent,
     LoginComponent,
     ListStudentComponent,
-
     EditStudentComponent,
-
     ReceiptComponent,
     DialogContent,
     BooksComponent,
@@ -185,7 +209,13 @@ const appRoutes: Routes =[
     FeeDialogContent,
     receiptDialogContent,
     ClassAddComponent,
-    CollegeReceiptComponent
+    CollegeReceiptComponent,
+    CollegeListReceiptComponent,
+    collegeReceiptDialogContent,
+    ExpensesComponent,
+    ListexpensesComponent,
+    EditCollegeReceiptComponent,
+    ExpenseDialogContent
 
   ],
   imports: [
@@ -224,13 +254,13 @@ const appRoutes: Routes =[
     MatSortModule,
     MatAutocompleteModule,
     Ng4LoadingSpinnerModule,
-    MatPaginatorModule
-   
+    MatPaginatorModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 
   ],
-  providers: [DatePipe,
-  AuthGuard],
+  exports: [RouterModule],
+  providers: [DatePipe, AuthGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DialogContent,SaveDialogContent,FeeDialogContent,receiptDialogContent]
+  entryComponents: [DialogContent,SaveDialogContent,FeeDialogContent,receiptDialogContent,collegeReceiptDialogContent, ExpenseDialogContent]
 })
 export class AppModule { }

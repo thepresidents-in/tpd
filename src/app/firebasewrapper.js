@@ -18,6 +18,14 @@ export class FirebaseWrapper {
       storageBucket: "trkmmv.appspot.com",
       messagingSenderId: "569221175582"
     };
+    /* config = {
+      apiKey: "AIzaSyAfr67DADkoyrt5DEoc9IHcKqlps05AsZ0",
+      authDomain: "disd-aaa.firebaseapp.com",
+      databaseURL: "https://disd-aaa.firebaseio.com",
+      projectId: "disd-aaa",
+      storageBucket: "disd-aaa.appspot.com",
+      messagingSenderId: "302980355079"
+    };*/
     firebase.initializeApp(config);
     this.fireStore = firebase.firestore();
   }
@@ -286,9 +294,27 @@ getReceiptSno(receipt){
    addCollegeReceipt(receipt){
     let uId = this.uuidv4();
       receipt.uId = uId;
-      console.log("firebase: ",receipt);
       return this.fireStore.collection('college_receipt').doc(uId).set(receipt)
 
   }
 
+  addExpense(expense){
+    let uId = this.uuidv4();
+    expense.uId = uId;
+    return this.fireStore.collection('expenses').doc(uId).set(expense)
+  }
+  selectAllByDate(tableName,fromDate,toDate){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection(tableName).where('date', '>=', fromDate).where('date', '<=', toDate).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
 }

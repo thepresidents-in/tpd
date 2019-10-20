@@ -1,83 +1,77 @@
- <div style="height: 10vh;"> 
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
+ <div style="height: 10vh;">
+  <mat-toolbar style="background-color: #38B6FF;border:1px solid #38B6FF;color:#FFF;" color="#38B6FF">
+    <mat-toolbar-row style=" ">
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
         <mat-icon>menu</mat-icon>
       </button>
-      <span [routerLink]="['/dashboard']">The Presidents</span>
+      <span routerLink="['/dashboard']"  style="font-weight: 600;font-size: 18px;font: Helvetica Neue,sans-serif">The Presidents</span>
       <span class="menu-spacer"></span>
       <div fxShow="true" fxHide.lt-md>
       <ul fxLayout fxLayoutGap="20px" class="navigation-items">
     <li [matMenuTriggerFor]="student"  #matMenuTrigger1="matMenuTrigger">
-      <a  mat-list-item (mouseenter)="matMenuTrigger1.openMenu()" >
-      <mat-icon class="icon">people</mat-icon>&nbsp;
-      <span class="label">Student</span>
+      <a mat-list-item (mouseenter)="matMenuTrigger1.openMenu()" >
+      <!-- <mat-icon class="icon">people</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Student</span>
       </a>
       <mat-menu #student="matMenu" (mouseleave)="matMenuTrigger1.closeMenu()" [overlapTrigger]="false">
-      <button mat-menu-item [routerLink]="['/student']">Add Student</button>
-      <button mat-menu-item [routerLink]="['/liststudent']">View Student</button>
-      <button mat-menu-item [routerLink]="['/attendance']">Attendance</button>
-      <button mat-menu-item [routerLink]="['/attendanceView']">View Attendance</button>
-      <button mat-menu-item [routerLink]="['/classAdd']">Add Class</button>
+      <a *ngIf="!hostFlag"mat-menu-item routerLink='/student' routerLinkActive="active">Add Student</a>
+      <a *ngIf="!hostFlag"mat-menu-item routerLink='/liststudent' routerLinkActive="active">View Student</a>
+      <a *ngIf="hostFlag" mat-menu-item routerLink='/attendance' routerLinkActive="active">Attendance</a>
+      <a *ngIf="hostFlag" mat-menu-item routerLink='/attendanceView' routerLinkActive="active" >View Attendance</a>
+      <a *ngIf="!hostFlag" mat-menu-item routerLink='/classAdd' routerLinkActive="active">Add Class</a>
       </mat-menu>
     </li>
 
     <li [matMenuTriggerFor]="receipt" #matMenuTrigger2="matMenuTrigger">
       <a mat-list-item (mouseenter)="matMenuTrigger2.openMenu()">
-      <mat-icon class="icon">receipt</mat-icon>&nbsp;
-      <span class="label">Receipt</span>
+      <!-- <mat-icon class="icon">receipt</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Receipt</span>
       </a>
       <mat-menu #receipt="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
-      <button mat-menu-item [routerLink]="['/receipt']">Add Receipt</button>
-      <button mat-menu-item [routerLink]="['/receiptList']">View Receipt</button>
-      <button mat-menu-item [routerLink]="['/college_receipt']">Add College Receipt</button>
-      <button mat-menu-item [routerLink]="['/college_receiptList']">View College Receipt</button>
+      <a *ngIf="hostFlag" mat-menu-item routerLink='/receipt' routerLinkActive="active">Add Receipt</a>
+      <a *ngIf="hostFlag" mat-menu-item routerLink='/receiptList' routerLinkActive="active">View Receipt</a>
+      <a *ngIf="!hostFlag" mat-menu-item routerLink='/college_receipt' routerLinkActive="active">Add College Receipt</a>
+      <a *ngIf="!hostFlag" mat-menu-item routerLink='/college_receiptList' routerLinkActive="active">View College Receipt</a>
       </mat-menu>
    </li>
 
-    <li [matMenuTriggerFor]="fee_structure" #matMenuTrigger4="matMenuTrigger">
+    <li *ngIf="hostFlag" [matMenuTriggerFor]="fee_structure" #matMenuTrigger4="matMenuTrigger">
       <a mat-list-item (mouseenter)="matMenuTrigger4.openMenu()">
-      <mat-icon class="icon">money</mat-icon>&nbsp;
-      <span class="label">Fee Structure</span>
+     <!--  <mat-icon class="icon">money</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Fee Structure</span>
       </a>
       <mat-menu #fee_structure="matMenu"  [overlapTrigger]="false">
           <span (mouseleave)="matMenuTrigger4.closeMenu()">
-      <button mat-menu-item [routerLink]="['/fee_structure']">Add Fee</button>
-      <button mat-menu-item [routerLink]="['/feeList']">View Fee Structure</button>
+      <a *ngIf="hostFlag" mat-menu-item routerLink='/fee_structure' routerLinkActive="active">Add Fee</a>
+      <a *ngIf="hostFlag" mat-menu-item routerLink='/feeList' routerLinkActive="active">View Fee Structure</a>
+      </span>
+      </mat-menu>
+   </li>
+    <li [matMenuTriggerFor]="expenses" #matMenuTrigger5="matMenuTrigger">
+      <a mat-list-item (mouseenter)="matMenuTrigger5.openMenu()">
+     <!--  <mat-icon class="icon">money</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Expenses</span>
+      </a>
+      <mat-menu #expenses="matMenu"  [overlapTrigger]="false">
+          <span (mouseleave)="matMenuTrigger5.closeMenu()">
+      <a mat-menu-item routerLink='/expense' routerLinkActive="active">Add Expense</a>
+      <a mat-menu-item routerLink='/expenses' routerLinkActive="active">View Expenses</a>
       </span>
       </mat-menu>
    </li>
 
     <li [matMenuTriggerFor]="dashboard" #matMenuTrigger3="matMenuTrigger">
       <a mat-list-item (mouseenter)="matMenuTrigger3.openMenu()">
-      <mat-icon class="icon">dashboard</mat-icon>&nbsp;
-      <span class="label">Dashboard</span>
+      <!-- <mat-icon class="icon">dashboard</mat-icon>&nbsp; -->
+      <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Dashboard</span>
       </a>
       <mat-menu #dashboard="matMenu" (mouseleave)="matMenuTrigger3.closeMenu()" [overlapTrigger]="false">
-      <button mat-menu-item [routerLink]="['/dashboard']">Dashboard</button>
-      <button mat-menu-item (click)="logout()">Logout</button>
+      <a mat-menu-item routerLink='/dashboard' routerLinkActive="active">Dashboard</a>
+      <a mat-menu-item (click)="logout()">Logout</a>
       </mat-menu>
     </li>
    </ul>
   </div>
   </mat-toolbar-row>
   </mat-toolbar>
-
- <mat-sidenav-container fxFlexFill>
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-       <a [routerLink]="['/student']" mat-list-item>Add Student</a>
-       <a [routerLink]="['/liststudent']" mat-list-item>View Student</a>
-       <a [routerLink]="['/receipt']" mat-list-item>Add Receipt</a>
-       <a [routerLink]="['/receiptList']" mat-list-item>View Receipt</a>
-      </mat-nav-list>
-      <mat-nav-list>
-       <a [routerLink]="['/attendance']" mat-list-item>Add attendence</a>
-       <a [routerLink]="['/attendanceView']" mat-list-item>View AttendANCE</a>
-       <a [routerLink]="['/fee_structure']" mat-list-item>Add Fee</a>
-       <a [routerLink]="['/feeList']" mat-list-item>View Fee Structure</a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <!-- <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content> -->
-  </mat-sidenav-container>
 </div>

@@ -1,8 +1,11 @@
 <app-home></app-home>
-<h4>Student List</h4>
+
 <ng4-loading-spinner> </ng4-loading-spinner>
-<mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+<div class="col-lg-12">
+
+  <mat-card style="margin: 25px;">
+<mat-form-field style="margin:15px;">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
     </mat-form-field>
 <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -51,7 +54,7 @@
         </ng-container>
         <ng-container matColumnDef="del">
             <mat-header-cell *matHeaderCellDef>Del</mat-header-cell>
-            <mat-cell [routerLink]="['/student',element.uId]" *matCellDef="let element">
+            <mat-cell  *matCellDef="let element">
                 <mat-icon (click)="openDialog(element)" matTooltip="Delete Student" matPrefix class="icon">delete</mat-icon>
             </mat-cell>
         </ng-container>
@@ -59,5 +62,6 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
+</mat-card></div>
 <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 <router-outlet></router-outlet>

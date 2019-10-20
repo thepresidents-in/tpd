@@ -27,7 +27,7 @@ displayedColumns = ['roll_number','first_name','father_name','mother_name','clas
   	this.sub = this.route.params.subscribe(params => {
   	console.log("std id: "+[params['id']]);
   	this.edirReceiptId = params['id'];
-		this.rest.getReceiptById(params['id']).then((response) => {
+		this.rest.getReceiptById('receipt',params['id']).then((response) => {
 		console.log("res KV: ",response);
 		this.editReceiptData = response ;
 		console.log("editReceiptData receipt :",this.editReceiptData);

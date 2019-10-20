@@ -1,14 +1,3 @@
-/*import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RestService {
-
-  constructor() { }
-}
-*/
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -52,8 +41,8 @@ constructor(private  httpClient:  HttpClient)
      return firewrap.selectAll('receipt');
       //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
   }
-  getReceiptById(id){
-    return firewrap.selectAllById('receipt',id);
+  getReceiptById(tableName,id){
+    return firewrap.selectAllById(tableName,id);
   }
   update(tableName,id,data){
     return firewrap.update(tableName,id,data);
@@ -84,7 +73,7 @@ constructor(private  httpClient:  HttpClient)
   getRollNumber(classId){
       return  this.httpClient.post(`${this.API_URL}`,classId, httpOptions)
   }
-  
+
   postEditStudent(editStudentData){
       return this.httpClient.post(`${this.API_URL}`,editStudentData,httpOptions)
   }
@@ -155,5 +144,19 @@ constructor(private  httpClient:  HttpClient)
     console.log("rest postReceipt");
     return firewrap.addCollegeReceipt(receiptDate);
     //return this.httpClient.post(`${this.API_URL}`,studentData, httpOptions)
+  }
+  getCollegeReceipt(){
+     //const body = JSON.stringify({"fn": 'selectAll', "params": ["students"]});
+     return firewrap.selectAll('college_receipt');
+      //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
+}
+  postExpense(expense){
+    return firewrap.addExpense(expense)
+  }
+  getExpenses(){
+    return firewrap.selectAll('expenses')
+  }
+  getFilterDataByDate(tableName,fromDate,toDate) {
+   return firewrap.selectAllByDate(tableName,fromDate,toDate);
   }
 };

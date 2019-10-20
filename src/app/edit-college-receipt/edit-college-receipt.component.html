@@ -1,0 +1,104 @@
+<app-home></app-home>
+<ng4-loading-spinner> </ng4-loading-spinner>
+ <mat-sidenav-container>
+   <div class="col-lg-12">
+    <mat-card style="margin: 50px;" *ngFor = "let receipt of receiptData">
+      <mat-card-title style="background-color: transparent;
+      padding: 10px;
+      position: relative;border-bottom:0.5px solid grey;font-weight: 600;
+      font-size: 14px;">EDIT RECEIPT </mat-card-title>
+ <form  name="editReceiptData" (submit)="EditReceipt(postForm.form)" #postForm="ngForm"  class="student-form" >
+ <div class="row">
+	<div class="col-sm-2 col-lg-3 col-md-2">
+	<mat-form-field>
+	<input matInput  name="sno" [(ngModel)]="receipt.sno" #sno="ngModel" readonly placeholder="SNo" >
+	</mat-form-field>
+	</div>
+
+	<div class="col-sm-2 col-lg-3 col-md-2">
+	<mat-form-field >
+	<input matInput [matDatepicker]="picker" placeholder="date" name="date" [(ngModel)]="receipt.date" #date="ngModel" required [min]="minDate" [max]="maxDate" readonly>
+	<mat-datepicker-toggle matPrefix [for]="picker">
+	</mat-datepicker-toggle>
+	<mat-datepicker #picker></mat-datepicker>
+	<mat-error *ngIf="date.invalid">Please enter date.</mat-error>
+	</mat-form-field>
+	</div>
+
+	<div class="col-sm-2 col-lg-3 col-md-2">
+	<mat-form-field >
+	<input matInput placeholder="Session" name="session" [(ngModel)]="receipt.session" #session="ngModel" required readonly>
+	<mat-error *ngIf="session.errors?.required">Session is required.</mat-error>
+	</mat-form-field>
+	</div>
+
+	<div class="col-sm-2 col-lg-3 col-md-2">
+	<mat-form-field >
+		<input  placeholder="Class"  matInput name="class" #class="ngModel" [(ngModel)]="receipt.class" readonly>
+	<!-- <mat-select placeholder="Class"  name="class" [(ngModel)]="receipt.class" #class="ngModel" required (ngModelChange)="getClass(postForm)" >
+	<mat-option *ngFor="let class of classData;" value="{{class.class_name}}">{{class.class_name}}</mat-option>
+	</mat-select>
+	<mat-error *ngIf="class.errors?.required">Class is required.</mat-error> -->
+	</mat-form-field>
+	</div>
+</div>
+<div class="row">
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <!-- <mat-form-field >
+    <input matInput placeholder="Student Name" name="student_name" [(ngModel)]="receipt.student_name" #student_name="ngModel" required  (ngModelChange)="getStudentInfo($event)">
+     <mat-error *ngIf="student_name.errors?.required">Student Name is required.</mat-error> 
+    </mat-form-field> -->
+
+      <mat-form-field class="example-full-width">
+    <input  placeholder="Pick Student"  matInput name="student_name" #student_name="ngModel" [(ngModel)]="receipt.student_name"  (ngModelChange)="getStudentInfo($event)" [matAutocomplete]="auto" required readonly>
+    <mat-error *ngIf="student_name.invalid">Please enter student name.</mat-error>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getAutoStudentSelect($event)'>
+    <mat-option *ngFor="let student of studentList" value="{{student.first_name}}-{{ student.idNumber}}-{{ student.discount }}">
+    {{student.first_name}} {{ student.last_name}}
+    </mat-option>
+    </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+
+<div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput placeholder="ID Number" name="idNumber" [(ngModel)]="receipt.idNumber" #idNumber="ngModel" required readonly>
+     <mat-error *ngIf="idNumber.errors?.required">ID Number is required.</mat-error>
+  </mat-form-field>
+  </div>
+
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput placeholder="Admission Fee" name="admission_fee" [(ngModel)]="receipt.admission_fee" #admission_fee="ngModel" required >
+     <mat-error *ngIf="admission_fee.errors?.required">Please enter Admission Fee.</mat-error>
+  </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput placeholder="Discount" name="discount" [(ngModel)]="receipt.discount" #discount="ngModel" >
+  </mat-form-field>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput placeholder="Amount " name="submittedFee" [(ngModel)]="receipt.submittedFee" #submittedFee="ngModel" required >
+    <mat-error *ngIf="submittedFee.errors?.required">Mother name is required.</mat-error>
+  </mat-form-field>
+  </div>
+</div>
+
+ 
+
+  
+
+<div class="row">
+<div class="col-sm-2 col-lg-6 col-md-2">
+  <div class="button-row">
+     <button type="submit" mat-stroked-button style="color:#38B6FF;">Update</button>
+      <button type="button" [routerLink]="['/college_receiptList']" mat-stroked-button style="background-color: #38B6FF;color:#FFF">Cancel</button>
+  </div>
+</div></div></form></mat-card></div></mat-sidenav-container>
