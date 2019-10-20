@@ -55,13 +55,10 @@
     </div>
     <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field >
-        <mat-select placeholder="Religion*"  name="religion" formControlName="religion">
-          <mat-option value="HINDU">HINDU</mat-option>
-          <mat-option value="MUSLIM">MUSLIM</mat-option>
-          <mat-option value="SIKH">SIKH</mat-option>
-          <mat-option value="CHRISTIAN">CHRISTIAN</mat-option>
-          <mat-option value="BODH">BODH</mat-option>
-          <mat-option value="JAIN">JAIN</mat-option>
+        <mat-select placeholder="Student Type*"  name="student_type" formControlName="student_type">
+          <mat-option value="REGULAR">Regular</mat-option>
+          <mat-option value="PRIVATE">Private</mat-option>
+          <mat-option value="EX">Ex</mat-option>
         </mat-select>
       </mat-form-field>
   </div>
@@ -215,6 +212,17 @@
   </mat-form-field>
    </div>
 </div>
+<div class="row">
+  <div class="col-sm-2 col-lg-2 col-md-2">
+    <span>Subjects:</span>
+  </div>
+  <div class="col-sm-2 col-lg-6 col-md-2">
+    <section>
+      <mat-checkbox class="example-margin" name="hindi" formControlName="hindi">Hindi</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="english" formControlName="english">English</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="maths" formControlName="maths">Maths</mat-checkbox>
+ </section></div>
+  </div>
 <div class="row">
   <div class="col-sm-2 col-lg-6 col-md-2">
     <button type="button" (click)="submitStudent()" mat-stroked-button style="color:#38B6FF;">Save</button>

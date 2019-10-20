@@ -125,11 +125,13 @@ const appRoutes: Routes =[
 },
 {
   path : 'dashboard',
-  component: DashboardComponent
+  component: DashboardComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'studentDetail/:id',
-  component: StudentDetailComponent
+  component: StudentDetailComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'receiptDetail/:id',
@@ -152,11 +154,13 @@ const appRoutes: Routes =[
 },
 {
   path : 'college_receipt',
-  component : CollegeReceiptComponent
+  component : CollegeReceiptComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'college_receiptList',
-  component : CollegeListReceiptComponent
+  component : CollegeListReceiptComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'editCollegeReceipt/:id',
@@ -166,11 +170,13 @@ const appRoutes: Routes =[
 
 {
   path : 'expense',
-  component : ExpensesComponent
+  component : ExpensesComponent,
+  canActivate: [AuthGuard]
 },
 {
   path : 'expenses',
-  component : ListexpensesComponent
+  component : ListexpensesComponent,
+  canActivate: [AuthGuard]
 }
 
 ];

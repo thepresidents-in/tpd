@@ -80,7 +80,7 @@ export class StudentComponent implements OnInit {
         'mother_qualification' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(2)]
       }),
-        'religion' : new FormControl('',{
+        'student_type' : new FormControl('',{
         validators:[Validators.required]
       }),
         'handicapped' : new FormControl('',{
@@ -99,6 +99,9 @@ export class StudentComponent implements OnInit {
         validators:[Validators.required]
       }),
         'discount' : new FormControl(''),
+        'hindi' : new FormControl(''),
+        'english' : new FormControl(''),
+        'maths' : new FormControl(''),
     });
 
     this.rest.getClassData().then((response) => {
