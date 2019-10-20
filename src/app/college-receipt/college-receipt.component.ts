@@ -88,4 +88,8 @@ getAutoStudentSelect = (stdInfo) => {
   this.roll_no = splitted[1];
   console.log("getAutoStudentSelect: ",stdInfo);
 }
+getSubmittedAmt(event) {
+ console.log("getSubmittedAmt: "+event);
+ this.submittedFee= event - Number(this.discount);
+}
 }
