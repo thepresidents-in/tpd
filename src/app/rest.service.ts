@@ -156,4 +156,7 @@ constructor(private  httpClient:  HttpClient)
   getExpenses(){
     return firewrap.selectAll('expenses')
   }
+  getFilterDataByDate(tableName,fromDate,toDate) {
+   return firewrap.selectAllByDate(tableName,fromDate,toDate);
+  }
 };

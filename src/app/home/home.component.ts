@@ -12,15 +12,15 @@ host:string;
 hostFlag=true;
   constructor(private api: RestService,private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     console.log("host: "+(window.location.hostname));
     this.host = window.location.hostname;
   }
   ngAfterViewInit() {
     this.host = window.location.hostname;
-    if(this.host === 'disd-aaa.firebaseapp.com'){
+    if(this.host === 'disd-aaa.firebaseapp.com' || this.host === 'disd-aaa.web.app'){
       this.hostFlag = false;
-      console.log("in ng after: "+this.hostFlag);
+      console.log("after: "+this.hostFlag);
     }
 }
   logout(){

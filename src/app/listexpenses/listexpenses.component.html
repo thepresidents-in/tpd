@@ -2,8 +2,22 @@
 <ng4-loading-spinner> </ng4-loading-spinner>
 <div class="col-lg-12">
   <mat-card style="margin: 25px;">
+    <button mat-fab style=";float: right;background-color: #38B6FF" title="Add Expense" routerLink='/expense'> <mat-icon style="color:#FFF;">add</mat-icon></button>
 <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose From Date" name="from_date" id="from_date" ngModel #from_date="ngModel"  (ngModelChange)="get_from_date($event)">
+      <mat-datepicker-toggle matPrefix [for]="picker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+     <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="Choose To Date" name="to_date" id="to_date" ngModel #to_date="ngModel"  (ngModelChange)="get_to_date($event)">
+      <mat-datepicker-toggle matPrefix [for]="picker2">
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
 <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -12,23 +26,27 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
               <mat-cell *matCellDef="let element ">  {{element.date | date}}
               </mat-cell>
+               <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
           </ng-container>
 
   <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
             <mat-cell *matCellDef="let element ">{{element.type }}
             </mat-cell>
+             <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
         </ng-container>
 
   <ng-container matColumnDef="expense">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Expense</mat-header-cell>
             <mat-cell  *matCellDef="let element ">{{element.expense }}
             </mat-cell>
+            <mat-footer-cell *matFooterCellDef> <strong>Total: {{expenseSum}} </strong></mat-footer-cell>
         </ng-container>
   <ng-container matColumnDef="description">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
             <mat-cell  *matCellDef="let element ">{{element.description }}
             </mat-cell>
+            <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
         </ng-container>
 
         <ng-container matColumnDef="del">
@@ -36,10 +54,12 @@
             <mat-cell  *matCellDef="let element">
                 <mat-icon (click)="openDialog(element)" matTooltip="Delete Expense" matPrefix class="icon">delete</mat-icon>
             </mat-cell>
+             <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
         </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+   <mat-footer-row class="sticky-footer" *matFooterRowDef="displayedColumns"></mat-footer-row>
 </mat-table>
 </mat-card>
 </div>

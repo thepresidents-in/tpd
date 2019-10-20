@@ -303,4 +303,18 @@ getReceiptSno(receipt){
     expense.uId = uId;
     return this.fireStore.collection('expenses').doc(uId).set(expense)
   }
+  selectAllByDate(tableName,fromDate,toDate){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection(tableName).where('date', '>=', fromDate).where('date', '<=', toDate).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
 }
