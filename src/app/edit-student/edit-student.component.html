@@ -18,7 +18,7 @@
 
 <div class="col-sm-2 col-lg-3 col-md-2">
      <mat-form-field>
-    <input matInput placeholder="First Name" name="first_name" [(ngModel)]="student.first_name" #first_name="ngModel" [ngClass]="{ 'is-invalid': postForm.submitted && first_name.invalid }" required minlength="3" pattern="^[a-zA-Z]*">
+    <input matInput placeholder="First Name" name="first_name" [(ngModel)]="student.first_name" #first_name="ngModel" [ngClass]="{ 'is-invalid': postForm.submitted && first_name.invalid }" required minlength="3" pattern="^[a-zA-Z ]*">
      <mat-error *ngIf="first_name.errors?.required">First name is required.</mat-error>
      <mat-error *ngIf="first_name.errors?.minlength">Min length should be 3 characters.</mat-error>
       <mat-error *ngIf="first_name.errors?.pattern">Please enter valid first name.</mat-error>
@@ -79,7 +79,7 @@
 
 <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-    <input matInput placeholder="Father Name" name="father_name" [(ngModel)]="student.father_name" #father_name="ngModel" required minlength="3" pattern="^[a-zA-Z]*">
+    <input matInput placeholder="Father Name" name="father_name" [(ngModel)]="student.father_name" #father_name="ngModel" required minlength="3" pattern="^[a-zA-Z ]*">
      <mat-error *ngIf="father_name.errors?.required">Father name is required.</mat-error>
      <mat-error *ngIf="father_name.errors?.minlength">Father name should be atleast 3 characters..</mat-error>
      <mat-error *ngIf="father_name.errors?.pattern">Please enter valid father name.</mat-error>
@@ -106,7 +106,7 @@
 
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-    <input matInput placeholder="Mother Name" name="mother_name" [(ngModel)]="student.mother_name" #mother_name="ngModel" required minlength="3" pattern="^[a-zA-Z]*">
+    <input matInput placeholder="Mother Name" name="mother_name" [(ngModel)]="student.mother_name" #mother_name="ngModel" required minlength="3" pattern="^[a-zA-Z ]*">
     <mat-error *ngIf="mother_name.errors?.required">Mother name is required.</mat-error>
     <mat-error *ngIf="mother_name.errors?.minlength">Mother name should be atleast 3 characters.</mat-error>
     <mat-error *ngIf="mother_name.errors?.pattern">Please enter valid mather name.</mat-error>
