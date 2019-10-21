@@ -100,8 +100,12 @@ export class StudentComponent implements OnInit {
       }),
         'discount' : new FormControl(''),
         'hindi' : new FormControl(''),
-        'english' : new FormControl(''),
-        'maths' : new FormControl(''),
+        'sanskrit' : new FormControl(''),
+        'medieval_history' : new FormControl(''),
+        'home_science' : new FormControl(''),
+        'pedagogy' : new FormControl(''),
+        'sociology' : new FormControl(''),
+        'political_science' : new FormControl(''),
     });
 
     this.rest.getClassData().then((response) => {

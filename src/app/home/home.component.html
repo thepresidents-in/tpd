@@ -14,8 +14,8 @@
       <span class="label" style="font-weight: 600;font-size: 14px;font: Helvetica Neue,sans-serif">Student</span>
       </a>
       <mat-menu #student="matMenu" (mouseleave)="matMenuTrigger1.closeMenu()" [overlapTrigger]="false">
-      <a *ngIf="!hostFlag"mat-menu-item routerLink='/student' routerLinkActive="active">Add Student</a>
-      <a *ngIf="!hostFlag"mat-menu-item routerLink='/liststudent' routerLinkActive="active">View Student</a>
+      <a *ngIf="!hostFlag" mat-menu-item routerLink='/student' routerLinkActive="active">Add Student</a>
+      <a *ngIf="!hostFlag" mat-menu-item routerLink='/liststudent' routerLinkActive="active">View Student</a>
       <a *ngIf="hostFlag" mat-menu-item routerLink='/attendance' routerLinkActive="active">Attendance</a>
       <a *ngIf="hostFlag" mat-menu-item routerLink='/attendanceView' routerLinkActive="active" >View Attendance</a>
       <a *ngIf="!hostFlag" mat-menu-item routerLink='/classAdd' routerLinkActive="active">Add Class</a>
