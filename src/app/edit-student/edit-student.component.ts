@@ -38,10 +38,9 @@ export class EditStudentComponent implements OnInit {
           console.log("studentData edit :",this.studentData);
         });
     });
-    this.rest.getClassData().then((response) => {
-      console.log("class data: ",response);
-      this.classData = response;
-    });
+    
+    this.classData = [{class_name :'BA-1'},{class_name :'BA-2'}, {class_name :'BA-3'}];
+
   }
 
    submitEditStudent(form: NgForm) {
@@ -60,4 +59,3 @@ export class EditStudentComponent implements OnInit {
     });
   }
 }
-

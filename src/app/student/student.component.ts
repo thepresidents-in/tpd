@@ -108,10 +108,9 @@ export class StudentComponent implements OnInit {
         'political_science' : new FormControl(''),
     });
 
-    this.rest.getClassData().then((response) => {
-      console.log("class data: ",response);
-      this.classData = response;
-    });
+
+      this.classData = [{class_name :'BA-1'},{class_name :'BA-2'}, {class_name :'BA-3'}];
+
 
   }
 
