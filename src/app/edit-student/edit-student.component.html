@@ -36,8 +36,8 @@
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput placeholder="Adhaar No" name="adhaar_no" [(ngModel)]="student.adhaar_no" #adhaar_no="ngModel" required minlength="12" maxlength="12" pattern="[0-9]+">
-     <mat-error *ngIf="adhaar_no.errors?.required">Adhaar number is required.</mat-error> 
-      <mat-error *ngIf="adhaar_no.errors?.minlength">Please enter valid length of Adhaar Number.</mat-error> 
+     <mat-error *ngIf="adhaar_no.errors?.required">Adhaar number is required.</mat-error>
+      <mat-error *ngIf="adhaar_no.errors?.minlength">Please enter valid length of Adhaar Number.</mat-error>
       <mat-error *ngIf="adhaar_no.errors?.maxlength">Please enter valid length of Adhaar Number.</mat-error>
       <mat-error *ngIf="adhaar_no.errors?.pattern">Please enter valid Adhaar Number.</mat-error>
 
@@ -131,7 +131,7 @@
   </div>
 <div class="col-sm-2 col-lg-3 col-md-2">
      <mat-form-field class="navigation-items">
-    <mat-select placeholder="gender"  name="gender" [(ngModel)]="student.gender" #gender="ngModel" required>
+    <mat-select placeholder="Gender"  name="gender" [(ngModel)]="student.gender" #gender="ngModel" required>
       <mat-option value="male">Male</mat-option>
       <mat-option value="female">Female</mat-option>
     </mat-select>
@@ -179,7 +179,7 @@
 
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-   <mat-select placeholder="miniority"  name="miniority" [(ngModel)]="student.miniority" #miniority="ngModel">
+   <mat-select placeholder="Minority"  name="minority" [(ngModel)]="student.minority" #minority="ngModel">
       <mat-option value="YES">Yes</mat-option>
       <mat-option value="NO">No</mat-option>
     </mat-select>
