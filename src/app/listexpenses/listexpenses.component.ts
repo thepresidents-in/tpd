@@ -18,7 +18,7 @@ export interface DialogData {
 export class ListexpensesComponent implements OnInit {
   expenseList;
   dataSource ;
-  displayedColumns = ['date','type','expense','description','del'];
+  displayedColumns = ['srno', 'date','type','expense','description','del'];
   expenseSum:Number;
 
 
@@ -82,7 +82,7 @@ export class ListexpensesComponent implements OnInit {
       var sumOfExpense = (arr_expense).map(function (num, idx) {
       console.log(num.expense);
       res += +num.expense;
-      }); 
+      });
       return res;
     }
   }
