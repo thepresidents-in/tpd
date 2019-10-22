@@ -18,6 +18,7 @@ package-lock.json
 *.launch
 .settings/
 *.sublime-workspace
+.editorconfig
 
 # IDE - VSCode
 .vscode/*
@@ -39,3 +40,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#firebase
+.firebase
+.firebaserc
