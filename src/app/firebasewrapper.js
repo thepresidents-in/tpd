@@ -131,6 +131,21 @@ getReceiptSno(receipt){
     return p;
   }
 
+  selectAllByParam(tableName,param, value){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection(tableName).where(param, '==', value).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
+
   deleteData(tableName, docName){
     let p = new Promise( (resolve, reject)=>{
       resolve(this.fireStore.collection(tableName).doc(docName).delete());

@@ -26,24 +26,23 @@ export class StudentDetailComponent implements OnInit {
   ngOnInit() {
 		this.spinnerService.show();
 		this.route.params.subscribe(params => {
-        console.log("std id: "+[params['id']]);
-        let p = this.rest.getStudentsById(params['id']).then((response) => {
-          console.log("res KV: ",response);
+        this.rest.getStudentsById(params['id']).then((response) => {
           this.studentData = response ;
           console.log("studentData detail :",this.studentData);
-        });
-
-        let p1 = this.rest.getCollegeReceipt().then((response) => {
+          return response
+        })
+        .then((data)=>{
+          return this.rest.getCollegeReceiptByParam('idNumber', data[0].idNumber)
+        })
+        .then((response) => {
         console.log("res KV: ",response);
 
         this.dataSource = new MatTableDataSource(response);
         console.log("dataSource mat:",this.dataSource);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-      });
-      Promise.all([p,p1]).then((d)=>{
         return this.spinnerService.hide();
-      })
+      });
     });
 	}
 
