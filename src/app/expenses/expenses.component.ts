@@ -29,7 +29,7 @@ form:FormGroup;
       }),
        'description' : new FormControl(''),
     });
-    this.incomeCat = [{name:'BA-1'},
+    this.IncomeCat = [{name:'BA-1'},
         {name:'BA-2'},
         {name:'BA-3'},
         {name:'Scholarship Form'},
@@ -41,10 +41,9 @@ form:FormGroup;
         {name:'Others'}
     ]
 
-    this.expenseCat = [{name:'PNB Patherwa'},
+    this.ExpenseCat = [{name:'PNB Patherwa'},
         {name:'Purwanchal Bank Patherwa'},
         {name:'Central Bank Tamkuhi'},
-        {name:'Scholarship Form'},
         {name:'Salary'},
         {name:'Examination'},
         {name:'Food'},
@@ -58,9 +57,7 @@ form:FormGroup;
         {name:'Loan'},
         {name:'To Chairman'},
         {name:'Others'}
-
     ]
-    this.categoryData = this.incomeCat
   }
 
   onChangeType(newVal){
