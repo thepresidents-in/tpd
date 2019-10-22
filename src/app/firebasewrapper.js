@@ -60,7 +60,7 @@ export class FirebaseWrapper {
     })
   }
 getReceiptSno(receipt){
-  return this.fireStore.collection('receipt').get().then((receipt)=>{
+  return this.fireStore.collection(receipt).get().then((receipt)=>{
     return receipt.size || receipt.length;
   })
   .then((data)=>{

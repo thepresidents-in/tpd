@@ -11,7 +11,8 @@
   <div class="row">
       <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field>
-      <input type="number" matInput name="sno" [(ngModel)]="sn_number" #sno="ngModel" [disabled]="snoDisabled" readonly>
+        <mat-label>Sr No</mat-label>
+      <input type="number" matInput name="srno" [(ngModel)]="srno" #sno="ngModel" [disabled]="srnoDisabled" readonly>
       </mat-form-field>
       </div>
 
@@ -62,7 +63,7 @@
     <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <mat-label>ID No</mat-label>
-    <input matInput type="number" readonly [value]="roll_no" name="idNumber" [(ngModel)]="roll_no" required>
+    <input matInput type="number" readonly [value]="idNumber" name="idNumber" [(ngModel)]="idNumber" required>
     </mat-form-field>
     </div>
     <div class="col-sm-2 col-lg-3 col-md-2">

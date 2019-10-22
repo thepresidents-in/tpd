@@ -16,17 +16,17 @@ export class CollegeReceiptComponent implements OnInit {
   classData : any[] ;
   sum;
   studentList;
-  sn_number;
-  roll_no: number;
+  srno;
+  idNumber:any;
+  roll_number: number;
   admissionFee:number =5100;
   session = '2019-20';
   todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-  snoDisabled: boolean= true;
+  srnoDisabled: boolean= true;
   fee:number;
   isFee: boolean=true;
   form: FormGroup;
   classValue:any;
-  rollNum:any;
   discount:Number;
   submittedFee:any;
   constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {}
@@ -62,10 +62,10 @@ export class CollegeReceiptComponent implements OnInit {
 }
 
 getStudentInfo(std){
+  console.log('anp std', std)
    let splitStr =  (std).split("-");
-   this.rollNum = (splitStr[1]).split("-");
-   this.discount = Number((splitStr[2]).split("-"));
-   console.log("getStudentInfo studentKV:"+this.rollNum[0]+"and class: "+this.classValue+" and dis "+this.rollNum[1]);
+   this.idNumber = splitStr[1];
+   this.discount = Number((splitStr[2]));
    if(this.discount != null){
    	this.submittedFee = this.admissionFee - Number(this.discount) ;
    }
@@ -76,17 +76,17 @@ getStudentInfo(std){
    this.isFee = false;
 }
 getSno(){
-  this.rest.getReceiptSno().then((response)=> {
-    console.log("sno: ",response);
-    this.sn_number = response;
-    this.snoDisabled = false;
+  this.rest.getReceiptSno('college_receipt').then((response)=> {
+    this.srno = response;
+    this.srnoDisabled = false;
   });
 }
 getAutoStudentSelect = (stdInfo) => {
-  let splitted = (stdInfo.option.value).split("-");
-  console.log("splitted: ",splitted);
-  this.roll_no = splitted[1];
-  console.log("getAutoStudentSelect: ",stdInfo);
+  // console.log('anpop stdinfo', stdInfo)
+  // let splitted = (stdInfo.option.value).split("-");
+  // console.log("splitted: ",splitted);
+  // this.idNumber = splitted[1];
+  // console.log("getAutoStudentSelect: ",stdInfo);
 }
 getSubmittedAmt(event) {
  console.log("getSubmittedAmt: "+event);

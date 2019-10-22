@@ -98,8 +98,8 @@ constructor(private  httpClient:  HttpClient)
   logout() {
     return firewrap.logout();
   }
-  getReceiptSno(){
-    return firewrap.getReceiptSno('receipt');
+  getReceiptSno(receipt){
+    return firewrap.getReceiptSno(receipt);
   }
    postFee(fee) {
     return firewrap.addFee(fee);
