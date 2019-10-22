@@ -59,16 +59,7 @@ classData : any;
 }
 
 getStudentInfo(std){
-   // let splitStr =  (std).split("-");
-   // this.discount = Number((splitStr[2]).split("-"));
-   // console.log("getStudentInfo studentKV:"+this.rollNum[0]+"and class: "+this.classValue+" and dis "+this.rollNum[1]);
-   if(this.discount != null){
-   	this.submittedFee = this.admissionFee - Number(this.discount) ;
-   }
-   else {
-   	this.submittedFee = this.admissionFee ;
-   }
-   // console.log("submittedFee: "+this.submittedFee);
+
 }
 
 }

@@ -22,7 +22,7 @@ constructor(public rest:RestService, public dialog: MatDialog,private router: Ro
 
 openDialog(receiptData) {
    console.log("receiptData console: ",receiptData);
-    const dialogRef = this.dialog.open(receiptDialogContent, {
+    const dialogRef = this.dialog.open(ReceiptDialogContent, {
       data: {
         receiptId: receiptData.uId
       }
@@ -64,7 +64,7 @@ ngOnInit() {
   selector: 'dialog-content-example-dialog',
   templateUrl: 'delete_receipt_dialog.html',
 })
-export class receiptDialogContent {
+export class ReceiptDialogContent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public rest: RestService,private router: Router) {}
   deleteReceipt(id) {
    console.log("delete receipt : "+id);

@@ -1,7 +1,5 @@
 import { Component, OnInit ,Inject,Input,ViewChild } from '@angular/core';
 import { RestService} from '../rest.service';
-/*import { FormControl,Validators,FormGroup ,NgForm} from '@angular/forms';*/
-import { CLASSES } from '../class';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -36,7 +34,7 @@ export class CollegeListReceiptComponent implements OnInit {
   }
   openDialog(receiptData) {
    console.log("receiptData console: ",receiptData);
-    const dialogRef = this.dialog.open(collegeReceiptDialogContent, {
+    const dialogRef = this.dialog.open(CollegeReceiptDialogContent, {
       data: {
         receiptId: receiptData.uId
       }
@@ -52,16 +50,12 @@ export class CollegeListReceiptComponent implements OnInit {
   selector: 'dialog-content-example-dialog',
   templateUrl: 'delete_receipt_dialog.html',
 })
- export class collegeReceiptDialogContent {
+ export class CollegeReceiptDialogContent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public rest: RestService,private router: Router) {}
   deleteReceipt(id) {
    console.log("delete receipt : "+id);
      this.rest.delete("college_receipt",id).then((response) => {
        alert("receipt deleted.");
-       /*this.rest.getReceipt().then((response) => {
-    console.log("res KV getReceipt: ",response);
-
-});*/
        this.router.navigate(['/college_receiptList']);
     });
   }

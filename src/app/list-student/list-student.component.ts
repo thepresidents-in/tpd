@@ -14,7 +14,6 @@ export interface DialogData {
   styleUrls: ['./list-student.component.css']
 })
 export class ListStudentComponent implements OnInit {
-studentList;
 dataSource ;
 displayedColumns = ['srno', 'idNumber','first_name','father_name','mother_name','class','dob','uId', 'del'];
 
