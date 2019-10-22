@@ -20,6 +20,7 @@ export class ListexpensesComponent implements OnInit {
   dataSource ;
   displayedColumns = ['srno', 'date','type','amount','description','del'];
   expenseSum:Number;
+  incomeSum:Number;
 
 
     constructor( public rest: RestService, public dialog: MatDialog ,private spinnerService: Ng4LoadingSpinnerService,private datePipe: DatePipe) {}

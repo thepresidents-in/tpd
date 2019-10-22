@@ -11,6 +11,9 @@ import { RestService} from '../rest.service';
 })
 export class ExpensesComponent implements OnInit {
 form:FormGroup;
+IncomeCat;
+ExpenseCat;
+categoryData;
   constructor(public rest:RestService, public datePipe:DatePipe) { }
 
   ngOnInit() {
