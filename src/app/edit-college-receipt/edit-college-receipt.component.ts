@@ -36,23 +36,20 @@ classData : any;
       console.log("class data: ",response);
       this.classData = response;
     });
-  	  
+
   }
 
   EditReceipt(form:NgForm){
   	if(form.invalid){
-    return;
+      return;
     }
     console.log("edit form :",form);
-    let keys = Object.keys(form.controls);
-    let values = Object.values(form.value);
-    let student_name=form.value.student_name.split('-');
-    form.value.student_name = student_name[0];
     this.rest.update('college_receipt',this.receiptId,form.value).then((response) => {
        alert("Receipt Edited !!");
        this.router.navigate(['/college_receiptList']);
     });
   }
+
    getClass(formData){
     this.classValue = formData.controls.class.value;
     this.rest.getStudentsByClass(this.classValue).then((response) => {
@@ -61,19 +58,18 @@ classData : any;
   });
 }
 
+
 getStudentInfo(std){
-   let splitStr =  (std).split("-");
-   this.rollNum = (splitStr[1]).split("-");
-   this.discount = Number((splitStr[2]).split("-"));
-   console.log("getStudentInfo studentKV:"+this.rollNum[0]+"and class: "+this.classValue+" and dis "+this.rollNum[1]);
+   // let splitStr =  (std).split("-");
+   // this.discount = Number((splitStr[2]).split("-"));
+   // console.log("getStudentInfo studentKV:"+this.rollNum[0]+"and class: "+this.classValue+" and dis "+this.rollNum[1]);
    if(this.discount != null){
    	this.submittedFee = this.admissionFee - Number(this.discount) ;
    }
    else {
    	this.submittedFee = this.admissionFee ;
    }
-   console.log("submittedFee: "+this.submittedFee);
-   //this.isFee = false;
+   // console.log("submittedFee: "+this.submittedFee);
 }
 
 }

@@ -50,11 +50,11 @@
 <div class="row">
     <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field class="example-full-width">
-    <input  placeholder="Pick Student"  matInput name="student_name" ngModel #student_name="ngModel"  (ngModelChange)="getStudentInfo($event)" [matAutocomplete]="auto" required>
-    <mat-error *ngIf="student_name.invalid">Please enter student name.</mat-error>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getAutoStudentSelect($event)'>
-    <mat-option *ngFor="let student of studentList" value="{{student.first_name}}-{{ student.idNumber}}-{{ student.discount }}">
-    {{student.first_name}} {{ student.last_name}}
+    <input  placeholder="Pick Student"  matInput name="first_name" ngModel #first_name="ngModel"  (ngModelChange)="getStudentInfo($event)" [matAutocomplete]="auto" required>
+    <mat-error *ngIf="first_name.invalid">Please enter student name.</mat-error>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='getAutoStudentSelect($event)'>
+    <mat-option *ngFor="let student of studentList" [value]="student">
+        {{student.first_name}} {{ student.last_name}} {{student.idNumber}}
     </mat-option>
     </mat-autocomplete>
     </mat-form-field>

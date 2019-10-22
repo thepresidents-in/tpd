@@ -32,7 +32,7 @@ export class CollegeReceiptComponent implements OnInit {
   constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {}
 
   ngOnInit() {
-    this.getSno();
+    this.getSrno();
      this.rest.getClassData().then((response) => {
       console.log("class data: ",response);
       this.classData = response;
@@ -44,8 +44,8 @@ export class CollegeReceiptComponent implements OnInit {
     return false;
     }
     console.log("form: ",form.value);
-    let student_name=form.value.student_name.split('-');
-    form.value.student_name = student_name[0];
+    let first_name = form.value.first_name.first_name;
+    form.value.first_name = first_name;
      this.rest.postCollegeReceipt(form.value).then((response) => {
       console.log("post 1");
        alert("Receipt added. !!");
@@ -63,30 +63,33 @@ export class CollegeReceiptComponent implements OnInit {
 
 getStudentInfo(std){
   console.log('anp std', std)
-   let splitStr =  (std).split("-");
-   this.idNumber = splitStr[1];
-   this.discount = Number((splitStr[2]));
+     if(std){
+       this.idNumber = std.idNumber
+       this.discount = std.discount
+     }
+
    if(this.discount != null){
-   	this.submittedFee = this.admissionFee - Number(this.discount) ;
-   }
+    	this.submittedFee = this.admissionFee - Number(this.discount) ;
+    }
    else {
-   	this.submittedFee = this.admissionFee ;
-   }
-   console.log("submittedFee: "+this.submittedFee);
+    	this.submittedFee = this.admissionFee ;
+    }
+    console.log("submittedFee: "+this.submittedFee);
    this.isFee = false;
 }
-getSno(){
+getSrno(){
   this.rest.getReceiptSno('college_receipt').then((response)=> {
     this.srno = response;
     this.srnoDisabled = false;
   });
 }
+
+displayFn(student){
+  return student ? student.first_name : student;
+}
+
 getAutoStudentSelect = (stdInfo) => {
-  // console.log('anpop stdinfo', stdInfo)
-  // let splitted = (stdInfo.option.value).split("-");
-  // console.log("splitted: ",splitted);
-  // this.idNumber = splitted[1];
-  // console.log("getAutoStudentSelect: ",stdInfo);
+  console.log('anpop stdinfo', stdInfo)
 }
 getSubmittedAmt(event) {
  console.log("getSubmittedAmt: "+event);

@@ -11,13 +11,13 @@
  <div class="row">
 	<div class="col-sm-2 col-lg-3 col-md-2">
 	<mat-form-field>
-	<input matInput  name="sno" [(ngModel)]="receipt.sno" #sno="ngModel" readonly placeholder="SNo" >
+	<input matInput  name="srno" [(ngModel)]="receipt.srno" #sno="ngModel" placeholder="Sr No" readonly>
 	</mat-form-field>
 	</div>
 
 	<div class="col-sm-2 col-lg-3 col-md-2">
 	<mat-form-field >
-	<input matInput [matDatepicker]="picker" placeholder="date" name="date" [(ngModel)]="receipt.date" #date="ngModel" required [min]="minDate" [max]="maxDate" readonly>
+	<input matInput [matDatepicker]="picker" placeholder="Date" name="date" [(ngModel)]="receipt.date" #date="ngModel" required [min]="minDate" [max]="maxDate" readonly>
 	<mat-datepicker-toggle matPrefix [for]="picker">
 	</mat-datepicker-toggle>
 	<mat-datepicker #picker></mat-datepicker>
@@ -35,26 +35,17 @@
 	<div class="col-sm-2 col-lg-3 col-md-2">
 	<mat-form-field >
 		<input  placeholder="Class"  matInput name="class" #class="ngModel" [(ngModel)]="receipt.class" readonly>
-	<!-- <mat-select placeholder="Class"  name="class" [(ngModel)]="receipt.class" #class="ngModel" required (ngModelChange)="getClass(postForm)" >
-	<mat-option *ngFor="let class of classData;" value="{{class.class_name}}">{{class.class_name}}</mat-option>
-	</mat-select>
-	<mat-error *ngIf="class.errors?.required">Class is required.</mat-error> -->
 	</mat-form-field>
 	</div>
 </div>
 <div class="row">
   <div class="col-sm-2 col-lg-3 col-md-2">
-    <!-- <mat-form-field >
-    <input matInput placeholder="Student Name" name="student_name" [(ngModel)]="receipt.student_name" #student_name="ngModel" required  (ngModelChange)="getStudentInfo($event)">
-     <mat-error *ngIf="student_name.errors?.required">Student Name is required.</mat-error> 
-    </mat-form-field> -->
-
       <mat-form-field class="example-full-width">
-    <input  placeholder="Pick Student"  matInput name="student_name" #student_name="ngModel" [(ngModel)]="receipt.student_name"  (ngModelChange)="getStudentInfo($event)" [matAutocomplete]="auto" required readonly>
-    <mat-error *ngIf="student_name.invalid">Please enter student name.</mat-error>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getAutoStudentSelect($event)'>
-    <mat-option *ngFor="let student of studentList" value="{{student.first_name}}-{{ student.idNumber}}-{{ student.discount }}">
-    {{student.first_name}} {{ student.last_name}}
+    <input  placeholder="Pick Student"  matInput name="first_name" #first_name="ngModel" [(ngModel)]="receipt.first_name"  (ngModelChange)="getStudentInfo($event)" [matAutocomplete]="auto" required readonly>
+    <mat-error *ngIf="first_name.invalid">Please enter student name.</mat-error>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='getAutoStudentSelect($event)'>
+    <mat-option *ngFor="let student of studentList" value="{{student.first_name}}">
+    {{student.first_name}} {{ student.last_name}} {{student.idNumber}}
     </mat-option>
     </mat-autocomplete>
     </mat-form-field>
@@ -86,14 +77,14 @@
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput placeholder="Amount " name="submittedFee" [(ngModel)]="receipt.submittedFee" #submittedFee="ngModel" required >
-    <mat-error *ngIf="submittedFee.errors?.required">Mother name is required.</mat-error>
+    <mat-error *ngIf="submittedFee.errors?.required">Amount is required.</mat-error>
   </mat-form-field>
   </div>
 </div>
 
- 
 
-  
+
+
 
 <div class="row">
 <div class="col-sm-2 col-lg-6 col-md-2">
