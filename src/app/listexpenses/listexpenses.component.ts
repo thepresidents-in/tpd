@@ -41,8 +41,9 @@ export class ListexpensesComponent implements OnInit {
       this.dataSource = new MatTableDataSource(response);
       let res=0;
       console.log("kv datasource: ",this.dataSource.filteredData);
-      this.incomeSum = this.getExpenseSum(this.dataSource.filteredData)[0];
-      this.expenseSum = this.getExpenseSum(this.dataSource.filteredData)[1];
+      let incomeExpense = this.getExpenseSum(this.dataSource.filteredData)
+      this.incomeSum = incomeExpense[0];
+      this.expenseSum = incomeExpense[1];
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.spinnerService.hide();
@@ -52,8 +53,9 @@ export class ListexpensesComponent implements OnInit {
       filterValue = filterValue.trim(); // Remove whitespace
       filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
       this.dataSource.filter = filterValue;
-      this.incomeSum = this.getExpenseSum(this.dataSource.filteredData)[0];
-      this.expenseSum = this.getExpenseSum(this.dataSource.filteredData)[1];
+      let incomeExpense = this.getExpenseSum(this.dataSource.filteredData)
+      this.incomeSum = incomeExpense[0];
+      this.expenseSum = incomeExpense[1];
     }
     get_to_date(event){
        let to_date= this.datePipe.transform(event, 'yyyy-MM-dd');
@@ -74,8 +76,9 @@ export class ListexpensesComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.spinnerService.hide();*/
       this.dataSource = new MatTableDataSource(response);
-      this.incomeSum = this.getExpenseSum(this.dataSource.filteredData)[0];
-      this.expenseSum = this.getExpenseSum(this.dataSource.filteredData)[1];
+      let incomeExpense = this.getExpenseSum(this.dataSource.filteredData)
+      this.incomeSum = incomeExpense[0];
+      this.expenseSum = incomeExpense[1];
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       });
