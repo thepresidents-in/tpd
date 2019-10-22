@@ -38,12 +38,6 @@
     <mat-cell *matCellDef="let element"> {{element.date | date: 'dd-MM-yyyy'}} </mat-cell>
   </ng-container>
 
-<ng-container matColumnDef="admission_fee">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Total Fee</mat-header-cell>
-            <mat-cell *matCellDef="let element ">  {{ element.admission_fee }}
-            </mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="submittedFee">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Submitted Fee</mat-header-cell>
             <mat-cell *matCellDef="let element ">  {{ element.submittedFee }}
