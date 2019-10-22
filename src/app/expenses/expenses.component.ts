@@ -18,15 +18,53 @@ form:FormGroup;
         'date' : new FormControl('',{
         validators:[Validators.required]
       }),
+        'category' : new FormControl('',{
+        validators:[Validators.required]
+      }),
         'type' : new FormControl('',{
         validators:[Validators.required]
       }),
-
-        'expense' : new FormControl('',{
+        'amount' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(2)]
       }),
        'description' : new FormControl(''),
     });
+    this.incomeCat = [{name:'BA-1'},
+        {name:'BA-2'},
+        {name:'BA-3'},
+        {name:'Scholarship Form'},
+        {name:'Practicle File'},
+        {name:'MLA\'s / MP\'s Fund'},
+        {name:'Load / Credit'},
+        {name:'Honourable People'},
+        {name:'Chairman\'s Fund'},
+        {name:'Others'}
+    ]
+
+    this.expenseCat = [{name:'PNB Patherwa'},
+        {name:'Purwanchal Bank Patherwa'},
+        {name:'Central Bank Tamkuhi'},
+        {name:'Scholarship Form'},
+        {name:'Salary'},
+        {name:'Examination'},
+        {name:'Food'},
+        {name:'Construction'},
+        {name:'Maintainance'},
+        {name:'University'},
+        {name:'Challan'},
+        {name:'Technology/Communication'},
+        {name:'Stationary'},
+        {name:'Oil'},
+        {name:'Loan'},
+        {name:'To Chairman'},
+        {name:'Others'}
+
+    ]
+    this.categoryData = this.incomeCat
+  }
+
+  onChangeType(newVal){
+    this.categoryData = this[newVal+'Cat']
   }
 
   submitExpense() {
