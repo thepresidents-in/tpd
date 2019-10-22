@@ -34,7 +34,7 @@
   </ng-container>
 
 <ng-container matColumnDef="admission_fee">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Admission Fee</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Total Fee</mat-header-cell>
             <mat-cell *matCellDef="let element ">  {{ element.admission_fee }}
             </mat-cell>
         </ng-container>
@@ -42,12 +42,6 @@
         <ng-container matColumnDef="submittedFee">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Submitted Fee</mat-header-cell>
             <mat-cell *matCellDef="let element ">  {{ element.submittedFee }}
-            </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="discount">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Discount</mat-header-cell>
-            <mat-cell *matCellDef="let element ">  {{ element.discount }}
             </mat-cell>
         </ng-container>
 
