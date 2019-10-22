@@ -17,7 +17,7 @@
 
 	<div class="col-sm-2 col-lg-3 col-md-2">
 	<mat-form-field >
-	<input matInput [matDatepicker]="picker" placeholder="Date" name="date" [(ngModel)]="receipt.date" #date="ngModel" required [min]="minDate" [max]="maxDate" readonly>
+	<input matInput [matDatepicker]="picker" placeholder="Date" name="date" [(ngModel)]="receipt.date" #date="ngModel" [min]="minDate" [max]="maxDate" required>
 	<mat-datepicker-toggle matPrefix [for]="picker">
 	</mat-datepicker-toggle>
 	<mat-datepicker #picker></mat-datepicker>
@@ -62,14 +62,14 @@
 
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-    <input matInput placeholder="Admission Fee" name="admission_fee" [(ngModel)]="receipt.admission_fee" #admission_fee="ngModel" required >
+    <input matInput placeholder="Total Fee" name="admission_fee" [(ngModel)]="receipt.admission_fee" #admission_fee="ngModel" required readonly>
      <mat-error *ngIf="admission_fee.errors?.required">Please enter Admission Fee.</mat-error>
   </mat-form-field>
   </div>
 
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-    <input matInput placeholder="Discount" name="discount" [(ngModel)]="receipt.discount" #discount="ngModel" >
+    <input matInput placeholder="Discount" name="discount" [(ngModel)]="receipt.discount" #discount="ngModel" readonly>
   </mat-form-field>
   </div>
 </div>

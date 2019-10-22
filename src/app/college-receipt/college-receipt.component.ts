@@ -67,15 +67,6 @@ getStudentInfo(std){
        this.idNumber = std.idNumber
        this.discount = std.discount
      }
-
-   if(this.discount != null){
-    	this.submittedFee = this.admissionFee - Number(this.discount) ;
-    }
-   else {
-    	this.submittedFee = this.admissionFee ;
-    }
-    console.log("submittedFee: "+this.submittedFee);
-   this.isFee = false;
 }
 getSrno(){
   this.rest.getReceiptSno('college_receipt').then((response)=> {
@@ -91,8 +82,5 @@ displayFn(student){
 getAutoStudentSelect = (stdInfo) => {
   console.log('anpop stdinfo', stdInfo)
 }
-getSubmittedAmt(event) {
- console.log("getSubmittedAmt: "+event);
- this.submittedFee= event - Number(this.discount);
-}
+
 }

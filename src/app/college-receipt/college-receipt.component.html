@@ -68,8 +68,8 @@
     </div>
     <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-    <mat-label>Admission Fee</mat-label>
-    <input matInput type="number" name="admission_fee"  [(ngModel)]="admissionFee" required (ngModelChange)="getSubmittedAmt($event)">
+    <mat-label>Total Fee</mat-label>
+    <input matInput type="number" name="admission_fee"  [(ngModel)]="admissionFee" required readonly>
     <!-- <mat-error *ngIf="adm_fee.invalid">Please enter Admission Fee.</mat-error> -->
     </mat-form-field>
     </div>
@@ -84,7 +84,7 @@
   <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field >
       <mat-label>Amount to be paid</mat-label>
-      <input matInput type="number" name="submittedFee" [(ngModel)]="submittedFee" readonly>
+      <input matInput type="number" name="submittedFee" [(ngModel)]="submittedFee" required>
       </mat-form-field>
   </div>
  </div>

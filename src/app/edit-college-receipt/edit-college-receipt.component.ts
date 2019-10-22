@@ -58,7 +58,6 @@ classData : any;
   });
 }
 
-
 getStudentInfo(std){
    // let splitStr =  (std).split("-");
    // this.discount = Number((splitStr[2]).split("-"));
