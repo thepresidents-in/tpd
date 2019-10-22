@@ -96,7 +96,7 @@ export class StudentComponent implements OnInit {
         validators:[Validators.required]
       }),
         'idNumber' : new FormControl('',{
-        validators:[Validators.required]
+        validators:[Validators.required, Validators.minLength(6)]
       }),
         'discount' : new FormControl(''),
         'hindi' : new FormControl(''),
@@ -136,14 +136,6 @@ openDialog() {
     const dialogRef = this.dialog.open(SaveDialogContent);
   }
 
-_keyPress(event: any) {
-    const pattern = /[0-9]/;
-    let inputChar = String.fromCharCode(event.charCode);
-    if (!pattern.test(inputChar)) {
-      event.preventDefault();
-
-    }
-  }
 }
 
 @Component({

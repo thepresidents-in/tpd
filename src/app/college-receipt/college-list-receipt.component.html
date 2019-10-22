@@ -10,6 +10,11 @@
 <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <!-- Position Column -->
+  <ng-container matColumnDef="srno">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Sr No</mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index;">{{ i+1 }}
+            </mat-cell>
+        </ng-container>
   <ng-container matColumnDef="idNumber">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Id Number</mat-header-cell>
             <mat-cell *matCellDef="let element ">{{element.idNumber }}
