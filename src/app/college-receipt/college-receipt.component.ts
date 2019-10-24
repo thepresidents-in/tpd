@@ -45,6 +45,8 @@ export class CollegeReceiptComponent implements OnInit {
     }
     console.log("form: ",form.value);
     let first_name = form.value.first_name.first_name;
+    let student_uId = form.value.first_name.uId;
+    form.value.student_uId = student_uId;
     form.value.first_name = first_name;
      this.rest.postCollegeReceipt(form.value).then((response) => {
       console.log("post 1");
