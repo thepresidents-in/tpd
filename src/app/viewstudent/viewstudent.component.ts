@@ -10,12 +10,12 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'app-student-detail',
-  templateUrl: './studentDetail.component.html',
-  styleUrls: ['./studentDetail.component.css']
+  selector: 'app-viewstudent',
+  templateUrl: './viewstudent.component.html',
+  styleUrls: ['./viewstudent.component.css']
 })
 
-export class StudentDetailComponent implements OnInit {
+export class ViewstudentComponent implements OnInit {
 	studentData: any[];
   dataSource;
   deposited:Number;
@@ -58,7 +58,7 @@ export class StudentDetailComponent implements OnInit {
 
   openDialog(receiptData) {
    console.log("receiptData console: ",receiptData);
-    const dialogRef = this.dialog.open(StudentDetailDialogContent, {
+    const dialogRef = this.dialog.open(ViewstudentDialogContent, {
       data: {
         receiptId: receiptData.uId
       }
@@ -83,7 +83,7 @@ export class StudentDetailComponent implements OnInit {
   templateUrl: 'delete_receipt_dialog.html',
 })
 
- export class StudentDetailDialogContent {
+ export class ViewstudentDialogContent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public rest: RestService,private router: Router) {}
   deleteReceipt(id) {
    console.log("delete receipt : "+id);

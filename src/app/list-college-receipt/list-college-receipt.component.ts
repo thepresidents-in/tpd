@@ -10,10 +10,10 @@ export interface DialogData {
 }
 @Component({
   selector: 'app-college-list-receipt',
-  templateUrl: './college-list-receipt.component.html',
-  styleUrls: ['./college-receipt.component.css']
+  templateUrl: './list-college-receipt.component.html',
+  styleUrls: ['./list-college-receipt.component.css']
 })
-export class CollegeListReceiptComponent implements OnInit {
+export class ListCollegeReceiptComponent implements OnInit {
   dataSource;
   displayedColumns = ['srno', 'idNumber','first_name','class','date','submittedFee','uId', 'del'];
   constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router,public dialog: MatDialog) {}
@@ -34,7 +34,7 @@ export class CollegeListReceiptComponent implements OnInit {
   }
   openDialog(receiptData) {
    console.log("receiptData console: ",receiptData);
-    const dialogRef = this.dialog.open(CollegeReceiptDialogContent, {
+    const dialogRef = this.dialog.open(ListCollegeReceiptDialogContent, {
       data: {
         receiptId: receiptData.uId
       }
@@ -56,7 +56,7 @@ export class CollegeListReceiptComponent implements OnInit {
   selector: 'dialog-content-example-dialog',
   templateUrl: 'delete_receipt_dialog.html',
 })
- export class CollegeReceiptDialogContent {
+ export class ListCollegeReceiptDialogContent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public rest: RestService,private router: Router) {}
   deleteReceipt(id) {
    console.log("delete receipt : "+id);
