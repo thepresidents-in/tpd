@@ -45,6 +45,12 @@ export class CollegeListReceiptComponent implements OnInit {
       console.log("Dialog result: ",result);
     });
   }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
  }
  @Component({
   selector: 'dialog-content-example-dialog',

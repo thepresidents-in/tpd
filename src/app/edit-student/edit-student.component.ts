@@ -17,7 +17,6 @@ export class EditStudentComponent implements OnInit {
     editStudentId;
 	private sub: any;
     editStudentData;
-    //classData = CLASSES ;
     classData : any;
      minDate = new Date(2000, 0, 1);
   maxDate :any;
@@ -38,7 +37,7 @@ export class EditStudentComponent implements OnInit {
           console.log("studentData edit :",this.studentData);
         });
     });
-    
+
     this.classData = [{class_name :'BA-1'},{class_name :'BA-2'}, {class_name :'BA-3'}];
 
   }

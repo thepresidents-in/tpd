@@ -46,13 +46,13 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
             <mat-cell  *matCellDef="let element ">{{element.amount }}
             </mat-cell>
-            <mat-footer-cell *matFooterCellDef> <strong>Income- {{incomeSum}} Expense- {{expenseSum}} Total: {{incomeSum - expenseSum}} </strong></mat-footer-cell>
+            <mat-footer-cell *matFooterCellDef> <strong>Total: Income- {{incomeSum}} Expense- {{expenseSum}}</strong></mat-footer-cell>
         </ng-container>
   <ng-container matColumnDef="description">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
             <mat-cell  *matCellDef="let element ">{{element.description }}
             </mat-cell>
-            <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+            <mat-footer-cell *matFooterCellDef> <strong>Balance: {{incomeSum - expenseSum}} </strong></mat-footer-cell>
         </ng-container>
 
         <ng-container matColumnDef="del">

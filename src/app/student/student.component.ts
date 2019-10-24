@@ -22,6 +22,7 @@ export class StudentComponent implements OnInit {
   imagePreview: string;
   minDate = new Date(2000, 0, 1);
   maxDate :any;
+  discount:Number;
 
   constructor(public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) { }
 
@@ -98,7 +99,9 @@ export class StudentComponent implements OnInit {
         'idNumber' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(6)]
       }),
-        'discount' : new FormControl(''),
+        'discount' : new FormControl('', {
+        validators:[Validators.minLength(2),Validators.maxLength(4), Validators.pattern("[1-9]\\d{3}")]
+      }),
         'hindi' : new FormControl(''),
         'sanskrit' : new FormControl(''),
         'medieval_history' : new FormControl(''),

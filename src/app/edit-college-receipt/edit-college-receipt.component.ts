@@ -3,6 +3,7 @@ import { ActivatedRoute ,Router} from '@angular/router';
 import { RestService } from '../rest.service';
 import { FormControl,NgForm,Validators} from '@angular/forms';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-edit-college-receipt',
   templateUrl: './edit-college-receipt.component.html',
@@ -14,12 +15,12 @@ receiptData : any[];
 private sub:any;
 classData : any;
  classValue:any;
-  rollNum:any;
   discount:Number;
-  submittedFee:any;
+  submittedFee:Number;
   studentList;
   admissionFee:number =5100;
-  constructor(private route : ActivatedRoute,private rest: RestService,private router:Router,private spinner: Ng4LoadingSpinnerService) { }
+
+  constructor(public datePipe : DatePipe, private route : ActivatedRoute,private rest: RestService,private router:Router,private spinner: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
   	this.spinner.show();
@@ -43,7 +44,8 @@ classData : any;
   	if(form.invalid){
       return;
     }
-    console.log("edit form :",form);
+    form.value.date = this.datePipe.transform(new Date(form.value.date), 'yyyy-MM-dd');
+    console.log("edit form :",form.value);
     this.rest.update('college_receipt',this.receiptId,form.value).then((response) => {
        alert("Receipt Edited !!");
        this.router.navigate(['/college_receiptList']);

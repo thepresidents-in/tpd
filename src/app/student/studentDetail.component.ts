@@ -18,7 +18,8 @@ export interface DialogData {
 export class StudentDetailComponent implements OnInit {
 	studentData: any[];
   dataSource;
-  displayedColumns = ['idNumber','first_name','class','date','admission_fee','submittedFee','uId', 'del'];
+  deposited:Number;
+  displayedColumns = ['idNumber','first_name','class','date','submittedFee','uId', 'del'];
 
 	constructor(public datePipe : DatePipe, private route: ActivatedRoute,private rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router,public dialog: MatDialog){ }
   @ViewChild(MatSort) sort: MatSort;
@@ -36,7 +37,7 @@ export class StudentDetailComponent implements OnInit {
         })
         .then((response) => {
         console.log("res KV: ",response);
-
+        this.deposited = this.getFeeSum(response);
         this.dataSource = new MatTableDataSource(response);
         console.log("dataSource mat:",this.dataSource);
         this.dataSource.sort = this.sort;
@@ -45,6 +46,15 @@ export class StudentDetailComponent implements OnInit {
       });
     });
 	}
+
+  getFeeSum(dataArr) {
+    console.log('anp srr', dataArr)
+    let fee = 0;
+    let sumOfFee = (dataArr).map(function (row, idx) {
+        fee += +row.submittedFee;
+    });
+    return fee;
+  }
 
   openDialog(receiptData) {
    console.log("receiptData console: ",receiptData);
@@ -59,6 +69,13 @@ export class StudentDetailComponent implements OnInit {
       console.log("Dialog result: ",result);
     });
   }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+
  }
 
  @Component({

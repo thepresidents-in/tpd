@@ -28,7 +28,7 @@ export class CollegeReceiptComponent implements OnInit {
   form: FormGroup;
   classValue:any;
   discount:Number;
-  submittedFee:any;
+  submittedFee:Number;
   constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {}
 
   ngOnInit() {
