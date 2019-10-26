@@ -1,4 +1,4 @@
-export const Constants = {
+export const TRKMMV = {
   classData : [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}],
   studentTypeData : [{value :'Regular'},{value :'Private'}, {value :'Ex'}, {value:'Single Subject'}],
   subjectData : [{value :'हिंदी'},{value :'संस्कृत'}, {value :'मध्य कालीन इतिहास'}, {value:'गृह विज्ञान'}, {value:'शिक्षा शास्त्र'}, {value:'समाज शास्त्र'}, {value:'राजनीती शास्त्र'}],

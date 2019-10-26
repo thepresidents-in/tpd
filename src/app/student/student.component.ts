@@ -30,7 +30,7 @@ export class StudentComponent implements OnInit {
   constructor(public constants: ConstantsService, public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) { }
 
   ngOnInit() {
-    console.log('anp constants', this.constants.getConstants(''))
+    console.log('anp constants', this.constants.getConstants())
     const now = new Date();
     now.setFullYear(now.getFullYear() - 1);
     this.maxDate = now.toISOString().slice(0,10);
