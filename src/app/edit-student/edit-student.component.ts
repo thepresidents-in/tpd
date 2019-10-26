@@ -15,11 +15,13 @@ import { Router } from '@angular/router';
 export class EditStudentComponent implements OnInit {
     studentData: any = [];
     editStudentId;
-	private sub: any;
+	  private sub: any;
     editStudentData;
     classData : any;
-     minDate = new Date(2000, 0, 1);
-  maxDate :any;
+    studentTypeData: any;
+    subjectData:any;
+    minDate = new Date(2000, 0, 1);
+    maxDate :any;
 
   constructor(public rest: RestService,private route:  ActivatedRoute,private router: Router ,public datePipe: DatePipe) { }
 
@@ -38,20 +40,20 @@ export class EditStudentComponent implements OnInit {
         });
     });
 
-    this.classData = [{class_name :'BA-1'},{class_name :'BA-2'}, {class_name :'BA-3'}];
+    this.classData = [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}];
+    this.studentTypeData = [{value :'Regular'},{value :'Private'}, {value :'Ex'}, {value:'Single Subject'}];
+    this.subjectData = [{value :'हिंदी'},{value :'संस्कृत'}, {value :'मध्य कालीन इतिहास'}, {value:'गृह विज्ञान'}, {value:'शिक्षा शास्'}, {value:'समाज शास्त्र'}, {value:'राजनीती शास्'}];
 
   }
 
    submitEditStudent(form: NgForm) {
     if(form.invalid){
-    return;
+      return;
     }
     console.log("edit form :",form);
     let keys = Object.keys(form.controls);
     form.value.dob= this.datePipe.transform(form.value.dob, 'yyyy-MM-dd');
-    //form.value.dob = (form.value.dob).toString();
     let values = Object.values(form.value);
-    //let classValue = Object.values(form.value.class) ;
     this.rest.update('students',this.editStudentId,form.value).then((response) => {
        alert("Student Edited !!");
        this.router.navigate(['/liststudent']);
