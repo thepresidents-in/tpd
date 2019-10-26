@@ -1,9 +1,9 @@
 export const TRKMMV = {
-  classData : [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}],
-  studentTypeData : [{value :'Regular'},{value :'Private'}, {value :'Ex'}, {value:'Single Subject'}],
-  subjectData : [{value :'हिंदी'},{value :'संस्कृत'}, {value :'मध्य कालीन इतिहास'}, {value:'गृह विज्ञान'}, {value:'शिक्षा शास्त्र'}, {value:'समाज शास्त्र'}, {value:'राजनीती शास्त्र'}],
-  feeTypeData : [{value :'Academic Fee'}],
-  IncomeCat : [{value:'BA-1'},
+  classData :[{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}],
+  studentTypeData :[{value :'Regular'},{value :'Private'}, {value :'Ex'}, {value:'Single Subject'}],
+  subjectData :[{value :'हिंदी'},{value :'संस्कृत'}, {value :'मध्य कालीन इतिहास'}, {value:'गृह विज्ञान'}, {value:'शिक्षा शास्त्र'}, {value:'समाज शास्त्र'}, {value:'राजनीती शास्त्र'}],
+  feeTypeData :[{value :'Academic Fee'}],
+  IncomeCat :[{value:'BA-1'},
       {value:'BA-2'},
       {value:'BA-3'},
       {value:'Scholarship Form'},
@@ -14,7 +14,7 @@ export const TRKMMV = {
       {value:'Chairman\'s Fund'},
       {value:'Others'}
   ],
-  ExpenseCat : [{value:'PNB Patherwa'},
+  ExpenseCat :[{value:'PNB Patherwa'},
       {value:'Purwanchal Bank Patherwa'},
       {value:'Central Bank Tamkuhi'},
       {value:'Salary'},

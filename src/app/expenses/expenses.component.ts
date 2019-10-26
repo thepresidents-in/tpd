@@ -2,19 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl,Validators,FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { RestService} from '../rest.service';
-
+import { ConstantsService} from '../constants/constants.service';
 
 @Component({
   selector: 'app-expenses',
   templateUrl: './expenses.component.html',
   styleUrls: ['./expenses.component.css']
 })
+
 export class ExpensesComponent implements OnInit {
-form:FormGroup;
-IncomeCat;
-ExpenseCat;
-categoryData;
-  constructor(public rest:RestService, public datePipe:DatePipe) { }
+  form:FormGroup;
+  categoryData;
+  constants:any;
+  constructor(public constantsService: ConstantsService, public rest:RestService, public datePipe:DatePipe) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -33,51 +33,24 @@ categoryData;
        'description' : new FormControl(''),
     });
 
-    this.IncomeCat = [{value:'BA-1'},
-        {value:'BA-2'},
-        {value:'BA-3'},
-        {value:'Scholarship Form'},
-        {value:'Practicle File'},
-        {value:'MLA\'s / MP\'s Fund'},
-        {value:'Load / Credit'},
-        {value:'Honourable People'},
-        {value:'Chairman\'s Fund'},
-        {value:'Others'}
-    ]
+    this.constants = this.constantsService.getConstants()
 
-    this.ExpenseCat = [{value:'PNB Patherwa'},
-        {value:'Purwanchal Bank Patherwa'},
-        {value:'Central Bank Tamkuhi'},
-        {value:'Salary'},
-        {value:'Examination'},
-        {value:'Food'},
-        {value:'Construction'},
-        {value:'Maintainance'},
-        {value:'University'},
-        {value:'Challan'},
-        {value:'Technology/Communication'},
-        {value:'Stationary'},
-        {value:'Fuel'},
-        {value:'Loan'},
-        {value:'To Chairman'},
-        {value:'Others'}
-    ]
   }
 
   onChangeType(newVal){
-    this.categoryData = this[newVal+'Cat']
+    this.categoryData = this.constants[newVal+'Cat']
   }
 
   submitExpense() {
     if(this.form.invalid){
       alert("Please fill all mandatory fields.");
     }else{
-        this.form.value.date= this.datePipe.transform(this.form.value.date, 'yyyy-MM-dd');
-        this.rest.postExpense(this.form.value).then((response) => {
-          alert('Expense added')
-          this.form.reset();
-        });
+      this.form.value.date= this.datePipe.transform(this.form.value.date, 'yyyy-MM-dd');
+      this.rest.postExpense(this.form.value).then((response) => {
+        alert('Expense added')
+        this.form.reset();
+      });
+    }
   }
-}
 
 }

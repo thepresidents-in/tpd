@@ -18,19 +18,16 @@ export interface DialogData {
 })
 export class StudentComponent implements OnInit {
 	studentData: any = {};
-	classData : any[] ;
-	studentTypeData : any[] ;
-	subjectData : any[] ;
+  constants:any;
   form: FormGroup;
   imagePreview: string;
   minDate = new Date(2000, 0, 1);
   maxDate :any;
   discount:Number;
 
-  constructor(public constants: ConstantsService, public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) { }
+  constructor(public constantsService: ConstantsService, public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) { }
 
   ngOnInit() {
-    console.log('anp constants', this.constants.getConstants())
     const now = new Date();
     now.setFullYear(now.getFullYear() - 1);
     this.maxDate = now.toISOString().slice(0,10);
@@ -115,11 +112,7 @@ export class StudentComponent implements OnInit {
         'political_science' : new FormControl(''),
     });
 
-
-      this.classData = [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}];
-      this.studentTypeData = [{value :'Regular'},{value :'Private'}, {value :'Ex'}, {value:'Single Subject'}];
-      this.subjectData = [{value :'हिंदी'},{value :'संस्कृत'}, {value :'मध्य कालीन इतिहास'}, {value:'गृह विज्ञान'}, {value:'शिक्षा शास्'}, {value:'समाज शास्त्र'}, {value:'राजनीती शास्'}];
-
+    this.constants = this.constantsService.getConstants()
 
   }
 

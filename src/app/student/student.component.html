@@ -56,7 +56,7 @@
     <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field >
         <mat-select placeholder="Student Type*"  name="student_type" formControlName="student_type">
-          <mat-option *ngFor="let studentType of studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
+          <mat-option *ngFor="let studentType of constants.studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
           <!-- <mat-option value="REGULAR">Regular</mat-option>
           <mat-option value="PRIVATE">Private</mat-option>
           <mat-option value="EX">Ex</mat-option>
@@ -203,7 +203,7 @@
    <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
       <mat-select placeholder="Class*"  name="class" formControlName="class">
-      <mat-option *ngFor="let class of classData;" value="{{class.value}}">{{class.value}}</mat-option>
+      <mat-option *ngFor="let class of constants.classData;" value="{{class.value}}">{{class.value}}</mat-option>
       </mat-select>
        <mat-error *ngIf="form.get('class').errors?.required">Please select class.</mat-error>
     </mat-form-field>

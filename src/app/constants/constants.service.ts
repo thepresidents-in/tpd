@@ -7,7 +7,7 @@ import {DISH} from './dish.js';
 
 export class ConstantsService {
   constructor(){}
-  
+
   getConstants(){
     const host = window.location.hostname
     if(host === 'tpdzone.firebaseapp.com' || host === 'tpdzone.web.app'){

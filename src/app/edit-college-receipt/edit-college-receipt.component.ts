@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute ,Router} from '@angular/router';
 import { RestService } from '../rest.service';
+import { ConstantsService} from '../constants/constants.service';
 import { FormControl,NgForm,Validators} from '@angular/forms';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { DatePipe } from '@angular/common';
@@ -13,15 +14,14 @@ export class EditCollegeReceiptComponent implements OnInit {
 receiptId:string;
 receiptData : any[];
 private sub:any;
-classData : any;
-feeTypeData : any;
- classValue:any;
+  constants:any;
+  classValue:any;
   discount:Number;
   submittedFee:Number;
   studentList;
   admissionFee:number =5100;
 
-  constructor(public datePipe : DatePipe, private route : ActivatedRoute,private rest: RestService,private router:Router,private spinner: Ng4LoadingSpinnerService) { }
+  constructor(public constantsService: ConstantsService, public datePipe : DatePipe, private route : ActivatedRoute,private rest: RestService,private router:Router,private spinner: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
   	this.spinner.show();
@@ -35,8 +35,7 @@ feeTypeData : any;
         });
     });
 
-    this.classData = [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}];
-    this.feeTypeData = [{value :'Academic Fee'}];
+    this.constants = this.constantsService.getConstants();
 
   }
 

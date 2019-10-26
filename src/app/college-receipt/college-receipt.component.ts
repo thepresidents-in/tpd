@@ -1,5 +1,6 @@
 import { Component, OnInit ,Inject,Input } from '@angular/core';
 import { RestService} from '../rest.service';
+import { ConstantsService} from '../constants/constants.service';
 import { FormControl,Validators,FormGroup ,NgForm} from '@angular/forms';
 import { CLASSES } from '../class';
 import { Router } from '@angular/router';
@@ -12,9 +13,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   styleUrls: ['./college-receipt.component.css']
 })
 export class CollegeReceiptComponent implements OnInit {
-  studentData: any = {};
-  classData : any[] ;
-  feeTypeData : any[] ;
+  constants:any;
   sum;
   studentList;
   srno;
@@ -30,13 +29,11 @@ export class CollegeReceiptComponent implements OnInit {
   classValue:any;
   discount:Number;
   submittedFee:Number;
-  constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {}
+  constructor(public constantsService: ConstantsService, public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {}
 
   ngOnInit() {
     this.getSrno();
-    this.classData = [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}];
-    this.feeTypeData = [{value :'Academic Fee'}];
-
+    this.constants = this.constantsService.getConstants()
   }
   saveStudentFee(form: NgForm){
     if(form.invalid){

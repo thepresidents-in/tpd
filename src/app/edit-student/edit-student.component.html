@@ -58,8 +58,8 @@
 
 <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-   <mat-select placeholder="Religion"  name="student_type" [(ngModel)]="student.student_type" #student_type="ngModel">
-     <mat-option *ngFor="let studentType of studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
+   <mat-select placeholder="Student Type*"  name="student_type" [(ngModel)]="student.student_type" #student_type="ngModel">
+     <mat-option *ngFor="let studentType of constants.studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
     <!-- <mat-option value="REGULAR">Regular</mat-option>
     <mat-option value="PRIVATE">Private</mat-option>
     <mat-option value="EX">Ex</mat-option>
@@ -222,7 +222,7 @@
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <mat-select placeholder="Class"  name="class" [(ngModel)]="student.class" #class="ngModel" required>
-      <mat-option *ngFor="let class of classData;" value="{{class.value}}">{{class.value}}</mat-option>
+      <mat-option *ngFor="let class of constants.classData;" value="{{class.value}}">{{class.value}}</mat-option>
     </mat-select>
      <mat-error *ngIf="class.errors?.required">Class is required.</mat-error>
   </mat-form-field>

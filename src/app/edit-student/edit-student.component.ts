@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,NgForm,Validators} from '@angular/forms';
 import { RestService } from '../rest.service';
+import { ConstantsService} from '../constants/constants.service';
 import { ActivatedRoute } from '@angular/router';
 import { CLASSES } from '../class';
 import { DatePipe } from '@angular/common';
@@ -17,13 +18,11 @@ export class EditStudentComponent implements OnInit {
     editStudentId;
 	  private sub: any;
     editStudentData;
-    classData : any;
-    studentTypeData: any;
-    subjectData:any;
+    constants:any;
     minDate = new Date(2000, 0, 1);
     maxDate :any;
 
-  constructor(public rest: RestService,private route:  ActivatedRoute,private router: Router ,public datePipe: DatePipe) { }
+  constructor(public constantsService: ConstantsService, public rest: RestService,private route:  ActivatedRoute,private router: Router ,public datePipe: DatePipe) { }
 
   ngOnInit() {
     let date = this.datePipe.transform(new Date(), 'yyyy-MM-dd') ;
@@ -40,9 +39,7 @@ export class EditStudentComponent implements OnInit {
         });
     });
 
-    this.classData = [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}];
-    this.studentTypeData = [{value :'Regular'},{value :'Private'}, {value :'Ex'}, {value:'Single Subject'}];
-    this.subjectData = [{value :'हिंदी'},{value :'संस्कृत'}, {value :'मध्य कालीन इतिहास'}, {value:'गृह विज्ञान'}, {value:'शिक्षा शास्'}, {value:'समाज शास्त्र'}, {value:'राजनीती शास्'}];
+    this.constants = this.constantsService.getConstants()
 
   }
 
