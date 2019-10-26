@@ -1,10 +1,10 @@
 import firebase from "firebase";
-import Util from './utils/index'
+import {Utils} from './utils/index'
 
 export class FirebaseWrapper {
 
   constructor(){
-    this.util = new Util()
+    this.util = new Utils()
     let {environment, origin, projectId } = this.util.getEnv()
     let config = this.getConfig(projectId)
     if(environment === 'TPD'){
