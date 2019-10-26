@@ -8,11 +8,14 @@ export class FirebaseWrapper {
     let {environment, origin, projectId } = this.util.getEnv()
     let config = this.getConfig(projectId)
     if(environment === 'TPD'){
-      config = {...config, {apiKey: "AIzaSyB0TkKSVP63y2Xl9CNS-ZQATMGQI2ZF17o", messagingSenderId: "859676569507"}}
+      config.apiKey = "AIzaSyB0TkKSVP63y2Xl9CNS-ZQATMGQI2ZF17o";
+      config.messagingSenderId = "859676569507";
     } else if(environment === 'TRKMMV'){
-      config = {...config, {apiKey: "AIzaSyBBhRox04I34uBsemmItrodE2awn6Z8Zjo", messagingSenderId: "569221175582"}}
+      config.apiKey = "AIzaSyBBhRox04I34uBsemmItrodE2awn6Z8Zjo";
+      config.messagingSenderId = "569221175582";
     }else if(environment === 'DISH'){
-      config = {...config, {apiKey: "AIzaSyB0TkKSVP63y2Xl9CNS-ZQATMGQI2ZF17o", messagingSenderId: "859676569507"}}
+      config.apiKey = "AIzaSyB0TkKSVP63y2Xl9CNS-ZQATMGQI2ZF17o";
+      config.messagingSenderId ="859676569507";
     }
 
     firebase.initializeApp(config);

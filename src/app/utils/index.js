@@ -14,19 +14,23 @@ export class Utils {
   getEnv() {
     let environment = '';
     let origin = `https://${window.location.hostname}/`
-
+    let projectId = ''
     const host = window.location.hostname
     if(host === 'tpdzone.firebaseapp.com' || host === 'tpdzone.web.app'){
       environment = 'TPD'
+      projectId = 'tpdzone'
     } else if(host === 'disd-aaa.firebaseapp.com' || host === 'disd-aaa.web.app' || host === 'localhost'){
       environment = 'TRKMMV'
+      projectId = 'trkmmv'
     }else if(host === 'trkmmvzone.firebaseapp.com' || host === 'trkmmvzone.web.app'){
       environment = 'TRKMMV'
+      projectId = 'trkmmv'
     }else if(host === 'dishzone.firebaseapp.com' || host === 'dishzone.web.app'){
-      environment = 'DISH'
+      environment = 'TPD'
+      projectId = 'tpdzone'
     }
 
-    return {environment, origin};
+    return {environment, origin, projectId};
   }
 
   toHHMMSS(timeInSecond) {
