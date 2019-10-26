@@ -30,8 +30,8 @@
       <mat-menu #receipt="matMenu" (mouseleave)="matMenuTrigger2.closeMenu()" [overlapTrigger]="false">
       <a *ngIf="hostFlag" mat-menu-item routerLink='/receipt' routerLinkActive="active">Add Receipt</a>
       <a *ngIf="hostFlag" mat-menu-item routerLink='/receiptList' routerLinkActive="active">View Receipt</a>
-      <a *ngIf="!hostFlag" mat-menu-item routerLink='/college_receipt' routerLinkActive="active">Add College Receipt</a>
-      <a *ngIf="!hostFlag" mat-menu-item routerLink='/college_receiptList' routerLinkActive="active">View College Receipt</a>
+      <a *ngIf="!hostFlag" mat-menu-item routerLink='/college_receipt' routerLinkActive="active">Add Fee Receipt</a>
+      <a *ngIf="!hostFlag" mat-menu-item routerLink='/college_receiptList' routerLinkActive="active">View Fee Receipt</a>
       </mat-menu>
    </li>
 
