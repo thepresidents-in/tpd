@@ -28,26 +28,35 @@
       <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field>
       <mat-label>Session</mat-label>
-      <!-- <input matInput value="" name="session" ngModel #session="ngModel" required> -->
-      <mat-select placeholder="session"  name="session" [(ngModel)]="session" #sessiont="ngModel"  required>
+      <mat-select placeholder="Session"  name="session" [(ngModel)]="session" #sessiont="ngModel"  required>
       <mat-option  value="2019-20" selected>2019-20</mat-option>
-      <!-- <mat-option  value="2020-21">2020-21</mat-option>
-      <mat-option  value="2021-22">2021-22</mat-option> -->
       </mat-select>
       <mat-error *ngIf="session.invalid">Please enter session.</mat-error>
       </mat-form-field>
       </div>
 
       <div class="col-sm-2 col-lg-3 col-md-2">
-      <mat-form-field >
-      <mat-select placeholder="Class"  name="class"  ngModel #class="ngModel" (ngModelChange)="getClass(postForm)" required>
-      <mat-option *ngFor="let class of classData;" value="{{class.class_name}}">{{class.class_name}}</mat-option>
+      <mat-form-field>
+      <mat-label>Fee Type</mat-label>
+      <mat-select placeholder="Fee Type"  name="fee_type" [(ngModel)]="fee_type" #fee_type="ngModel"  required>
+      <mat-option *ngFor="let feeType of feeTypeData;" value="{{feeType.value}}">{{feeType.value}}</mat-option>
       </mat-select>
-      <mat-error *ngIf="class.invalid">Please select class.</mat-error>
+      <mat-error *ngIf="fee_type.invalid">Please enter fee type.</mat-error>
       </mat-form-field>
       </div>
+
+
 </div>
 <div class="row">
+    <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <mat-select placeholder="Class"  name="class"  ngModel #class="ngModel" (ngModelChange)="getClass(postForm)" required>
+    <mat-option *ngFor="let class of classData;" value="{{class.value}}">{{class.value}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="class.invalid">Please select class.</mat-error>
+    </mat-form-field>
+    </div>
+
     <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field class="example-full-width">
     <input  placeholder="Pick Student"  matInput name="first_name" ngModel #first_name="ngModel"  (ngModelChange)="getStudentInfo($event)" [matAutocomplete]="auto" required>
@@ -66,21 +75,24 @@
     <input matInput readonly [value]="idNumber" name="idNumber" [(ngModel)]="idNumber" required>
     </mat-form-field>
     </div>
+
     <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <mat-label>Total Fee</mat-label>
     <input matInput type="number" name="admission_fee"  [(ngModel)]="admissionFee" required readonly>
-    <!-- <mat-error *ngIf="adm_fee.invalid">Please enter Admission Fee.</mat-error> -->
     </mat-form-field>
     </div>
-    <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-    <mat-label>Max Discount(to be given)</mat-label>
-    <input matInput type="number" name="discount" [(ngModel)]="discount" readonly>
-    </mat-form-field>
-    </div>
+
 </div>
 <div class="row">
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+  <mat-form-field >
+  <mat-label>Max Discount(to be given)</mat-label>
+  <input matInput type="number" name="discount" [(ngModel)]="discount" readonly>
+  </mat-form-field>
+  </div>
+
   <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field >
       <mat-label>Amount to be paid</mat-label>

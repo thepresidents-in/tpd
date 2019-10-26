@@ -14,6 +14,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class CollegeReceiptComponent implements OnInit {
   studentData: any = {};
   classData : any[] ;
+  feeTypeData : any[] ;
   sum;
   studentList;
   srno;
@@ -33,10 +34,9 @@ export class CollegeReceiptComponent implements OnInit {
 
   ngOnInit() {
     this.getSrno();
-     this.rest.getClassData().then((response) => {
-      console.log("class data: ",response);
-      this.classData = response;
-    });
+    this.classData = [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}];
+    this.feeTypeData = [{value :'Academic Fee'}];
+
   }
   saveStudentFee(form: NgForm){
     if(form.invalid){
