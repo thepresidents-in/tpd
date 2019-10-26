@@ -240,13 +240,14 @@
   </div>
   <div class="col-sm-2 col-lg-6 col-md-2">
     <section>
-      <mat-checkbox class="example-margin" name="hindi" [(ngModel)]="student.hindi" #hindi="ngModel">हिंदी</mat-checkbox>&nbsp;
+      <mat-checkbox *ngFor="let stu of constants.studentData;" class="example-margin" name="{{stu.value}}" [(ngModel)]="{{stu.value}}" #{{stu.value}}="ngModel">{{stu.value}}</mat-checkbox>&nbsp;
+      <!-- <mat-checkbox class="example-margin" name="hindi" [(ngModel)]="student.hindi" #hindi="ngModel">हिंदी</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="sanskrit" [(ngModel)]="student.sanskrit" #sanskrit="ngModel">संस्कृत</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="medieval_history" [(ngModel)]="student.medieval_history" #medieval_history="ngModel">मध्य कालीन इतिहास</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="home_science" [(ngModel)]="student.home_science" #home_science="ngModel">गृह विज्ञान</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="pedagogy" [(ngModel)]="student.pedagogy" #pedagogy="ngModel">शिक्षा शास्त्र</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="sociology" [(ngModel)]="student.sociology" #sociology="ngModel">समाज शास्त्र</mat-checkbox>&nbsp;
-      <mat-checkbox class="example-margin" name="political_science" [(ngModel)]="student.political_science" #political_science="ngModel">राजनीती शास्त्र</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="political_science" [(ngModel)]="student.political_science" #political_science="ngModel">राजनीती शास्त्र</mat-checkbox>&nbsp; -->
  </section>
 </div>
   </div>
