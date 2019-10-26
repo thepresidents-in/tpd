@@ -21,6 +21,7 @@ export class EditStudentComponent implements OnInit {
     constants:any;
     minDate = new Date(2000, 0, 1);
     maxDate :any;
+    subjectList:any=[];
 
   constructor(public constantsService: ConstantsService, public rest: RestService,private route:  ActivatedRoute,private router: Router ,public datePipe: DatePipe) { }
 
@@ -35,11 +36,24 @@ export class EditStudentComponent implements OnInit {
         this.rest.getStudentsById(params['id']).then((response) => {
           console.log("res KV: ",response);
           this.studentData = response ;
-          console.log("studentData edit :",this.studentData);
+          this.constants = this.constantsService.getConstants();
+          (this.constants.subjectData).map((item,index) =>{
+            let element={};
+            element['sub'+index] = item['value'];
+            element['subname'] = item['value'];
+            element['checked'] = this.studentData[0][item['value']];
+            this.subjectList.push(element);
+          });
         });
     });
 
-    this.constants = this.constantsService.getConstants()
+
+
+   /*  Array.from( myMap ).map(([key, value]) => ({ key, value })); 
+
+  console.log("this.containers11: ",this.containers);
+  console.log("KV this: ",this.text[incLen]);
+  element['sel_column'+incLen] = 'sel_column'+len +1;*/
 
   }
 
