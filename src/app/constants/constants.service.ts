@@ -10,9 +10,9 @@ export class ConstantsService {
 
   getConstants(){
     const host = window.location.hostname
-    if(host === 'tpdzone.firebaseapp.com' || host === 'tpdzone.web.app'){
+    if(host === 'tpdzone.firebaseapp.com' || host === 'tpdzone.web.app' || host === 'localhost'){
       return TPD
-    } else if(host === 'disd-aaa.firebaseapp.com' || host === 'disd-aaa.web.app' || host === 'localhost'){
+    } else if(host === 'disd-aaa.firebaseapp.com' || host === 'disd-aaa.web.app'){
       return TRKMMV
     }else if(host === 'trkmmvzone.firebaseapp.com' || host === 'trkmmvzone.web.app'){
       return TRKMMV
