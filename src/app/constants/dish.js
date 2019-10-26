@@ -26,10 +26,9 @@ export const Constants = {
       {value:'Challan'},
       {value:'Technology/Communication'},
       {value:'Stationary'},
-      {value:'Oil'},
+      {value:'Fuel'},
       {value:'Loan'},
       {value:'To Chairman'},
       {value:'Others'}
   ]
-
 }

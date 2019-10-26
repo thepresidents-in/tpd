@@ -31,5 +31,4 @@ export const Constants = {
       {value:'To Chairman'},
       {value:'Others'}
   ]
-
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { RestService} from '../rest.service';
+import { ConstantsService} from '../constants/constants.service';
 import { FormControl,Validators,FormGroup } from '@angular/forms';
 import { CLASSES } from '../class';
 import { ActivatedRoute,Router } from '@angular/router';
@@ -26,9 +27,10 @@ export class StudentComponent implements OnInit {
   maxDate :any;
   discount:Number;
 
-  constructor(public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) { }
+  constructor(public constants: ConstantsService, public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) { }
 
   ngOnInit() {
+    console.log('anp constants', this.constants.getConstants(''))
     const now = new Date();
     now.setFullYear(now.getFullYear() - 1);
     this.maxDate = now.toISOString().slice(0,10);
