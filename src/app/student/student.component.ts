@@ -31,7 +31,9 @@ export class StudentComponent implements OnInit {
     const now = new Date();
     now.setFullYear(now.getFullYear() - 1);
     this.maxDate = now.toISOString().slice(0,10);
-    this.form = new FormGroup({
+    this.constants = this.constantsService.getConstants()
+
+    let formConfig = {
       'first_name' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(3),Validators.pattern("[a-zA-Z ]*")]
       }),
@@ -103,16 +105,19 @@ export class StudentComponent implements OnInit {
         'discount' : new FormControl('', {
         validators:[Validators.minLength(2),Validators.maxLength(4), Validators.pattern("[1-9]\\d{3}")]
       }),
-        'hindi' : new FormControl(''),
-        'sanskrit' : new FormControl(''),
-        'medieval_history' : new FormControl(''),
-        'home_science' : new FormControl(''),
-        'pedagogy' : new FormControl(''),
-        'sociology' : new FormControl(''),
-        'political_science' : new FormControl(''),
-    });
+        // 'hindi' : new FormControl(''),
+        // 'sanskrit' : new FormControl(''),
+        // 'medieval_history' : new FormControl(''),
+        // 'home_science' : new FormControl(''),
+        // 'pedagogy' : new FormControl(''),
+        // 'sociology' : new FormControl(''),
+        // 'political_science' : new FormControl(''),
+    }
 
-    this.constants = this.constantsService.getConstants()
+    for(let sub of this.constants.subjectData){
+      formConfig[sub.value] = new FormControl('')
+    }
+    this.form = new FormGroup(formConfig);
 
   }
 
