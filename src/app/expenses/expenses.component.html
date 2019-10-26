@@ -24,8 +24,8 @@
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
       <mat-select placeholder="Expense Type*"  name="type" formControlName="type" (ngModelChange)="onChangeType($event)">
-        <mat-option value="Income">Income</mat-option>
         <mat-option value="Expense">Expense</mat-option>
+        <mat-option value="Income">Income</mat-option>
         <mat-error *ngIf="form.get('type').errors?.required">Please select type.</mat-error>
       </mat-select>
     </mat-form-field>
@@ -34,7 +34,7 @@
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
       <mat-select placeholder="Category*"  name="category" formControlName="category">
-        <mat-option *ngFor="let category of categoryData;" value="{{category.name}}">{{category.name}}</mat-option>
+        <mat-option *ngFor="let category of categoryData;" value="{{category.value}}">{{category.value}}</mat-option>
         <mat-error *ngIf="form.get('category').errors?.required">Please select category.</mat-error>
       </mat-select>
     </mat-form-field>

@@ -32,34 +32,35 @@ categoryData;
       }),
        'description' : new FormControl(''),
     });
-    this.IncomeCat = [{name:'BA-1'},
-        {name:'BA-2'},
-        {name:'BA-3'},
-        {name:'Scholarship Form'},
-        {name:'Practicle File'},
-        {name:'MLA\'s / MP\'s Fund'},
-        {name:'Load / Credit'},
-        {name:'Honourable People'},
-        {name:'Chairman\'s Fund'},
-        {name:'Others'}
+
+    this.IncomeCat = [{value:'BA-1'},
+        {value:'BA-2'},
+        {value:'BA-3'},
+        {value:'Scholarship Form'},
+        {value:'Practicle File'},
+        {value:'MLA\'s / MP\'s Fund'},
+        {value:'Load / Credit'},
+        {value:'Honourable People'},
+        {value:'Chairman\'s Fund'},
+        {value:'Others'}
     ]
 
-    this.ExpenseCat = [{name:'PNB Patherwa'},
-        {name:'Purwanchal Bank Patherwa'},
-        {name:'Central Bank Tamkuhi'},
-        {name:'Salary'},
-        {name:'Examination'},
-        {name:'Food'},
-        {name:'Construction'},
-        {name:'Maintainance'},
-        {name:'University'},
-        {name:'Challan'},
-        {name:'Technology/Communication'},
-        {name:'Stationary'},
-        {name:'Oil'},
-        {name:'Loan'},
-        {name:'To Chairman'},
-        {name:'Others'}
+    this.ExpenseCat = [{value:'PNB Patherwa'},
+        {value:'Purwanchal Bank Patherwa'},
+        {value:'Central Bank Tamkuhi'},
+        {value:'Salary'},
+        {value:'Examination'},
+        {value:'Food'},
+        {value:'Construction'},
+        {value:'Maintainance'},
+        {value:'University'},
+        {value:'Challan'},
+        {value:'Technology/Communication'},
+        {value:'Stationary'},
+        {value:'Oil'},
+        {value:'Loan'},
+        {value:'To Chairman'},
+        {value:'Others'}
     ]
   }
 
