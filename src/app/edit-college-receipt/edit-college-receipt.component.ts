@@ -14,6 +14,7 @@ receiptId:string;
 receiptData : any[];
 private sub:any;
 classData : any;
+feeTypeData : any;
  classValue:any;
   discount:Number;
   submittedFee:Number;
@@ -33,10 +34,9 @@ classData : any;
           this.spinner.hide();
         });
     });
-  	  this.rest.getClassData().then((response) => {
-      console.log("class data: ",response);
-      this.classData = response;
-    });
+
+    this.classData = [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}];
+    this.feeTypeData = [{value :'Academic Fee'}];
 
   }
 

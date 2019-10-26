@@ -32,13 +32,25 @@
 	</mat-form-field>
 	</div>
 
-	<div class="col-sm-2 col-lg-3 col-md-2">
-	<mat-form-field >
-		<input  placeholder="Class"  matInput name="class" #class="ngModel" [(ngModel)]="receipt.class" readonly>
-	</mat-form-field>
-	</div>
+  <div class="col-sm-2 col-lg-3 col-md-2">
+  <mat-form-field>
+  <mat-label>Fee Type</mat-label>
+  <mat-select placeholder="Fee Type"  name="fee_type" [(ngModel)]="fee_type" #fee_type="ngModel"  required>
+  <mat-option *ngFor="let feeType of feeTypeData;" value="{{feeType.value}}">{{feeType.value}}</mat-option>
+  </mat-select>
+  <mat-error *ngIf="fee_type.invalid">Please enter fee type.</mat-error>
+  </mat-form-field>
+  </div>
+
 </div>
 <div class="row">
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+  <mat-form-field >
+    <input  placeholder="Class"  matInput name="class" #class="ngModel" [(ngModel)]="receipt.class" readonly>
+  </mat-form-field>
+  </div>
+
   <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field class="example-full-width">
     <input  placeholder="Pick Student"  matInput name="first_name" #first_name="ngModel" [(ngModel)]="receipt.first_name"  (ngModelChange)="getStudentInfo($event)" [matAutocomplete]="auto" required readonly>
@@ -67,13 +79,15 @@
   </mat-form-field>
   </div>
 
+</div>
+<div class="row">
+
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput placeholder="Max Discount(to be given)" name="discount" [(ngModel)]="receipt.discount" #discount="ngModel" readonly>
   </mat-form-field>
   </div>
-</div>
-<div class="row">
+
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput type="number" placeholder="Amount " name="submittedFee" [(ngModel)]="receipt.submittedFee" #submittedFee="ngModel" required >
