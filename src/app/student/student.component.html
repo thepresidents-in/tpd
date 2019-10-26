@@ -56,10 +56,11 @@
     <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field >
         <mat-select placeholder="Student Type*"  name="student_type" formControlName="student_type">
-          <mat-option value="REGULAR">Regular</mat-option>
+          <mat-option *ngFor="let studentType of studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
+          <!-- <mat-option value="REGULAR">Regular</mat-option>
           <mat-option value="PRIVATE">Private</mat-option>
           <mat-option value="EX">Ex</mat-option>
-          <mat-option value="SINGLE_SUBJECT">Single Subject</mat-option>
+          <mat-option value="SINGLE_SUBJECT">Single Subject</mat-option> -->
         </mat-select>
       </mat-form-field>
   </div>
@@ -202,7 +203,7 @@
    <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
       <mat-select placeholder="Class*"  name="class" formControlName="class">
-      <mat-option *ngFor="let class of classData;" value="{{class.class_name}}">{{class.class_name}}</mat-option>
+      <mat-option *ngFor="let class of classData;" value="{{class.value}}">{{class.value}}</mat-option>
       </mat-select>
        <mat-error *ngIf="form.get('class').errors?.required">Please select class.</mat-error>
     </mat-form-field>
@@ -222,7 +223,7 @@
       <mat-checkbox class="example-margin" name="hindi" formControlName="hindi">हिंदी</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="sanskrit" formControlName="sanskrit">संस्कृत</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="medieval_history" formControlName="medieval_history">मध्य कालीन इतिहास</mat-checkbox>&nbsp;
-      <mat-checkbox class="example-margin" name="home_science" formControlName="home_science">ग्रह विज्ञान</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="home_science" formControlName="home_science">गृह विज्ञान</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="pedagogy" formControlName="pedagogy">शिक्षा शास्त्र</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="sociology" formControlName="sociology">समाज शास्त्र</mat-checkbox>&nbsp;
       <mat-checkbox class="example-margin" name="political_science" formControlName="political_science">राजनीती शास्त्र</mat-checkbox>&nbsp;

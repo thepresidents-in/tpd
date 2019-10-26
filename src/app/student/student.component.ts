@@ -18,6 +18,8 @@ export interface DialogData {
 export class StudentComponent implements OnInit {
 	studentData: any = {};
 	classData : any[] ;
+	studentTypeData : any[] ;
+	subjectData : any[] ;
   form: FormGroup;
   imagePreview: string;
   minDate = new Date(2000, 0, 1);
@@ -112,7 +114,9 @@ export class StudentComponent implements OnInit {
     });
 
 
-      this.classData = [{class_name :'BA-1'},{class_name :'BA-2'}, {class_name :'BA-3'}];
+      this.classData = [{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}];
+      this.studentTypeData = [{value :'Regular'},{value :'Private'}, {value :'Ex'}, {value:'Single Subject'}];
+      this.subjectData = [{value :'हिंदी'},{value :'संस्कृत'}, {value :'मध्य कालीन इतिहास'}, {value:'गृह विज्ञान'}, {value:'शिक्षा शास्'}, {value:'समाज शास्त्र'}, {value:'राजनीती शास्'}];
 
 
   }
