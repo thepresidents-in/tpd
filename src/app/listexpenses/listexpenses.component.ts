@@ -18,8 +18,9 @@ export interface DialogData {
 export class ListexpensesComponent implements OnInit {
   expenseList;
   dataSource ;
-  displayedColumns = ['date','type','expense','description','del'];
+  displayedColumns = ['srno', 'date','type','amount','description','del'];
   expenseSum:Number;
+  incomeSum:Number;
 
 
     constructor( public rest: RestService, public dialog: MatDialog ,private spinnerService: Ng4LoadingSpinnerService,private datePipe: DatePipe) {}
@@ -41,7 +42,9 @@ export class ListexpensesComponent implements OnInit {
       this.dataSource = new MatTableDataSource(response);
       let res=0;
       console.log("kv datasource: ",this.dataSource.filteredData);
-      this.expenseSum = this.getExpenseSum(this.dataSource.filteredData);
+      let incomeExpense = this.getExpenseSum(this.dataSource.filteredData)
+      this.incomeSum = incomeExpense[0];
+      this.expenseSum = incomeExpense[1];
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.spinnerService.hide();
@@ -51,7 +54,9 @@ export class ListexpensesComponent implements OnInit {
       filterValue = filterValue.trim(); // Remove whitespace
       filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
       this.dataSource.filter = filterValue;
-      this.expenseSum = this.getExpenseSum(this.dataSource.filteredData);
+      let incomeExpense = this.getExpenseSum(this.dataSource.filteredData)
+      this.incomeSum = incomeExpense[0];
+      this.expenseSum = incomeExpense[1];
     }
     get_to_date(event){
        let to_date= this.datePipe.transform(event, 'yyyy-MM-dd');
@@ -72,18 +77,24 @@ export class ListexpensesComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.spinnerService.hide();*/
       this.dataSource = new MatTableDataSource(response);
-      this.expenseSum = this.getExpenseSum(this.dataSource.filteredData);
+      let incomeExpense = this.getExpenseSum(this.dataSource.filteredData)
+      this.incomeSum = incomeExpense[0];
+      this.expenseSum = incomeExpense[1];
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       });
     }
     getExpenseSum(arr_expense) {
-      let res=0;
-      var sumOfExpense = (arr_expense).map(function (num, idx) {
-      console.log(num.expense);
-      res += +num.expense;
-      }); 
-      return res;
+      let income = 0;
+      let expense = 0;
+      let sumOfExpense = (arr_expense).map(function (row, idx) {
+        if(row.type === 'Income'){
+          income += +row.amount;
+        }else if(row.type === 'Expense'){
+          expense += +row.amount;
+        }
+      });
+      return [income, expense];
     }
   }
 

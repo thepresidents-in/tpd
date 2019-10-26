@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { RestService} from '../rest.service';
+import { ConstantsService} from '../constants/constants.service';
 import { FormControl,Validators,FormGroup } from '@angular/forms';
 import { CLASSES } from '../class';
 import { ActivatedRoute,Router } from '@angular/router';
@@ -17,30 +18,33 @@ export interface DialogData {
 })
 export class StudentComponent implements OnInit {
 	studentData: any = {};
-	classData : any[] ;
+  constants:any;
   form: FormGroup;
   imagePreview: string;
   minDate = new Date(2000, 0, 1);
   maxDate :any;
+  discount:Number;
 
-  constructor(public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) { }
+  constructor(public constantsService: ConstantsService, public rest:RestService,private route: ActivatedRoute,private router: Router,public dialog : MatDialog ,public datePipe:DatePipe) { }
 
   ngOnInit() {
     const now = new Date();
     now.setFullYear(now.getFullYear() - 1);
     this.maxDate = now.toISOString().slice(0,10);
-    this.form = new FormGroup({
+    this.constants = this.constantsService.getConstants()
+
+    let formConfig = {
       'first_name' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3),Validators.pattern("^[a-zA-Z]*")]
+        validators:[Validators.required, Validators.minLength(3),Validators.pattern("[a-zA-Z ]*")]
       }),
       'last_name' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(3),Validators.pattern("^[a-zA-Z]*")]
       }),
       'father_name' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3),Validators.pattern("^[a-zA-Z]*")]
+        validators:[Validators.required, Validators.minLength(3),Validators.pattern("[a-zA-Z ]*")]
       }),
       'mother_name' : new FormControl('',{
-        validators:[Validators.required, Validators.minLength(3),Validators.pattern("^[a-zA-Z]*")]
+        validators:[Validators.required, Validators.minLength(3),Validators.pattern("[a-zA-Z ]*")]
       }),
       'address' : new FormControl('',{
         validators:[Validators.required, Validators.minLength(10)]
@@ -92,22 +96,28 @@ export class StudentComponent implements OnInit {
         'contact_number2' : new FormControl('',{
         validators:[Validators.required, Validators.maxLength(10), Validators.pattern("[6-9]\\d{9}")]
       }),
-        'miniority' : new FormControl('',{
+        'minority' : new FormControl('',{
         validators:[Validators.required]
       }),
         'idNumber' : new FormControl('',{
-        validators:[Validators.required]
+        validators:[Validators.required, Validators.minLength(6)]
       }),
-        'discount' : new FormControl(''),
-        'hindi' : new FormControl(''),
-        'english' : new FormControl(''),
-        'maths' : new FormControl(''),
-    });
+        'discount' : new FormControl('', {
+        validators:[Validators.minLength(2),Validators.maxLength(4), Validators.pattern("[1-9]\\d{3}")]
+      }),
+        // 'hindi' : new FormControl(''),
+        // 'sanskrit' : new FormControl(''),
+        // 'medieval_history' : new FormControl(''),
+        // 'home_science' : new FormControl(''),
+        // 'pedagogy' : new FormControl(''),
+        // 'sociology' : new FormControl(''),
+        // 'political_science' : new FormControl(''),
+    }
 
-    this.rest.getClassData().then((response) => {
-      console.log("class data: ",response);
-      this.classData = response;
-    });
+    for(let sub of this.constants.subjectData){
+      formConfig[sub.value] = new FormControl('')
+    }
+    this.form = new FormGroup(formConfig);
 
   }
 
@@ -133,14 +143,6 @@ openDialog() {
     const dialogRef = this.dialog.open(SaveDialogContent);
   }
 
-_keyPress(event: any) {
-    const pattern = /[0-9]/;
-    let inputChar = String.fromCharCode(event.charCode);
-    if (!pattern.test(inputChar)) {
-      event.preventDefault();
-
-    }
-  }
 }
 
 @Component({

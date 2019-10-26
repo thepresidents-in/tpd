@@ -23,20 +23,28 @@
 
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-      <mat-select placeholder="Expense Type*"  name="type" formControlName="type">
-        <mat-option value="Academics">Academics</mat-option>
-        <mat-option value="Operations">Operations</mat-option>
-        <mat-option value="Administrative">Administrative</mat-option>
-        <mat-option value="Others">Others</mat-option>
+      <mat-select placeholder="Expense Type*"  name="type" formControlName="type" (ngModelChange)="onChangeType($event)">
+        <mat-option value="Expense">Expense</mat-option>
+        <mat-option value="Income">Income</mat-option>
+        <mat-error *ngIf="form.get('type').errors?.required">Please select type.</mat-error>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+      <mat-select placeholder="Category*"  name="category" formControlName="category">
+        <mat-option *ngFor="let category of categoryData;" value="{{category.value}}">{{category.value}}</mat-option>
+        <mat-error *ngIf="form.get('category').errors?.required">Please select category.</mat-error>
       </mat-select>
     </mat-form-field>
   </div>
 
     <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field >
-      <input matInput placeholder="Expense*" name="expense" formControlName="expense" (keypress)=_keyPress($event)>
-      <mat-error *ngIf="form.get('expense').errors?.required">Expense is required.</mat-error>
-      <mat-error *ngIf="form.get('expense').errors?.minlength">Expense should be atleast 2 digit.</mat-error>
+      <input matInput placeholder="Amount*" name="amount" formControlName="amount" (keypress)=_keyPress($event)>
+      <mat-error *ngIf="form.get('amount').errors?.required">Amount is required.</mat-error>
+      <mat-error *ngIf="form.get('amount').errors?.minlength">Amount should be atleast 2 digit.</mat-error>
     </mat-form-field>
     </div>
 

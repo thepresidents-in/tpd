@@ -14,9 +14,8 @@ export interface DialogData {
   styleUrls: ['./list-student.component.css']
 })
 export class ListStudentComponent implements OnInit {
-studentList;
 dataSource ;
-displayedColumns = ['roll_number','first_name','father_name','mother_name','class','dob','uId', 'del'];
+displayedColumns = ['srno', 'idNumber','first_name','father_name','mother_name','class','dob','uId', 'del'];
 
 
   constructor( public rest: RestService, public dialog: MatDialog ,private spinnerService: Ng4LoadingSpinnerService) {}

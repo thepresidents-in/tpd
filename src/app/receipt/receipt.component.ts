@@ -161,7 +161,7 @@ getStudentInfo(std){
 }
 
 getSno(){
-  this.rest.getReceiptSno().then((response)=> {
+  this.rest.getReceiptSno('receipt').then((response)=> {
     console.log("sno: ",response);
     this.sn_number = response;
     this.snoDisabled = false;

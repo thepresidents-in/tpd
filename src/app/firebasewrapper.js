@@ -1,38 +1,37 @@
 import firebase from "firebase";
+import {Utils} from './utils/index'
+
 export class FirebaseWrapper {
 
   constructor(){
-    let config = {
-      apiKey: "AIzaSyD9B2YdN4gAPqryKSiHRQocPc9kA_ZSFLY",
-      authDomain: "jhoraapp.firebaseapp.com",
-      databaseURL: "https://jhoraapp.firebaseio.com",
-      projectId: "jhoraapp",
-      storageBucket: "jhoraapp.appspot.com",
-      messagingSenderId: "105398319929"
-    };
-    config = {
-      apiKey: "AIzaSyBBhRox04I34uBsemmItrodE2awn6Z8Zjo",
-      authDomain: "trkmmv.firebaseapp.com",
-      databaseURL: "https://trkmmv.firebaseio.com",
-      projectId: "trkmmv",
-      storageBucket: "trkmmv.appspot.com",
-      messagingSenderId: "569221175582"
-    };
-    /* config = {
-      apiKey: "AIzaSyAfr67DADkoyrt5DEoc9IHcKqlps05AsZ0",
-      authDomain: "disd-aaa.firebaseapp.com",
-      databaseURL: "https://disd-aaa.firebaseio.com",
-      projectId: "disd-aaa",
-      storageBucket: "disd-aaa.appspot.com",
-      messagingSenderId: "302980355079"
-    };*/
+    this.util = new Utils()
+    let {environment, origin, projectId } = this.util.getEnv()
+    let config = this.getConfig(projectId)
+    if(environment === 'TPD'){
+      config.apiKey = "AIzaSyB0TkKSVP63y2Xl9CNS-ZQATMGQI2ZF17o";
+      config.messagingSenderId = "859676569507";
+    } else if(environment === 'TRKMMV'){
+      config.apiKey = "AIzaSyBBhRox04I34uBsemmItrodE2awn6Z8Zjo";
+      config.messagingSenderId = "569221175582";
+    }else if(environment === 'DISH'){
+      config.apiKey = "AIzaSyB0TkKSVP63y2Xl9CNS-ZQATMGQI2ZF17o";
+      config.messagingSenderId ="859676569507";
+    }
+
     firebase.initializeApp(config);
     this.fireStore = firebase.firestore();
   }
-
+  getConfig(projectId){
+    let config =  { authDomain: `${projectId}.firebaseapp.com`,
+      databaseURL: `https://${projectId}.firebaseio.com`,
+      projectId:`${projectId}`,
+      storageBucket: `${projectId}.appspot.com`
+    };
+    return config
+  }
   uuidv4() {
     let x = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c)=> {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
     return Math.floor(new Date() / 1000)+"-"+ x;
@@ -60,7 +59,7 @@ export class FirebaseWrapper {
     })
   }
 getReceiptSno(receipt){
-  return this.fireStore.collection('receipt').get().then((receipt)=>{
+  return this.fireStore.collection(receipt).get().then((receipt)=>{
     return receipt.size || receipt.length;
   })
   .then((data)=>{
@@ -119,6 +118,21 @@ getReceiptSno(receipt){
   selectAllById(tableName,id){
     let p = new Promise( (resolve, reject)=>{
       this.fireStore.collection(tableName).where('uId', '==', id).get()
+      .then((snapshots) => {
+        let rows = []
+        snapshots.forEach((doc) => {
+          let data = doc.data();
+          rows.push(data)
+        })
+        resolve(rows)
+      })
+    });
+    return p;
+  }
+
+  selectAllByParam(tableName,param, value){
+    let p = new Promise( (resolve, reject)=>{
+      this.fireStore.collection(tableName).where(param, '==', value).get()
       .then((snapshots) => {
         let rows = []
         snapshots.forEach((doc) => {

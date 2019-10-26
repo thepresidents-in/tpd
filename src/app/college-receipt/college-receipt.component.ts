@@ -1,5 +1,6 @@
 import { Component, OnInit ,Inject,Input } from '@angular/core';
 import { RestService} from '../rest.service';
+import { ConstantsService} from '../constants/constants.service';
 import { FormControl,Validators,FormGroup ,NgForm} from '@angular/forms';
 import { CLASSES } from '../class';
 import { Router } from '@angular/router';
@@ -12,31 +13,27 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   styleUrls: ['./college-receipt.component.css']
 })
 export class CollegeReceiptComponent implements OnInit {
-  studentData: any = {};
-  classData : any[] ;
+  constants:any;
   sum;
   studentList;
-  sn_number;
-  roll_no: number;
+  srno;
+  idNumber:any;
+  roll_number: number;
   admissionFee:number =5100;
   session = '2019-20';
   todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-  snoDisabled: boolean= true;
+  srnoDisabled: boolean= true;
   fee:number;
   isFee: boolean=true;
   form: FormGroup;
   classValue:any;
-  rollNum:any;
   discount:Number;
-  submittedFee:any;
-  constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {}
+  submittedFee:Number;
+  constructor(public constantsService: ConstantsService, public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {}
 
   ngOnInit() {
-    this.getSno();
-     this.rest.getClassData().then((response) => {
-      console.log("class data: ",response);
-      this.classData = response;
-    });
+    this.getSrno();
+    this.constants = this.constantsService.getConstants()
   }
   saveStudentFee(form: NgForm){
     if(form.invalid){
@@ -44,8 +41,10 @@ export class CollegeReceiptComponent implements OnInit {
     return false;
     }
     console.log("form: ",form.value);
-    let student_name=form.value.student_name.split('-');
-    form.value.student_name = student_name[0];
+    let first_name = form.value.first_name.first_name;
+    let student_uId = form.value.first_name.uId;
+    form.value.student_uId = student_uId;
+    form.value.first_name = first_name;
      this.rest.postCollegeReceipt(form.value).then((response) => {
       console.log("post 1");
        alert("Receipt added. !!");
@@ -62,34 +61,25 @@ export class CollegeReceiptComponent implements OnInit {
 }
 
 getStudentInfo(std){
-   let splitStr =  (std).split("-");
-   this.rollNum = (splitStr[1]).split("-");
-   this.discount = Number((splitStr[2]).split("-"));
-   console.log("getStudentInfo studentKV:"+this.rollNum[0]+"and class: "+this.classValue+" and dis "+this.rollNum[1]);
-   if(this.discount != null){
-   	this.submittedFee = this.admissionFee - Number(this.discount) ;
-   }
-   else {
-   	this.submittedFee = this.admissionFee ;
-   }
-   console.log("submittedFee: "+this.submittedFee);
-   this.isFee = false;
+  console.log('anp std', std)
+     if(std){
+       this.idNumber = std.idNumber
+       this.discount = std.discount
+     }
 }
-getSno(){
-  this.rest.getReceiptSno().then((response)=> {
-    console.log("sno: ",response);
-    this.sn_number = response;
-    this.snoDisabled = false;
+getSrno(){
+  this.rest.getReceiptSno('college_receipt').then((response)=> {
+    this.srno = response;
+    this.srnoDisabled = false;
   });
 }
+
+displayFn(student){
+  return student ? student.first_name : student;
+}
+
 getAutoStudentSelect = (stdInfo) => {
-  let splitted = (stdInfo.option.value).split("-");
-  console.log("splitted: ",splitted);
-  this.roll_no = splitted[1];
-  console.log("getAutoStudentSelect: ",stdInfo);
+  console.log('anpop stdinfo', stdInfo)
 }
-getSubmittedAmt(event) {
- console.log("getSubmittedAmt: "+event);
- this.submittedFee= event - Number(this.discount);
-}
+
 }

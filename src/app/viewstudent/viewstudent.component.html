@@ -28,6 +28,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Contact Details</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="family-tab" data-toggle="tab" href="#family" role="tab" aria-controls="family" aria-selected="false">Family Details</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -41,13 +44,13 @@
                             <p>Personal Details</p>
                             <a href="">Category: {{student.category}}</a><br/>
                             <a href="">Gender: {{student.gender}}</a><br/>
-                            <a href="">Handicapped: {{ student.handicapped}}</a><br/> 
-                            <a href="">Only Child: {{ student.only_child}}</a> 
-                            <p>Family Details</p>
-                            <a href="">Father Qualification: {{ student.father_occupation}}</a><br/>
-                            <a href="">Father Occupation : {{ student.father_occupation }}</a><br/>
-                            <a href="">Mother Qualification: {{ student.mother_occupation}}</a><br/>
-                            <a href="">Mother Occupation : {{ student.mother_occupation }}</a><br/>
+                            <a href="">Handicapped: {{ student.handicapped}}</a><br/>
+                            <a href="">Only Child: {{ student.only_child}}</a>
+                            <p>Fee Details</p>
+                            <a href="">Total fee: 5100</a><br/>
+                            <a href="">Deposited: {{ deposited }}</a><br/>
+                            <a href="">Dicount: {{ student.discount}}</a><br/>
+                            <a href="">Balance : {{ 5100 - (deposited + student.discount) }}</a><br/>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -93,7 +96,7 @@
                                                 <p>{{ student.mother_name }}</p>
                                             </div>
                                         </div>
-                                        
+
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
@@ -136,15 +139,108 @@
                                                 <p>{{ student.adhaar_no }}</p>
                                             </div>
                                         </div>
-                                <!-- <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div> -->
+                            </div>
+                            <div class="tab-pane fade" id="family" role="tabpanel" aria-labelledby="family-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Father Qualification</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{student.father_qualification}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Father Occupation</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{student.father_occupation}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Mother Qualification</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{student.mother_qualification}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Mother Occupation</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{student.mother_occupation}}</p>
+                                            </div>
+                                        </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>           
+            </form>
+
+              <mat-card>
+            <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                </mat-form-field>
+            <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="idNumber">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Id Number</mat-header-cell>
+                        <mat-cell *matCellDef="let element ">{{element.idNumber }}
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                    </ng-container>
+
+              <ng-container matColumnDef="first_name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                        <mat-cell  *matCellDef="let element "><!-- <a href="" [routerLink]="['/studentDetail',element.uId]"> -->{{element.first_name | titlecase }} <!-- </a> -->
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                    </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="class">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Class </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.class}} </mat-cell>
+                <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+              </ng-container>
+
+               <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.date | date: 'dd-MM-yyyy'}} </mat-cell>
+                <mat-footer-cell *matFooterCellDef> <strong>Total Fee- 5100 Deposited- {{deposited}} </strong></mat-footer-cell>
+              </ng-container>
+
+
+                    <ng-container matColumnDef="submittedFee">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Submitted Fee</mat-header-cell>
+                        <mat-cell *matCellDef="let element ">  {{ element.submittedFee }}
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef> <strong>Balance: {{5100 - deposited}} </strong></mat-footer-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="uId">
+                        <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+                        <mat-cell [routerLink]="['/editCollegeReceipt',element.uId]" *matCellDef="let element">
+                            <mat-icon  matTooltip="Edit Receipt" matPrefix class="icon">edit</mat-icon>
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="del">
+                        <mat-header-cell *matHeaderCellDef>Del</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-icon (click)="openDialog(element)" matTooltip="Delete Receipt" matPrefix class="icon">delete</mat-icon>
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                    </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+               <mat-footer-row class="sticky-footer" *matFooterRowDef="displayedColumns"></mat-footer-row>
+            </mat-table>
+            </mat-card>
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <router-outlet></router-outlet>
         </div>

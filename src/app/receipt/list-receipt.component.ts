@@ -15,14 +15,14 @@ export interface DialogData {
 })
 export class ListReceiptComponent implements OnInit {
 	dataSource ;
-displayedColumns = ['session','class','roll_no','student_name','admission_fee','fee','remaining_fee','feeType','date','uId'];
+displayedColumns = ['srno','session','class','roll_no','student_name','admission_fee','fee','remaining_fee','feeType','date','uId'];
 constructor(public rest:RestService, public dialog: MatDialog,private router: Router, private spinnerService: Ng4LoadingSpinnerService){
 
 }
 
 openDialog(receiptData) {
    console.log("receiptData console: ",receiptData);
-    const dialogRef = this.dialog.open(receiptDialogContent, {
+    const dialogRef = this.dialog.open(ReceiptDialogContent, {
       data: {
         receiptId: receiptData.uId
       }
@@ -64,7 +64,7 @@ ngOnInit() {
   selector: 'dialog-content-example-dialog',
   templateUrl: 'delete_receipt_dialog.html',
 })
-export class receiptDialogContent {
+export class ReceiptDialogContent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public rest: RestService,private router: Router) {}
   deleteReceipt(id) {
    console.log("delete receipt : "+id);
@@ -78,4 +78,3 @@ export class receiptDialogContent {
     });
   }
 }
-

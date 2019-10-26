@@ -98,8 +98,8 @@ constructor(private  httpClient:  HttpClient)
   logout() {
     return firewrap.logout();
   }
-  getReceiptSno(){
-    return firewrap.getReceiptSno('receipt');
+  getReceiptSno(receipt){
+    return firewrap.getReceiptSno(receipt);
   }
    postFee(fee) {
     return firewrap.addFee(fee);
@@ -148,6 +148,11 @@ constructor(private  httpClient:  HttpClient)
   getCollegeReceipt(){
      //const body = JSON.stringify({"fn": 'selectAll', "params": ["students"]});
      return firewrap.selectAll('college_receipt');
+      //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
+}
+  getCollegeReceiptByParam(param, value){
+     //const body = JSON.stringify({"fn": 'selectAll', "params": ["students"]});
+     return firewrap.selectAllByParam('college_receipt', param, value);
       //return  this.httpClient.post(`${this.API_URL}`,body, httpOptions)
 }
   postExpense(expense){

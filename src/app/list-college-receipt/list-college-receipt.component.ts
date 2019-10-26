@@ -1,7 +1,5 @@
 import { Component, OnInit ,Inject,Input,ViewChild } from '@angular/core';
 import { RestService} from '../rest.service';
-/*import { FormControl,Validators,FormGroup ,NgForm} from '@angular/forms';*/
-import { CLASSES } from '../class';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -12,12 +10,12 @@ export interface DialogData {
 }
 @Component({
   selector: 'app-college-list-receipt',
-  templateUrl: './college-list-receipt.component.html',
-  styleUrls: ['./college-receipt.component.css']
+  templateUrl: './list-college-receipt.component.html',
+  styleUrls: ['./list-college-receipt.component.css']
 })
-export class CollegeListReceiptComponent implements OnInit {
+export class ListCollegeReceiptComponent implements OnInit {
   dataSource;
-  displayedColumns = ['idNumber','student_name','class','date','admission_fee','submittedFee','discount','uId', 'del'];
+  displayedColumns = ['srno', 'idNumber','first_name','class','date','submittedFee','uId', 'del'];
   constructor(public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router,public dialog: MatDialog) {}
 
 @ViewChild(MatSort) sort: MatSort;
@@ -36,7 +34,7 @@ export class CollegeListReceiptComponent implements OnInit {
   }
   openDialog(receiptData) {
    console.log("receiptData console: ",receiptData);
-    const dialogRef = this.dialog.open(collegeReceiptDialogContent, {
+    const dialogRef = this.dialog.open(ListCollegeReceiptDialogContent, {
       data: {
         receiptId: receiptData.uId
       }
@@ -47,21 +45,23 @@ export class CollegeListReceiptComponent implements OnInit {
       console.log("Dialog result: ",result);
     });
   }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
  }
  @Component({
   selector: 'dialog-content-example-dialog',
   templateUrl: 'delete_receipt_dialog.html',
 })
- export class collegeReceiptDialogContent {
+ export class ListCollegeReceiptDialogContent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public rest: RestService,private router: Router) {}
   deleteReceipt(id) {
    console.log("delete receipt : "+id);
      this.rest.delete("college_receipt",id).then((response) => {
        alert("receipt deleted.");
-       /*this.rest.getReceipt().then((response) => {
-    console.log("res KV getReceipt: ",response);
-
-});*/
        this.router.navigate(['/college_receiptList']);
     });
   }

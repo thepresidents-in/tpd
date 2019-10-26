@@ -7,15 +7,21 @@
 <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <!-- Position Column -->
+  <ng-container matColumnDef="srno">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Sr No</mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index;">{{ i+1 }}
+            </mat-cell>
+        </ng-container>
+        
   <ng-container matColumnDef="session">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Session</mat-header-cell>
-            <mat-cell *matCellDef="let element ">{{element.session }} 
+            <mat-cell *matCellDef="let element ">{{element.session }}
             </mat-cell>
         </ng-container>
 
   <ng-container matColumnDef="class">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Class</mat-header-cell>
-            <mat-cell  *matCellDef="let element ">{{element.class | titlecase }} 
+            <mat-cell  *matCellDef="let element ">{{element.class | titlecase }}
             </mat-cell>
         </ng-container>
 
@@ -30,7 +36,7 @@
     <mat-cell *matCellDef="let element"><a href="" [routerLink]="['/receiptDetail',element.uId]"> {{element.student_name | titlecase }} </a></mat-cell>
   </ng-container>
 
-  
+
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="admission_fee">

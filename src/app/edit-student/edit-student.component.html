@@ -11,14 +11,14 @@
  <div class="row">
       <div class="col-sm-2 col-lg-3 col-md-2">
      <mat-form-field>
-    <input matInput  name="idNumber" [(ngModel)]="student.idNumber" #first_name="ngModel" readonly placeholder="ID Number" >
+    <input matInput  name="idNumber" [(ngModel)]="student.idNumber" #first_name="ngModel" readonly placeholder="ID (BA-2-21)" >
     <!--  <mat-error *ngIf="idNumber.errors?.required">ID Number is required.</mat-error> -->
   </mat-form-field>
   </div>
 
 <div class="col-sm-2 col-lg-3 col-md-2">
      <mat-form-field>
-    <input matInput placeholder="First Name" name="first_name" [(ngModel)]="student.first_name" #first_name="ngModel" [ngClass]="{ 'is-invalid': postForm.submitted && first_name.invalid }" required minlength="3" pattern="^[a-zA-Z]*">
+    <input matInput placeholder="First Name" name="first_name" [(ngModel)]="student.first_name" #first_name="ngModel" [ngClass]="{ 'is-invalid': postForm.submitted && first_name.invalid }" required minlength="3" pattern="^[a-zA-Z ]*">
      <mat-error *ngIf="first_name.errors?.required">First name is required.</mat-error>
      <mat-error *ngIf="first_name.errors?.minlength">Min length should be 3 characters.</mat-error>
       <mat-error *ngIf="first_name.errors?.pattern">Please enter valid first name.</mat-error>
@@ -36,8 +36,8 @@
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput placeholder="Adhaar No" name="adhaar_no" [(ngModel)]="student.adhaar_no" #adhaar_no="ngModel" required minlength="12" maxlength="12" pattern="[0-9]+">
-     <mat-error *ngIf="adhaar_no.errors?.required">Adhaar number is required.</mat-error> 
-      <mat-error *ngIf="adhaar_no.errors?.minlength">Please enter valid length of Adhaar Number.</mat-error> 
+     <mat-error *ngIf="adhaar_no.errors?.required">Adhaar number is required.</mat-error>
+      <mat-error *ngIf="adhaar_no.errors?.minlength">Please enter valid length of Adhaar Number.</mat-error>
       <mat-error *ngIf="adhaar_no.errors?.maxlength">Please enter valid length of Adhaar Number.</mat-error>
       <mat-error *ngIf="adhaar_no.errors?.pattern">Please enter valid Adhaar Number.</mat-error>
 
@@ -58,10 +58,12 @@
 
 <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-   <mat-select placeholder="Religion"  name="student_type" [(ngModel)]="student.student_type" #student_type="ngModel">
-    <mat-option value="REGULAR">Regular</mat-option>
+   <mat-select placeholder="Student Type*"  name="student_type" [(ngModel)]="student.student_type" #student_type="ngModel">
+     <mat-option *ngFor="let studentType of constants.studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
+    <!-- <mat-option value="REGULAR">Regular</mat-option>
     <mat-option value="PRIVATE">Private</mat-option>
     <mat-option value="EX">Ex</mat-option>
+    <mat-option value="SINGLE_SUBJECT">Single Subject</mat-option> -->
     </mat-select>
   </mat-form-field>
 </div>
@@ -78,7 +80,7 @@
 
 <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-    <input matInput placeholder="Father Name" name="father_name" [(ngModel)]="student.father_name" #father_name="ngModel" required minlength="3" pattern="^[a-zA-Z]*">
+    <input matInput placeholder="Father Name" name="father_name" [(ngModel)]="student.father_name" #father_name="ngModel" required minlength="3" pattern="^[a-zA-Z ]*">
      <mat-error *ngIf="father_name.errors?.required">Father name is required.</mat-error>
      <mat-error *ngIf="father_name.errors?.minlength">Father name should be atleast 3 characters..</mat-error>
      <mat-error *ngIf="father_name.errors?.pattern">Please enter valid father name.</mat-error>
@@ -105,7 +107,7 @@
 
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-    <input matInput placeholder="Mother Name" name="mother_name" [(ngModel)]="student.mother_name" #mother_name="ngModel" required minlength="3" pattern="^[a-zA-Z]*">
+    <input matInput placeholder="Mother Name" name="mother_name" [(ngModel)]="student.mother_name" #mother_name="ngModel" required minlength="3" pattern="^[a-zA-Z ]*">
     <mat-error *ngIf="mother_name.errors?.required">Mother name is required.</mat-error>
     <mat-error *ngIf="mother_name.errors?.minlength">Mother name should be atleast 3 characters.</mat-error>
     <mat-error *ngIf="mother_name.errors?.pattern">Please enter valid mather name.</mat-error>
@@ -130,7 +132,7 @@
   </div>
 <div class="col-sm-2 col-lg-3 col-md-2">
      <mat-form-field class="navigation-items">
-    <mat-select placeholder="gender"  name="gender" [(ngModel)]="student.gender" #gender="ngModel" required>
+    <mat-select placeholder="Gender"  name="gender" [(ngModel)]="student.gender" #gender="ngModel" required>
       <mat-option value="male">Male</mat-option>
       <mat-option value="female">Female</mat-option>
     </mat-select>
@@ -178,7 +180,7 @@
 
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-   <mat-select placeholder="miniority"  name="miniority" [(ngModel)]="student.miniority" #miniority="ngModel">
+   <mat-select placeholder="Minority"  name="minority" [(ngModel)]="student.minority" #minority="ngModel">
       <mat-option value="YES">Yes</mat-option>
       <mat-option value="NO">No</mat-option>
     </mat-select>
@@ -220,14 +222,14 @@
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <mat-select placeholder="Class"  name="class" [(ngModel)]="student.class" #class="ngModel" required>
-      <mat-option *ngFor="let class of classData;" value="{{class.class_name}}">{{class.class_name}}</mat-option>
+      <mat-option *ngFor="let class of constants.classData;" value="{{class.value}}">{{class.value}}</mat-option>
     </mat-select>
      <mat-error *ngIf="class.errors?.required">Class is required.</mat-error>
   </mat-form-field>
   </div>
    <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-    <input matInput placeholder="Discount" name="discount" [(ngModel)]="student.discount" #discount="ngModel">
+    <input matInput type="number" placeholder="Discount" name="discount" [(ngModel)]="student.discount" #discount="ngModel">
     <!-- <mat-error *ngIf="discount.errors?.pattern">Please enter valid discount.</mat-error> -->
   </mat-form-field>
   </div>
@@ -238,9 +240,18 @@
   </div>
   <div class="col-sm-2 col-lg-6 col-md-2">
     <section>
-      <mat-checkbox class="example-margin" name="hindi" [(ngModel)]="student.hindi" #hindi="ngModel">Hindi</mat-checkbox>&nbsp;
-      <mat-checkbox class="example-margin" name="english" [(ngModel)]="student.english" #english="ngModel">English</mat-checkbox>&nbsp;
-      <mat-checkbox class="example-margin" name="maths" [(ngModel)]="student.maths" #maths="ngModel">Maths</mat-checkbox>
+      <mat-checkbox *ngFor="let sub of subjectList  ;let i=index" class="example-margin" name="{{sub.subname}}" 
+      ngModel
+      [(ngModel)]="subjectList[i].checked" 
+      >{{sub.subname}}</mat-checkbox>&nbsp;  
+        
+      <!-- <mat-checkbox class="example-margin" name="hindi" [(ngModel)]="student.hindi" #hindi="ngModel">हिंदी</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="sanskrit" [(ngModel)]="student.sanskrit" #sanskrit="ngModel">संस्कृत</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="medieval_history" [(ngModel)]="student.medieval_history" #medieval_history="ngModel">मध्य कालीन इतिहास</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="home_science" [(ngModel)]="student.home_science" #home_science="ngModel">गृह विज्ञान</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="pedagogy" [(ngModel)]="student.pedagogy" #pedagogy="ngModel">शिक्षा शास्त्र</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="sociology" [(ngModel)]="student.sociology" #sociology="ngModel">समाज शास्त्र</mat-checkbox>&nbsp;
+      <mat-checkbox class="example-margin" name="political_science" [(ngModel)]="student.political_science" #political_science="ngModel">राजनीती शास्त्र</mat-checkbox>&nbsp; -->
  </section>
 </div>
   </div>
