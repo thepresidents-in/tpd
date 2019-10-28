@@ -17,7 +17,7 @@ module.exports = class Util{
     if(!(projectId === 'disd-aaa')){
       throw new Error('projectId not valid to initialize firebase App');
     }
-    let serviceAccount = require(`./${projectId}.json`);
+    let serviceAccount = require(`../${projectId}.json`);
     admin.initializeApp({ credential: admin.credential.cert(serviceAccount), databaseURL: `https://${projectId}.firebaseio.com`, storageBucket: `${projectId}` });
     let bigquery = new BigQuery({ projectId: `${projectId}` });
     let storage = new Storage({ projectId: `${projectId}`, keyFilename: `./${projectId}.json` });

@@ -41,7 +41,8 @@ export class EditStudentComponent implements OnInit {
             let element={};
             element['sub'+index] = item['value'];
             element['subname'] = item['value'];
-            element['checked'] = this.studentData[0][item['value']];
+            let val = this.studentData[0][item['value']]
+            element['checked'] = val ? val : false;
             this.subjectList.push(element);
           });
         });
@@ -49,7 +50,7 @@ export class EditStudentComponent implements OnInit {
 
 
 
-   /*  Array.from( myMap ).map(([key, value]) => ({ key, value })); 
+   /*  Array.from( myMap ).map(([key, value]) => ({ key, value }));
 
   console.log("this.containers11: ",this.containers);
   console.log("KV this: ",this.text[incLen]);
@@ -64,7 +65,7 @@ export class EditStudentComponent implements OnInit {
     console.log("edit form :",form);
     let keys = Object.keys(form.controls);
     form.value.dob= this.datePipe.transform(form.value.dob, 'yyyy-MM-dd');
-    let values = Object.values(form.value);
+    console.log('anp val', form.value);
     this.rest.update('students',this.editStudentId,form.value).then((response) => {
        alert("Student Edited !!");
        this.router.navigate(['/liststudent']);

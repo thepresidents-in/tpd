@@ -16,10 +16,10 @@ export class Utils {
     let origin = `https://${window.location.hostname}/`
     let projectId = ''
     const host = window.location.hostname
-    if(host === 'tpdzone.firebaseapp.com' || host === 'tpdzone.web.app' || host === 'localhost'){
+    if(host === 'tpdzone.firebaseapp.com' || host === 'tpdzone.web.app' ){
       environment = 'TPD'
       projectId = 'tpdzone'
-    } else if(host === 'disd-aaa.firebaseapp.com' || host === 'disd-aaa.web.app'){
+    } else if(host === 'disd-aaa.firebaseapp.com' || host === 'disd-aaa.web.app' || host === 'localhost'){
       environment = 'TRKMMV'
       projectId = 'trkmmv'
     }else if(host === 'trkmmvzone.firebaseapp.com' || host === 'trkmmvzone.web.app'){
