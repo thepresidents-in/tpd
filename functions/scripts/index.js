@@ -1,8 +1,8 @@
 const functions = require('firebase-functions');
 const json2csv = require('json2csv').parse;
-const projectId = 'xyz';
-const util = new (require('./utils/index'))()
-const cron = new (require('./crons/index'))(util)
+const projectId = 'disd-aaa';
+const util = new (require('../utils/index'))()
+const cron = new (require('../crons/index'))(util)
 
 const {serviceAccount, bigquery, storage, bucket, admin} = util.firebaseSetup(projectId);
 
@@ -13,7 +13,7 @@ const json2xls = require('json2xls');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
-const reports = new (require('./reports/index'))(firestoredb, bucket);
+const reports = new (require('../reports/index'))(firestoredb, bucket);
 function uuidv4() {
   let x = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
@@ -206,23 +206,37 @@ function downloadData(){
 
 
 function testSnapshotIterator(){
-  firestoredb.collection('clientStatusHistory/doc/mi@mi.com')
-  .where("timestamp", "<=", (new Date()/1))
-  .where("timestamp", ">=", (new Date()/1) - 50000)
+  firestoredb.collection('students')
   .get()
   .then((snapShot)=>{
     console.log('anoop', snapShot.docs.length);
-    for(let i = 1; i <= snapShot.docs.length; i++ ){
-      console.log('anp i', i);
+    let ps = []
+    for(let i = 0; i < snapShot.docs.length; i++ ){
       let doc = snapShot.docs[i].data()
-      let pre = snapShot.docs[i-1].data()
-      console.log('anp doc', doc);
-      console.log('anp doc1', doc1);
+      let arr = ['hindi', 'sanskrit', 'medieval_history', 'home_science', 'pedagogy', 'sociology', 'political_science']
+      doc['Hindi'] = doc['Hindi'] ? doc['Hindi'] : doc['hindi'] ? doc['hindi'] :false
+      doc['Sanskrit'] = doc['Sanskrit'] ? doc['Sanskrit'] : doc['sanskrit'] ? doc['sanskrit'] :false
+      doc['Medieval History'] = doc['Medieval History'] ? doc['Medieval History'] : doc['medieval_history'] ? doc['medieval_history'] : false
+      doc['Home Science'] = doc['Home Science'] ? doc['Home Science'] : doc['home_science'] ? doc['home_science']:false
+      doc['Pedagogy'] = doc['Pedagogy'] ? doc['Pedagogy'] : doc['pedagogy'] ? doc['pedagogy'] :false
+      doc['Sociology'] = doc['Sociology'] ? doc['Sociology'] : doc['sociology'] ? doc['sociology'] :false
+      doc['Political Science'] = doc['Political Science'] ? doc['Political Science'] : doc['political_science'] ? doc['political_science'] :false
+      let keys = Object.keys(doc)
+      for(let a of arr){
+        if(keys.indexOf(a) >=0){
+          delete doc[a]
+        }
+      }
+      let p = firestoredb.collection('students').doc(doc.uId).update(doc)
+      ps.push(p)
     }
-    return true
+    return Promise.all(ps)
+  })
+  .then((d)=>{
+    console.log('done');
   })
   .catch((err)=>{
-    console.err('err', err);
+    console.error('err', err);
   })
 }
 
@@ -240,5 +254,4 @@ function testSnapshotIterator(){
 //copyVisitorDataToDev('mi@mi.com', '2019-08-09');
 //copyClientStatusHistoryToDev('mi@mi.com', '2019-08-05')
 //cron.camerasCronToUpdate(util.initializeProdFirestore(),  util.initializeDevFirestore(), 'fullday', '2019-08-11')
-
 //{"from":"2019-08-22","to":"2019-08-22","clientId":"wesenseuat@wesenseuat.com","stores":["here---1","wesense_office_6---1","wesense_office_dev---00","wesense_office_setup_1---4"]}

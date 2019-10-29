@@ -1,7 +1,8 @@
 export const TRKMMV = {
   classData :[{value :'BA-1'},{value :'BA-2'}, {value :'BA-3'}],
   studentTypeData :[{value :'Regular'},{value :'Private'}, {value :'Ex'}, {value:'Single Subject'}],
-  subjectData :[{value :'हिंदी'},{value :'संस्कृत'}, {value :'मध्य कालीन इतिहास'}, {value:'गृह विज्ञान'}, {value:'शिक्षा शास्त्र'}, {value:'समाज शास्त्र'}, {value:'राजनीती शास्त्र'}],
+  //subjectData :[{value :'हिंदी'},{value :'संस्कृत'}, {value :'मध्य कालीन इतिहास'}, {value:'गृह विज्ञान'}, {value:'शिक्षा शास्त्र'}, {value:'समाज शास्त्र'}, {value:'राजनीती शास्त्र'}],
+  subjectData :[{value :'Hindi'},{value:'Sanskrit'}, {value:'Medieval History'}, {value:'Home Science'},{value:'Pedagogy'},{value:'Sociology'}, {value:'Political Science'}],
   feeTypeData :[{value :'Academic Fee'}],
   IncomeCat :[{value:'BA-1'},
       {value:'BA-2'},
@@ -31,5 +32,4 @@ export const TRKMMV = {
       {value:'To Chairman'},
       {value:'Others'}
   ]
-
 }
