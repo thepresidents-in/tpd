@@ -41,7 +41,6 @@
       <mat-select placeholder="Fee Type"  name="fee_type" [(ngModel)]="fee_type" #fee_typet="ngModel"  required>
       <mat-option *ngFor="let feeType of constants.feeTypeData;" value="{{feeType.value}}">{{feeType.value}}</mat-option>
       </mat-select>
-      <!-- <mat-error *ngIf="fee_type.invalid">Please enter fee type.</mat-error> -->
       </mat-form-field>
       </div>
 

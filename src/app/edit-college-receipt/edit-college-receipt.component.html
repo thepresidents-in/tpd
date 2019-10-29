@@ -34,11 +34,8 @@
 
   <div class="col-sm-2 col-lg-3 col-md-2">
   <mat-form-field>
-  <mat-label>Fee Type</mat-label>
-  <mat-select placeholder="Fee Type"  name="fee_type" [(ngModel)]="receipt.fee_type" #fee_typet="ngModel"  required>
-  <mat-option *ngFor="let feeType of constants.feeTypeData;" value="{{feeType.value}}">{{feeType.value}}</mat-option>
-  </mat-select>
-  <!-- <mat-error *ngIf="fee_type.invalid">Please enter fee type.</mat-error> -->
+    <input matInput placeholder="Fee Type" name="fee_type" [(ngModel)]="receipt.fee_type" #fee_type="ngModel" required readonly>
+    <mat-error *ngIf="fee_type.errors?.required">Please enter fee type.</mat-error>
   </mat-form-field>
   </div>
 
