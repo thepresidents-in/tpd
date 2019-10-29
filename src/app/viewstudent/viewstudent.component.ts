@@ -19,7 +19,7 @@ export class ViewstudentComponent implements OnInit {
 	studentData: any[];
   dataSource;
   deposited:Number;
-  displayedColumns = ['idNumber','first_name','class','date','submittedFee','uId', 'del'];
+  displayedColumns = ['srno', 'idNumber','first_name','class','date','submittedFee','uId', 'del'];
 
 	constructor(public datePipe : DatePipe, private route: ActivatedRoute,private rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router,public dialog: MatDialog){ }
   @ViewChild(MatSort) sort: MatSort;

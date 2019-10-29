@@ -204,6 +204,45 @@ function downloadData(){
   })
 }
 
+function addStudenntIdInReceipt(){
+  let studs = []
+  firestoredb.collection('students')
+  .get()
+  .then((snapShot)=>{
+    console.log('anoop', snapShot.docs.length);
+    let docs = []
+    for(let i = 0; i < snapShot.docs.length; i++ ){
+      let doc = snapShot.docs[i].data()
+      studs.push(doc)
+    }
+    return studs
+  })
+  .then((studs)=>{
+    return firestoredb.collection('college_receipt')
+    .get()
+  })
+  .then((snapShot)=>{
+    console.log('anoop college_receipt', snapShot.docs.length);
+    let ps = []
+    for(let i = 0; i < snapShot.docs.length; i++ ){
+      let doc = snapShot.docs[i].data()
+      for(let stu of studs){
+        if(stu.idNumber === doc.idNumber){
+          doc.student_uId = stu.uId
+          ps.push(firestoredb.collection('college_receipt').doc(doc.uId).set(doc))
+          console.log('anp matching', i);
+        }
+      }
+    }
+    return Promise.all(ps)
+  })
+  .then((snapShot)=>{
+    console.log('anp done');
+  })
+  .catch((err)=>{
+    console.error('err', err);
+  })
+}
 
 function testSnapshotIterator(){
   firestoredb.collection('students')
@@ -240,6 +279,7 @@ function testSnapshotIterator(){
   })
 }
 
+addStudenntIdInReceipt()
 //testSnapshotIterator()
 //reports.camUptime4Stores('2019-08-27', '2019-08-28', 'caratlane@caratlane.com', ['delhi',  'southex'])
 //reports.camUptime4Stores('2019-08-27', '2019-08-28', 'williampenn@williampenn.com', ['Infinity_malad',  'anna_nagar', 'kormangla'])

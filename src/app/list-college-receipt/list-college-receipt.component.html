@@ -23,7 +23,7 @@
 
   <ng-container matColumnDef="first_name">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-            <mat-cell  *matCellDef="let element "><!-- <a href="" [routerLink]="['/studentDetail',element.uId]"> -->{{element.first_name | titlecase }} <!-- </a> -->
+            <mat-cell  *matCellDef="let element "><a href="" [routerLink]="['/studentDetail', element.student_uId]">{{element.first_name | titlecase }}</a>
             </mat-cell>
         </ng-container>
 
