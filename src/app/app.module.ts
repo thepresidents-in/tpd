@@ -38,7 +38,7 @@ import { ListReceiptComponent,ReceiptDialogContent } from './receipt/list-receip
 import { EditReceiptComponent } from './receipt/edit-receipt.commponent';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { AuthGuard } from './auth/auth.guard';
-import { ReceiptDetailComponent } from './receipt/receipt-detail.component';
+import { ViewReceiptComponent } from './viewreceipt/viewreceipt.component';
 import { FeeStructureComponent } from './fee-structure/fee-structure.component';
 import { FeeListComponent,FeeDialogContent } from './fee-structure/fee-list.component';
 import { ClassAddComponent } from './student/class_add.component';
@@ -135,7 +135,7 @@ const appRoutes: Routes =[
 },
 {
   path : 'receiptDetail/:id',
-  component: ReceiptDetailComponent,
+  component: ViewReceiptComponent,
   canActivate: [AuthGuard]
 },
 {
@@ -204,7 +204,7 @@ const appRoutes: Routes =[
     ViewstudentDialogContent,
     ListReceiptComponent,
     EditReceiptComponent,
-    ReceiptDetailComponent,
+    ViewReceiptComponent,
     FeeStructureComponent,
     FeeListComponent,
     FeeDialogContent,

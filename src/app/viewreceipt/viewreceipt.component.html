@@ -1,26 +1,24 @@
 
 <ng4-loading-spinner> </ng4-loading-spinner>
-
   <body *ngFor ="let data of studentDetail;" id="content">
     <ng-container *ngFor ="let receiptData of receiptDetail;">
     <header class="clearfix">
       <div id="logo">
         <img src="assets/logo.png">
       </div>
-      <h1>INVOICE - {{ receiptData.sno }}</h1>
+      <h1>INVOICE - {{ receiptData.srno }}</h1>
       <div id="company" class="clearfix">
         <div>The President</div>
-        <div>Daniyari,<br /> AZ 85004, UP</div>
+        <div>Daniyari,<br /> Kushinagar 274409, UP</div>
         <div>9120254484</div>
-        <div><a href="mailto:company@example.com">support@thepresidents.in</a></div>
+        <div><a href="mailto:thepresidents.in@gmail.com">thepresidents.in@gmail.com</a></div>
       </div>
       <div id="project">
         <div><span>Name</span> {{ data.first_name }} {{ data.last_name }}</div>
         <div><span>Class</span> {{ data.class }}</div>
         <div><span>ADDRESS</span> {{ data.address }}</div>
-        <div><span>EMAIL</span> <a href="mailto:optimistanoop@gmail.com">{{ data.email }}</a></div>
-        <div><span>DATE</span> {{ receiptData.date | date: 'dd-MM-yyyy'}}</div>
-       <!--  <div><span>DUE DATE</span> September 17, 2015</div> -->
+        <div><span>EMAIL</span> <a href="mailto:{{data.email}}">{{ data.email }}</a></div>
+        <div><span>DATE</span> {{ receiptData.date | date }}</div>
       </div>
     </header>
     <main>
@@ -36,34 +34,27 @@
         </thead>
         <tbody>
           <tr>
-            <td class="service">Admission Fee</td>
-            <td class="desc"></td>
+            <td class="service">Total Fee</td>
+            <td class="desc">*to be desposited</td>
             <td class="unit">{{ receiptData.admission_fee }}</td>
-            <!-- <td class="qty">26</td> -->
-            <td class="total">{{ receiptData.admission_fee }}</td>
+            <td class="total"></td>
           </tr>
           <tr>
             <td class="service">Submitted Fee</td>
             <td class="desc"></td>
-            <td class="unit">{{ receiptData.fee }}</td>
-            <!-- <td class="qty">80</td> -->
-            <td class="total">{{ receiptData.fee }}</td>
+            <td class="unit">{{ receiptData.submittedFee }}</td>
+            <td class="total">{{ receiptData.submittedFee }}</td>
           </tr>
           <tr>
             <td class="service">Remaining Fee</td>
-            <td class="desc"></td>
-            <td class="unit">{{ receiptData.remaining_fee }}</td>
-            <!-- <td class="qty">20</td> -->
+            <td class="desc">*without discount</td>
+            <td class="unit">{{ receiptData.admission_fee - receiptData.submittedFee}}</td>
             <td class="total"></td>
           </tr>
           <tr>
             <td colspan="3">SUBTOTAL</td>
             <td class="total">{{ total }}</td>
           </tr>
-         <!--  <tr>
-            <td colspan="3">TAX 25%</td>
-            <td class="total">$1,300.00</td>
-          </tr> -->
           <tr>
             <td colspan="3" class="grand total">GRAND TOTAL</td>
             <td class="grand total">{{ total }}</td>
@@ -71,7 +62,7 @@
         </tbody>
       </table>
       <div id="notices">
-        <div>NOTICE:</div>
+        <div>Thanks:</div>
         <div class="notice">The President Daniyari</div>
       </div>
     </main>
@@ -80,8 +71,3 @@
     </footer>
   </ng-container>
 </body>
-
-
-<div id="editor"></div>
-<!-- <button (click)="downloadPDF()" mat-stroked-button color="primary">generate PDF</button> -->
-<button (click)="printDiv('content')" mat-stroked-button color="primary">Print</button>
