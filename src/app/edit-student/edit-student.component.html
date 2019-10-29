@@ -1,5 +1,4 @@
 <app-home></app-home>
-
  <mat-sidenav-container>
    <div class="col-lg-12">
     <mat-card style="margin: 50px;" *ngFor = "let student of studentData">
@@ -9,11 +8,11 @@
       font-size: 14px;">EDIT STUDENT -  <span style="color:#38B6FF;" [routerLink]="['/studentDetail',student.uId]"> {{ student.first_name | uppercase }} {{ student.last_name | uppercase }} </span></mat-card-title>
  <form  name="editStudentData" (submit)="submitEditStudent(postForm.form)" #postForm="ngForm"  class="student-form" >
  <div class="row">
-      <div class="col-sm-2 col-lg-3 col-md-2">
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
      <mat-form-field>
-    <input matInput  name="idNumber" [(ngModel)]="student.idNumber" #first_name="ngModel" readonly placeholder="ID (BA-2-21)" >
-    <!--  <mat-error *ngIf="idNumber.errors?.required">ID Number is required.</mat-error> -->
-  </mat-form-field>
+      <input matInput  name="idNumber" [(ngModel)]="student.idNumber" #first_name="ngModel" readonly placeholder="ID (BA-2-21)" >
+    </mat-form-field>
   </div>
 
 <div class="col-sm-2 col-lg-3 col-md-2">
@@ -22,8 +21,9 @@
      <mat-error *ngIf="first_name.errors?.required">First name is required.</mat-error>
      <mat-error *ngIf="first_name.errors?.minlength">Min length should be 3 characters.</mat-error>
       <mat-error *ngIf="first_name.errors?.pattern">Please enter valid first name.</mat-error>
-  </mat-form-field>
+    </mat-form-field>
   </div>
+
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput placeholder="Last Name" name="last_name" [(ngModel)]="student.last_name" #last_name="ngModel" required minlength="3" pattern="^[a-zA-Z]*">
@@ -32,6 +32,90 @@
      <mat-error *ngIf="last_name.errors?.pattern">Please enter valid last name.</mat-error>
   </mat-form-field>
   </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+       <mat-form-field class="navigation-items">
+      <mat-select placeholder="Gender"  name="gender" [(ngModel)]="student.gender" #gender="ngModel" required>
+        <mat-option value="male">Male</mat-option>
+        <mat-option value="female">Female</mat-option>
+      </mat-select>
+  <mat-error *ngIf="gender.invalid">Please select gender.</mat-error>
+    </mat-form-field>
+    </div>
+</div>
+
+<div class="row">
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput [matDatepicker]="picker" placeholder="DOB" name="dob" [(ngModel)]="student.dob" #dob="ngModel" required [min]="minDate" [max]="maxDate">
+  <mat-datepicker-toggle matPrefix [for]="picker">
+
+  </mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+   <mat-error *ngIf="dob.invalid">Please enter dob.</mat-error>
+  </mat-form-field>
+  </div>
+
+<div class="col-sm-2 col-lg-3 col-md-2">
+  <mat-form-field >
+  <mat-select placeholder="Class"  name="class" [(ngModel)]="student.class" #class="ngModel" required>
+    <mat-option *ngFor="let class of constants.classData;" value="{{class.value}}">{{class.value}}</mat-option>
+  </mat-select>
+   <mat-error *ngIf="class.errors?.required">Class is required.</mat-error>
+</mat-form-field>
+</div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+      <mat-form-field >
+     <mat-select placeholder="Student Type*"  name="student_type" [(ngModel)]="student.student_type" #student_type="ngModel">
+       <mat-option *ngFor="let studentType of constants.studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+      <mat-form-field >
+     <mat-select placeholder="Category"  name="category" [(ngModel)]="student.category" #category="ngModel">
+        <mat-option value="OBC">OBC</mat-option>
+        <mat-option value="Gen">Gen</mat-option>
+        <mat-option value="SC">SC</mat-option>
+        <mat-option value="ST">ST</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+   <mat-select placeholder="Minority"  name="minority" [(ngModel)]="student.minority" #minority="ngModel">
+      <mat-option value="YES">Yes</mat-option>
+      <mat-option value="NO">No</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+      <mat-form-field >
+     <mat-select placeholder="Handicapped"  name="handicapped" [(ngModel)]="student.handicapped" #handicapped="ngModel">
+        <mat-option value="YES">Yes</mat-option>
+        <mat-option value="NO">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+   <mat-select placeholder="Only Child"  name="only_child" [(ngModel)]="student.only_child" #only_child="ngModel">
+      <mat-option value="YES">Yes</mat-option>
+      <mat-option value="NO">No</mat-option>
+    </mat-select>
+     <mat-error *ngIf="only_child.invalid">Please enter only_child.</mat-error>
+  </mat-form-field>
+</div>
 
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
@@ -43,51 +127,19 @@
 
   </mat-form-field>
   </div>
+
 </div>
 <div class="row">
-<div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-   <mat-select placeholder="Category"  name="category" [(ngModel)]="student.category" #category="ngModel">
-      <mat-option value="OBC">OBC</mat-option>
-      <mat-option value="Gen">Gen</mat-option>
-      <mat-option value="SC">SC</mat-option>
-      <mat-option value="ST">ST</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
 
-<div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-   <mat-select placeholder="Student Type*"  name="student_type" [(ngModel)]="student.student_type" #student_type="ngModel">
-     <mat-option *ngFor="let studentType of constants.studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
-    <!-- <mat-option value="REGULAR">Regular</mat-option>
-    <mat-option value="PRIVATE">Private</mat-option>
-    <mat-option value="EX">Ex</mat-option>
-    <mat-option value="SINGLE_SUBJECT">Single Subject</mat-option> -->
-    </mat-select>
-  </mat-form-field>
-</div>
+  <div class="col-sm-2 col-lg-3 col-md-2">
+      <mat-form-field >
+      <input matInput placeholder="Father Name" name="father_name" [(ngModel)]="student.father_name" #father_name="ngModel" required minlength="3" pattern="^[a-zA-Z ]*">
+       <mat-error *ngIf="father_name.errors?.required">Father name is required.</mat-error>
+       <mat-error *ngIf="father_name.errors?.minlength">Father name should be atleast 3 characters..</mat-error>
+       <mat-error *ngIf="father_name.errors?.pattern">Please enter valid father name.</mat-error>
+    </mat-form-field>
+    </div>
 
-<div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-   <mat-select placeholder="Handicapped"  name="handicapped" [(ngModel)]="student.handicapped" #handicapped="ngModel">
-      <mat-option value="YES">Yes</mat-option>
-      <mat-option value="NO">No</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
-
-<div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-    <input matInput placeholder="Father Name" name="father_name" [(ngModel)]="student.father_name" #father_name="ngModel" required minlength="3" pattern="^[a-zA-Z ]*">
-     <mat-error *ngIf="father_name.errors?.required">Father name is required.</mat-error>
-     <mat-error *ngIf="father_name.errors?.minlength">Father name should be atleast 3 characters..</mat-error>
-     <mat-error *ngIf="father_name.errors?.pattern">Please enter valid father name.</mat-error>
-  </mat-form-field>
-  </div>
-</div>
-<div class="row">
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput placeholder="Father Qualification" name="father_qualification" [(ngModel)]="student.father_qualification" #father_qualification="ngModel" required minlength="2">
@@ -114,6 +166,9 @@
   </mat-form-field>
   </div>
 
+</div>
+<div class="row">
+
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput placeholder="Mother Qualification" name="mother_qualification" [(ngModel)]="student.mother_qualification" #mother_qualification="ngModel" required minlength="2">
@@ -122,23 +177,14 @@
 
   </mat-form-field>
   </div>
-</div>
-<div class="row">
+
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput placeholder="Mother Occupation" name="mother_occupation" [(ngModel)]="student.mother_occupation" #mother_occupation="ngModel" required>
     <mat-error *ngIf="mother_occupation.errors?.required">Mother occupation is required.</mat-error>
   </mat-form-field>
   </div>
-<div class="col-sm-2 col-lg-3 col-md-2">
-     <mat-form-field class="navigation-items">
-    <mat-select placeholder="Gender"  name="gender" [(ngModel)]="student.gender" #gender="ngModel" required>
-      <mat-option value="male">Male</mat-option>
-      <mat-option value="female">Female</mat-option>
-    </mat-select>
-<mat-error *ngIf="gender.invalid">Please select gender.</mat-error>
-  </mat-form-field>
-  </div>
+
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
         <textarea matInput name="address" [(ngModel)]="student.address" #address="ngModel" required minlength="10"></textarea>
@@ -157,76 +203,41 @@
        <mat-error *ngIf="contact_number.errors?.pattern">It is not a valid contact number.</mat-error>
   </mat-form-field>
   </div>
-</div>
-<div class="row">
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-       <mat-label>Phone2</mat-label>
-    <input matInput placeholder="Contact" name="contact_number2" [(ngModel)]="student.contact_number2" #contact_number2="ngModel" required maxlength="10" pattern="^[0-9]{10}$">
-    <mat-error *ngIf="contact_number2.errors?.required">Contact number2 is required.</mat-error>
-       <mat-error *ngIf="contact_number2.errors?.maxlength">Contact number2 should be 10 numbers.</mat-error>
-       <mat-error *ngIf="contact_number2.errors?.pattern">It is not a valid contact number2.</mat-error>
-  </mat-form-field>
-  </div>
 
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-       <mat-label>Annual Income</mat-label>
-    <input matInput placeholder="Income" name="annual_income" [(ngModel)]="student.annual_income" #annual_income="ngModel" required minlength="4">
-    <mat-error *ngIf="annual_income.errors?.required">Annual income is required</mat-error>
-    <mat-error *ngIf="annual_income.errors?.minlength">Annual income shold be 4 digit.</mat-error>
-  </mat-form-field>
-  </div>
-
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-   <mat-select placeholder="Minority"  name="minority" [(ngModel)]="student.minority" #minority="ngModel">
-      <mat-option value="YES">Yes</mat-option>
-      <mat-option value="NO">No</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
-<div class="col-sm-2 col-lg-3 col-md-2">
-     <mat-form-field class="navigation-items">
-     <mat-label>Email</mat-label>
-    <input matInput value="" name="email" [(ngModel)]="student.email" #email="ngModel" required email>
-     <mat-error *ngIf="email.errors?.required">Email is required.</mat-error>
-     <mat-error *ngIf="email.errors?.email">Enter valid email address.</mat-error>
-
-  </mat-form-field>
-  </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-   <mat-select placeholder="Only Child"  name="only_child" [(ngModel)]="student.only_child" #only_child="ngModel">
-      <mat-option value="YES">Yes</mat-option>
-      <mat-option value="NO">No</mat-option>
-    </mat-select>
-     <mat-error *ngIf="only_child.invalid">Please enter only_child.</mat-error>
-  </mat-form-field>
-</div>
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-    <input matInput [matDatepicker]="picker" placeholder="DOB" name="dob" [(ngModel)]="student.dob" #dob="ngModel" required [min]="minDate" [max]="maxDate">
-  <mat-datepicker-toggle matPrefix [for]="picker">
 
-  </mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-   <mat-error *ngIf="dob.invalid">Please enter dob.</mat-error>
-  </mat-form-field>
-  </div>
 
+    <div class="col-sm-2 col-lg-3 col-md-2">
+      <mat-form-field >
+         <mat-label>Phone2</mat-label>
+      <input matInput placeholder="Contact" name="contact_number2" [(ngModel)]="student.contact_number2" #contact_number2="ngModel" required maxlength="10" pattern="^[0-9]{10}$">
+      <mat-error *ngIf="contact_number2.errors?.required">Contact number2 is required.</mat-error>
+         <mat-error *ngIf="contact_number2.errors?.maxlength">Contact number2 should be 10 numbers.</mat-error>
+         <mat-error *ngIf="contact_number2.errors?.pattern">It is not a valid contact number2.</mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-sm-2 col-lg-3 col-md-2">
+      <mat-form-field >
+         <mat-label>Annual Income</mat-label>
+      <input matInput placeholder="Income" name="annual_income" [(ngModel)]="student.annual_income" #annual_income="ngModel" required minlength="4">
+      <mat-error *ngIf="annual_income.errors?.required">Annual income is required</mat-error>
+      <mat-error *ngIf="annual_income.errors?.minlength">Annual income shold be 4 digit.</mat-error>
+    </mat-form-field>
+    </div>
+    
   <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-    <mat-select placeholder="Class"  name="class" [(ngModel)]="student.class" #class="ngModel" required>
-      <mat-option *ngFor="let class of constants.classData;" value="{{class.value}}">{{class.value}}</mat-option>
-    </mat-select>
-     <mat-error *ngIf="class.errors?.required">Class is required.</mat-error>
-  </mat-form-field>
-  </div>
+       <mat-form-field class="navigation-items">
+       <mat-label>Email</mat-label>
+      <input matInput value="" name="email" [(ngModel)]="student.email" #email="ngModel" required email>
+       <mat-error *ngIf="email.errors?.required">Email is required.</mat-error>
+       <mat-error *ngIf="email.errors?.email">Enter valid email address.</mat-error>
+
+    </mat-form-field>
+    </div>
+
    <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
     <input matInput type="number" placeholder="Discount" name="discount" [(ngModel)]="student.discount" #discount="ngModel">
@@ -243,7 +254,7 @@
       <mat-checkbox *ngFor="let sub of subjectList  ;let i=index" class="example-margin" name="{{sub.subname}}"
       ngModel
       [(ngModel)]="subjectList[i].checked"
-      >{{sub.subname}}</mat-checkbox>&nbsp;  
+      >{{sub.subname}}</mat-checkbox>&nbsp;
  </section>
 </div>
   </div>

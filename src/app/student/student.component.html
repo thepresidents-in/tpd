@@ -10,12 +10,14 @@
 
  <form [formGroup]="form" name="studentData"  class="student-form" >
   <div class="row">
+
     <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field class="navigation-items">
       <input matInput value="" name="idNumber" formControlName="idNumber" placeholder="ID (BA-2-21)" required>
       <mat-error *ngIf="form.get('idNumber').errors?.required">ID Number is required.</mat-error>
       </mat-form-field>
     </div>
+
     <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field class="navigation-items">
       <input matInput value="" name="first_name" formControlName="first_name" placeholder="First Name*">
@@ -24,6 +26,7 @@
       <mat-error *ngIf="form.get('first_name').errors?.pattern">Enter valid name.</mat-error>
       </mat-form-field>
     </div>
+
     <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field >
       <input matInput placeholder="Last Name*" name="last_name" formControlName="last_name"  placeholder="Last Name*">
@@ -32,17 +35,48 @@
       <mat-error *ngIf="form.get('last_name').errors?.pattern">Enter valid last name.</mat-error>
       </mat-form-field>
     </div>
+
     <div class="col-sm-2 col-lg-3 col-md-2">
-      <mat-form-field >
-      <input matInput placeholder="Adhaar No*" name="adhaar_no" formControlName="adhaar_no" (keypress)=_keyPress($event) placeholder="Adhaar Number*">
-      <mat-error *ngIf="form.get('adhaar_no').errors?.required">Adhaar number is required.</mat-error>
-      <mat-error *ngIf="form.get('adhaar_no').errors?.minlength">Please enter valid Adhaar Number.</mat-error>
-      <mat-error *ngIf="form.get('adhaar_no').errors?.maxlength">Please enter valid Adhaar Number.</mat-error>
-      </mat-form-field>
-    </div>
+     <mat-form-field class="navigation-items">
+      <mat-select placeholder="Gender"  name="gender" formControlName="gender">
+      <mat-option value="male">Male</mat-option>
+      <mat-option value="female">Female</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('gender').invalid">Please select gender.</mat-error>
+    </mat-form-field>
+  </div>
+
   </div>
 
   <div class="row">
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+   <mat-form-field >
+     <input matInput [matDatepicker]="picker" placeholder="DOB*" name="dob" formControlName="dob" [min]="minDate" [max]="maxDate">
+     <mat-datepicker-toggle matPrefix [for]="picker">
+     </mat-datepicker-toggle>
+     <mat-datepicker #picker></mat-datepicker>
+     <mat-error *ngIf="form.get('dob').invalid">Please enter dob.</mat-error>
+   </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+   <mat-form-field >
+     <mat-select placeholder="Class*"  name="class" formControlName="class">
+     <mat-option *ngFor="let class of constants.classData;" value="{{class.value}}">{{class.value}}</mat-option>
+     </mat-select>
+      <mat-error *ngIf="form.get('class').errors?.required">Please select class.</mat-error>
+   </mat-form-field>
+  </div>
+
+      <div class="col-sm-2 col-lg-3 col-md-2">
+        <mat-form-field >
+          <mat-select placeholder="Student Type*"  name="student_type" formControlName="student_type">
+            <mat-option *ngFor="let studentType of constants.studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+
     <div class="col-sm-2 col-lg-3 col-md-2">
       <mat-form-field >
         <mat-select placeholder="Category*"  name="category" formControlName="category">
@@ -53,126 +87,9 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="col-sm-2 col-lg-3 col-md-2">
-      <mat-form-field >
-        <mat-select placeholder="Student Type*"  name="student_type" formControlName="student_type">
-          <mat-option *ngFor="let studentType of constants.studentTypeData;" value="{{studentType.value}}">{{studentType.value}}</mat-option>
-          <!-- <mat-option value="REGULAR">Regular</mat-option>
-          <mat-option value="PRIVATE">Private</mat-option>
-          <mat-option value="EX">Ex</mat-option>
-          <mat-option value="SINGLE_SUBJECT">Single Subject</mat-option> -->
-        </mat-select>
-      </mat-form-field>
   </div>
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-      <mat-select placeholder="Handicapped*"  name="handicapped" formControlName="handicapped">
-        <mat-option value="YES">Yes</mat-option>
-        <mat-option value="NO">No</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="col-sm-2 col-lg-3 col-md-2">
-   <mat-form-field class="navigation-items">
-    <mat-select placeholder="Gender"  name="gender" formControlName="gender">
-    <mat-option value="male">Male</mat-option>
-    <mat-option value="female">Female</mat-option>
-    </mat-select>
-    <mat-error *ngIf="form.get('gender').invalid">Please select gender.</mat-error>
-  </mat-form-field>
-</div>
-</div>
 <div class="row">
-  <div class="col-sm-2 col-lg-3 col-md-2">
-     <mat-form-field >
-      <input matInput placeholder="Father Name*" name="father_name" formControlName="father_name">
-      <mat-error *ngIf="form.get('father_name').errors?.required">Father name is required.</mat-error>
-      <mat-error *ngIf="form.get('father_name').errors?.minlength">Father name should be atleast 3 characters.</mat-error>
-      <mat-error *ngIf="form.get('father_name').errors?.pattern">Enter valid father name.</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-    <input matInput placeholder="Father Qualification*" name="father_qualification" formControlName="father_qualification">
-    <mat-error *ngIf="form.get('father_qualification').errors?.required">Father Qualification is required.</mat-error>
-    <mat-error *ngIf="form.get('father_qualification').errors?.invalid">Please enter father Qualification.</mat-error>
-    <mat-error *ngIf="form.get('father_qualification').errors?.minlength">Qualification should be atleast 2 characters.</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-    <input matInput placeholder="Father Occupation*" name="father_occupation" formControlName="father_occupation">
-     <mat-error *ngIf="form.get('father_occupation').errors?.required">Father Occupation is required.</mat-error>
-     <mat-error *ngIf="form.get('father_occupation').errors?.minlength">Occupation should be atleast 6 characters.</mat-error>
-  </mat-form-field>
-  </div>
-  <div class="col-sm-2 col-lg-3 col-md-2">
 
-
-    <mat-form-field >
-      <mat-select placeholder="Only Child"  name="only_child" formControlName="only_child">
-      <mat-option value="YES">Yes</mat-option>
-      <mat-option value="NO">No</mat-option>
-      </mat-select>
-    <mat-error *ngIf="form.get('only_child').invalid">Please enter only_child.</mat-error>
-    </mat-form-field>
-  </div>
-  </div>
-
-<div class="row">
-   <div class="col-sm-2 col-lg-3 col-md-2">
-      <mat-form-field >
-      <input matInput placeholder="Mother Name*" name="mother_name" formControlName="mother_name">
-      <mat-error *ngIf="form.get('mother_name').errors?.required">Mother name is required.</mat-error>
-      <mat-error *ngIf="form.get('mother_name').errors?.minlength">Mother name should be atleast 3 characters.</mat-error>
-      <mat-error *ngIf="form.get('mother_name').errors?.pattern">Enter valid mother name.</mat-error>
-      </mat-form-field>
-   </div>
-   <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-      <input matInput placeholder="Mother Qualification*" name="mother_qualification" formControlName="mother_qualification">
-      <mat-error *ngIf="form.get('mother_qualification').errors?.required">Mother qualification is required.</mat-error>
-      <mat-error *ngIf="form.get('mother_qualification').errors?.minlength">Qualification should be atleast 2 characters.</mat-error>
-    </mat-form-field>
-   </div>
-   <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-      <input matInput placeholder="Mother Occupation*" name="mother_occupation" formControlName="mother_occupation">
-      <mat-error *ngIf="form.get('mother_occupation').errors?.required">Mother occupation is required.</mat-error>
-    </mat-form-field>
-   </div>
-   <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-      <textarea matInput name="address" formControlName="address" placeholder="Address*"></textarea>
-      <mat-error *ngIf="form.get('address').errors?.required">Address is required.</mat-error>
-      <mat-error *ngIf="form.get('address').errors?.minlength">Address field value should be 10 characters.</mat-error>
-    </mat-form-field>
-   </div>
-</div>
-<div class="row">
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-    <input matInput placeholder="Phone1*" name="contact_number" formControlName="contact_number" (keypress)=_keyPress($event)>
-      <mat-error *ngIf="form.get('contact_number').errors?.required">Contact number is required.</mat-error>
-      <mat-error *ngIf="form.get('contact_number').errors?.maxlength">Contact number should be 10 numbers.</mat-error>
-      <mat-error *ngIf="form.get('contact_number').errors?.pattern">It is not a valid contact number.</mat-error>
-  </mat-form-field>
-  </div>
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-      <input matInput placeholder="Phone2*" name="contact_number2"  formControlName="contact_number2" (keypress)=_keyPress($event)>
-      <mat-error *ngIf="form.get('contact_number2').errors?.required">Contact2 is required.</mat-error>
-      <mat-error *ngIf="form.get('contact_number2').errors?.maxlength">Contact number2 should be 10 numbers.</mat-error>
-      <mat-error *ngIf="form.get('contact_number2').errors?.pattern">It is not a valid contact number2.</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-    <input matInput placeholder="Annual Income*" name="annual_income" formControlName="annual_income" (keypress)=_keyPress($event)>
-    <mat-error *ngIf="form.get('annual_income').errors?.required">Annual income is required.</mat-error>
-    <mat-error *ngIf="form.get('annual_income').errors?.minlength">Annual income should be 4 digit.</mat-error>
-  </mat-form-field>
-  </div>
   <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
       <mat-select placeholder="Minority*"  name="minority" formControlName="minority">
@@ -182,8 +99,131 @@
       <mat-error *ngIf="form.get('minority').errors?.required">Minority is required.</mat-error>
     </mat-form-field>
   </div>
+
+
+<div class="col-sm-2 col-lg-3 col-md-2">
+  <mat-form-field >
+    <mat-select placeholder="Handicapped*"  name="handicapped" formControlName="handicapped">
+      <mat-option value="YES">Yes</mat-option>
+      <mat-option value="NO">No</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="col-sm-2 col-lg-3 col-md-2">
+  <mat-form-field >
+    <mat-select placeholder="Only Child"  name="only_child" formControlName="only_child">
+    <mat-option value="YES">Yes</mat-option>
+    <mat-option value="NO">No</mat-option>
+    </mat-select>
+  <mat-error *ngIf="form.get('only_child').invalid">Please enter only_child.</mat-error>
+  </mat-form-field>
+</div>
+
+
+<div class="col-sm-2 col-lg-3 col-md-2">
+  <mat-form-field >
+  <input matInput placeholder="Adhaar No*" name="adhaar_no" formControlName="adhaar_no" (keypress)=_keyPress($event) placeholder="Adhaar Number*">
+  <mat-error *ngIf="form.get('adhaar_no').errors?.required">Adhaar number is required.</mat-error>
+  <mat-error *ngIf="form.get('adhaar_no').errors?.minlength">Please enter valid Adhaar Number.</mat-error>
+  <mat-error *ngIf="form.get('adhaar_no').errors?.maxlength">Please enter valid Adhaar Number.</mat-error>
+  </mat-form-field>
+</div>
+
+  </div>
+
+<div class="row">
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+     <mat-form-field >
+      <input matInput placeholder="Father Name*" name="father_name" formControlName="father_name">
+      <mat-error *ngIf="form.get('father_name').errors?.required">Father name is required.</mat-error>
+      <mat-error *ngIf="form.get('father_name').errors?.minlength">Father name should be atleast 3 characters.</mat-error>
+      <mat-error *ngIf="form.get('father_name').errors?.pattern">Enter valid father name.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput placeholder="Father Qualification*" name="father_qualification" formControlName="father_qualification">
+    <mat-error *ngIf="form.get('father_qualification').errors?.required">Father Qualification is required.</mat-error>
+    <mat-error *ngIf="form.get('father_qualification').errors?.invalid">Please enter father Qualification.</mat-error>
+    <mat-error *ngIf="form.get('father_qualification').errors?.minlength">Qualification should be atleast 2 characters.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput placeholder="Father Occupation*" name="father_occupation" formControlName="father_occupation">
+     <mat-error *ngIf="form.get('father_occupation').errors?.required">Father Occupation is required.</mat-error>
+     <mat-error *ngIf="form.get('father_occupation').errors?.minlength">Occupation should be atleast 6 characters.</mat-error>
+  </mat-form-field>
+  </div>
+
+   <div class="col-sm-2 col-lg-3 col-md-2">
+      <mat-form-field >
+      <input matInput placeholder="Mother Name*" name="mother_name" formControlName="mother_name">
+      <mat-error *ngIf="form.get('mother_name').errors?.required">Mother name is required.</mat-error>
+      <mat-error *ngIf="form.get('mother_name').errors?.minlength">Mother name should be atleast 3 characters.</mat-error>
+      <mat-error *ngIf="form.get('mother_name').errors?.pattern">Enter valid mother name.</mat-error>
+      </mat-form-field>
+   </div>
+
+</div>
+<div class="row">
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+   <mat-form-field >
+     <input matInput placeholder="Mother Qualification*" name="mother_qualification" formControlName="mother_qualification">
+     <mat-error *ngIf="form.get('mother_qualification').errors?.required">Mother qualification is required.</mat-error>
+     <mat-error *ngIf="form.get('mother_qualification').errors?.minlength">Qualification should be atleast 2 characters.</mat-error>
+   </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+   <mat-form-field >
+     <input matInput placeholder="Mother Occupation*" name="mother_occupation" formControlName="mother_occupation">
+     <mat-error *ngIf="form.get('mother_occupation').errors?.required">Mother occupation is required.</mat-error>
+   </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+   <mat-form-field >
+     <textarea matInput name="address" formControlName="address" placeholder="Address*"></textarea>
+     <mat-error *ngIf="form.get('address').errors?.required">Address is required.</mat-error>
+     <mat-error *ngIf="form.get('address').errors?.minlength">Address field value should be 10 characters.</mat-error>
+   </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput placeholder="Phone1*" name="contact_number" formControlName="contact_number" (keypress)=_keyPress($event)>
+      <mat-error *ngIf="form.get('contact_number').errors?.required">Contact number is required.</mat-error>
+      <mat-error *ngIf="form.get('contact_number').errors?.maxlength">Contact number should be 10 numbers.</mat-error>
+      <mat-error *ngIf="form.get('contact_number').errors?.pattern">It is not a valid contact number.</mat-error>
+  </mat-form-field>
+  </div>
+
   </div>
 <div class="row">
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+      <input matInput placeholder="Phone2*" name="contact_number2"  formControlName="contact_number2" (keypress)=_keyPress($event)>
+      <mat-error *ngIf="form.get('contact_number2').errors?.required">Contact2 is required.</mat-error>
+      <mat-error *ngIf="form.get('contact_number2').errors?.maxlength">Contact number2 should be 10 numbers.</mat-error>
+      <mat-error *ngIf="form.get('contact_number2').errors?.pattern">It is not a valid contact number2.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="col-sm-2 col-lg-3 col-md-2">
+    <mat-form-field >
+    <input matInput placeholder="Annual Income*" name="annual_income" formControlName="annual_income" (keypress)=_keyPress($event)>
+    <mat-error *ngIf="form.get('annual_income').errors?.required">Annual income is required.</mat-error>
+    <mat-error *ngIf="form.get('annual_income').errors?.minlength">Annual income should be 4 digit.</mat-error>
+  </mat-form-field>
+  </div>
+
    <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field class="navigation-items">
       <input matInput value="" name="email" formControlName="email" placeholder="Email*">
@@ -191,27 +231,11 @@
       <mat-error *ngIf="form.get('email').errors?.pattern">Please enter valid email address.</mat-error>
     </mat-form-field>
    </div>
+
    <div class="col-sm-2 col-lg-3 col-md-2">
     <mat-form-field >
-      <input matInput [matDatepicker]="picker" placeholder="DOB*" name="dob" formControlName="dob" [min]="minDate" [max]="maxDate">
-      <mat-datepicker-toggle matPrefix [for]="picker">
-      </mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="form.get('dob').invalid">Please enter dob.</mat-error>
+      <input matInput type="number" placeholder="Discount" name="discount" formControlName="discount">
     </mat-form-field>
-   </div>
-   <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-      <mat-select placeholder="Class*"  name="class" formControlName="class">
-      <mat-option *ngFor="let class of constants.classData;" value="{{class.value}}">{{class.value}}</mat-option>
-      </mat-select>
-       <mat-error *ngIf="form.get('class').errors?.required">Please select class.</mat-error>
-    </mat-form-field>
-   </div>
-   <div class="col-sm-2 col-lg-3 col-md-2">
-    <mat-form-field >
-    <input matInput type="number" placeholder="Discount" name="discount" formControlName="discount">
-  </mat-form-field>
    </div>
 </div>
 <div class="row">
@@ -222,8 +246,9 @@
     <section>
       <mat-checkbox  *ngFor="let sub of constants.subjectData;" class="example-margin" name="{{sub.value}}" formControlName="{{sub.value}}">{{sub.value}}</mat-checkbox>&nbsp;
     </section>
-</div>
   </div>
+  </div>
+
 <div class="row">
   <div class="col-sm-2 col-lg-6 col-md-2">
     <button type="button" (click)="submitStudent()" mat-stroked-button style="color:#38B6FF;">Save</button>
