@@ -103,15 +103,8 @@ export class StudentComponent implements OnInit {
         validators:[Validators.required, Validators.minLength(6)]
       }),
         'discount' : new FormControl('', {
-        validators:[Validators.minLength(2),Validators.maxLength(4), Validators.pattern("[1-9]\\d{3}")]
-      }),
-        // 'hindi' : new FormControl(''),
-        // 'sanskrit' : new FormControl(''),
-        // 'medieval_history' : new FormControl(''),
-        // 'home_science' : new FormControl(''),
-        // 'pedagogy' : new FormControl(''),
-        // 'sociology' : new FormControl(''),
-        // 'political_science' : new FormControl(''),
+        validators:[Validators.minLength(2),Validators.maxLength(4)]
+      })
     }
 
     for(let sub of this.constants.subjectData){

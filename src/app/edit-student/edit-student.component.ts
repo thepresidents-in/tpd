@@ -48,14 +48,6 @@ export class EditStudentComponent implements OnInit {
         });
     });
 
-
-
-   /*  Array.from( myMap ).map(([key, value]) => ({ key, value }));
-
-  console.log("this.containers11: ",this.containers);
-  console.log("KV this: ",this.text[incLen]);
-  element['sel_column'+incLen] = 'sel_column'+len +1;*/
-
   }
 
    submitEditStudent(form: NgForm) {

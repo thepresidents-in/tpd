@@ -18,7 +18,7 @@ export interface DialogData {
 export class ListexpensesComponent implements OnInit {
   expenseList;
   dataSource ;
-  displayedColumns = ['srno', 'date','type','amount','description','del'];
+  displayedColumns = ['srno', 'date','type','category','amount','description','del'];
   expenseSum:Number;
   incomeSum:Number;
 

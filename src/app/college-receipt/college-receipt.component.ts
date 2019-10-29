@@ -22,7 +22,6 @@ export class CollegeReceiptComponent implements OnInit {
   admissionFee:number =5100;
   session = '2019-20';
   todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-  srnoDisabled: boolean= true;
   fee:number;
   isFee: boolean=true;
   form: FormGroup;
@@ -32,7 +31,6 @@ export class CollegeReceiptComponent implements OnInit {
   constructor(public constantsService: ConstantsService, public datePipe : DatePipe,public rest: RestService,private spinnerService: Ng4LoadingSpinnerService,private router: Router) {}
 
   ngOnInit() {
-    this.getSrno();
     this.constants = this.constantsService.getConstants()
   }
   saveStudentFee(form: NgForm){
@@ -66,12 +64,6 @@ getStudentInfo(std){
        this.idNumber = std.idNumber
        this.discount = std.discount
      }
-}
-getSrno(){
-  this.rest.getReceiptSno('college_receipt').then((response)=> {
-    this.srno = response;
-    this.srnoDisabled = false;
-  });
 }
 
 displayFn(student){
